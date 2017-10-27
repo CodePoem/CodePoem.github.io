@@ -69,4 +69,6 @@ theme: material
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:CodePoem/CodePoem.github.io.git
+  repo: 
+      github: git@github.com:CodePoem/CodePoem.github.io.git,master
+      coding: git@git.coding.net:clownman/clownman.git,master
