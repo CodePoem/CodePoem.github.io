@@ -4,6 +4,9 @@ date: 2016/12/9 20:46:25
 updated: 2016/12/9 20:46:25
 categories:
 - Android自定义View
+tags:
+- Android
+- 自定义View
 ---
 # 一、简述
   自定义VIew是Android进阶之路不可避免的难关。此刻下定决心攻克这个难关，以此为证。在学习绘制自定义View之前先来思考一下系统是如何绘制出这些View的。
@@ -24,38 +27,38 @@ __测量的模式：__
 
 模板如下：
 
-```
+```java
 @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        setMeasuredDimension(measureSize(widthMeasureSpec, 200), measureSize(heightMeasureSpec, 
-                200));
-    }
+protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    setMeasuredDimension(measureSize(widthMeasureSpec, 200), measureSize(heightMeasureSpec,
+            200));
+}
 
-    /**
-     * 测量View尺寸
-     *
-     * @param measureSpec 要测量的Spec
-     * @param defaultSize 默认View大小
-     * @return
-     */
-    private int measureSize(int measureSpec, int defaultSize) {
-        int result = defaultSize;
-        int specMode = MeasureSpec.getMode(measureSpec);
-        int specSize = MeasureSpec.getSize(measureSpec);
+/**
+ * 测量View尺寸
+ *
+ * @param measureSpec 要测量的Spec
+ * @param defaultSize 默认View大小
+ * @return
+ */
+private int measureSize(int measureSpec, int defaultSize) {
+    int result = defaultSize;
+    int specMode = MeasureSpec.getMode(measureSpec);
+    int specSize = MeasureSpec.getSize(measureSpec);
 
-        switch (specMode) {
-            case MeasureSpec.UNSPECIFIED:
-                result = defaultSize;
-                break;
-            case MeasureSpec.AT_MOST:
-                result = Math.min(result, specSize);
-                break;
-            case MeasureSpec.EXACTLY:
-                result = specSize;
-                break;
-        }
-        return result;
+    switch (specMode) {
+        case MeasureSpec.UNSPECIFIED:
+            result = defaultSize;
+            break;
+        case MeasureSpec.AT_MOST:
+            result = Math.min(result, specSize);
+            break;
+        case MeasureSpec.EXACTLY:
+            result = specSize;
+            break;
     }
+    return result;
+}
 ```
 
 # 三、View的绘制

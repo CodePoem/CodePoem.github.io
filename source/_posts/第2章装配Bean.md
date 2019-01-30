@@ -4,6 +4,8 @@ date: 2016/11/21 20:46:25
 updated: 2016/11/21 20:46:25
 categories:
 - Spring实战第4版读书笔记
+tags:
+- Spring
 ---
 # 一、简述
 Spring提供了三种主要的装配机制：

@@ -4,6 +4,9 @@ date: 2016/12/10 20:46:25
 updated: 2016/12/10 20:46:25
 categories:
 - Android自定义View
+tags:
+- Android
+- 自定义View
 ---
 # 一、简述
   VIew的工作流程主要是指measure、layout、draw这三大流程，即测量、布局、绘制。measure确定View的测量宽高；layout确定View的最终宽高和四个顶点的位置；draw则将VIew绘制到屏幕上。

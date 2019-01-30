@@ -34,7 +34,13 @@
   "branch": {
     "name_must_be_longer_than": 4,
     "name_must_include_prefix": {
-      "prefixes": ["feat", "fix", "refactor", "chore"],
+      "prefixes": [
+        "feat",
+        "fix",
+        "refactor",
+        "chore"
+      ],
       "require_after_prefix": "/"
     }
+  }
 }

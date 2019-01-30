@@ -4,6 +4,9 @@ date: 2016/12/11 20:46:25
 updated: 2016/12/11 20:46:25
 categories:
 - Android自定义View
+tags:
+- Android
+- 自定义View
 ---
 # 一、定义与声明
 
@@ -27,6 +30,7 @@ categories:
 
 </resources>
 ```
+
 其中CodeView是自定义styleable名，可以随意取
 format有以下几种：
 1. reference：参考某一资源ID
