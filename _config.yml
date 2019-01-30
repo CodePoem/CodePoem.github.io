@@ -74,6 +74,3 @@ deploy:
 - type: git
   repo: git@git.coding.net:clownman/clownman.git
   branch: master
-- type: git
-  repo: https://gh_token@github.com/CodePoem/CodePoem.github.io.git
-  branch: master
