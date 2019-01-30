@@ -24,7 +24,7 @@ script:
 after_script:
   - git config user.name "CodePoem"
   - git config user.email "806957428@qq.com"
-  - sed -i 's/git\@github/https:\/\/"${GH_TOKEN}"\@github/g' ./_config.yml
+  - sed -i "s/git\@github/https:\/\/$GH_TOKEN\@github/g" ./_config.yml
   - hexo deploy
 notifications:
   email:
