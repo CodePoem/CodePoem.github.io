@@ -4,9 +4,9 @@
 
 # Head info
 head:
-    favicon: "/img/v_half.png"
-    high_res_favicon: "/img/v_half.png"
-    apple_touch_icon: "/img/v_half.png"
+    favicon: "/img/v_half.webp"
+    high_res_favicon: "/img/v_half.webp"
+    apple_touch_icon: "/img/v_half.webp"
     keywords: CodePoem
     site_verification:
         google:
@@ -65,17 +65,17 @@ thumbnail:
 #        type available value: A (animal), C (culture), N (nature), S (space), T (travel)
 background:
     purecolor: "#F5F5F5"
-    bgimg: "/img/v_bg.png"
+    bgimg: "/img/v_bg.webp"
     bing:
         enable: false
         parameter:
 
 # Images Settings
 img:
-    logo: "/img/v_half.png"
-    avatar: "/img/v_half.png"
-    daily_pic: "/img/v_struggle.png"
-    sidebar_header: "/img/v_side.png"
+    logo: "/img/v_half.webp"
+    avatar: "/img/v_half.webp"
+    daily_pic: "/img/v_struggle.webp"
+    sidebar_header: "/img/v_side.webp"
     random_thumbnail: "/img/random/material-"
     footer_image:
         #upyun_logo:
@@ -332,7 +332,7 @@ vendors:
 #   The new src will have the base domain you configured below.
 #   For example
 #       materialcdn: https://cdn.jsdelivr.net/npm/hexo-material@1.4.0/source
-    materialcdn:
+    materialcdn: https://cdn.jsdelivr.net/gh/viosey/hexo-theme-material@latest/source
 
 # Third party library
 #   You can load these files from public cdn.
