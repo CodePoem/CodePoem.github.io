@@ -39,7 +39,7 @@ uiux:
     theme_color: "#FF3C3C"
     theme_sub_color: "#000000"
     hyperlink_color: "#000000"
-    button_color: "#FF0000"
+    button_color: "#FF3C3C"
     android_chrome_color: "#FF3C3C"
     nprogress_color: "#FF3C3C"
     nprogress_buffer: "800"
@@ -56,7 +56,7 @@ reading:
 # Thumbnail Settings
 thumbnail:
     purecolor:
-    random_amount: 19
+    random_amount: 14
 
 # Background Settings
 # bing available parameter:
@@ -76,7 +76,7 @@ img:
     avatar: "/img/v_half.webp"
     daily_pic: "/img/v_struggle.webp"
     sidebar_header: "/img/v_side.webp"
-    random_thumbnail: "/img/random/material-"
+    random_thumbnail: "/img/random/v-random-"
     footer_image:
         #upyun_logo:
             #link: "https://www.upyun.com/"
