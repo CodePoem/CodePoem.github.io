@@ -8,6 +8,7 @@ tags:
 - Android
 - 自定义View
 ---
+
 # 一、定义与声明
 
 ![自定义属性xml文件.png](http://upload-images.jianshu.io/upload_images/3828003-f8e2780b05000359.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
