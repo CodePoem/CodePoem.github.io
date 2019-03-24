@@ -239,6 +239,10 @@ sidebar:
             link: "/about"
             icon: person
             divider: false
+        Resume:
+            link: "/resume"
+            icon: notes
+            divider: false
     article_num:
         use: true
         divider: false
