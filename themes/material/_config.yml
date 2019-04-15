@@ -56,7 +56,7 @@ reading:
 # Thumbnail Settings
 thumbnail:
     purecolor:
-    random_amount: 14
+    random_amount: 16
 
 # Background Settings
 # bing available parameter:
@@ -75,7 +75,7 @@ img:
     logo: "/img/v_half.webp"
     avatar: "/img/v_half.webp"
     daily_pic: "/img/v_struggle.webp"
-    sidebar_header: "/img/v_side.webp"
+    sidebar_header: "/img/v_side.jpg"
     random_thumbnail: "/img/random/v-random-"
     footer_image:
         #upyun_logo:
