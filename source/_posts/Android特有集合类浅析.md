@@ -74,16 +74,16 @@ ArrayMap是用双数组实现：
 #### ArrayMap解决碰撞冲突方式
 
 ArrayMap会对key**从小到大排序**，使用**二分法查询**key对应在数组中的下标。
-先对存储hashCode的int[]数组使用**二分查找法**得到相应的index，通过index换算，可以等到Object[]数组的**key下标（index*2）**和**value下标（index*2+1）**。
+先对存储hashCode的int[]数组使用**二分查找法**得到相应的index，通过index换算，可以得到Object[]数组的**key下标（index*2）**和**value下标（index*2+1）**。
 
 那么如果出现hashCode冲突，该怎么办呢？
 ArrayMap采用自己的**开放地址法**来解决碰撞冲突。
 
-已put一个键值对key/value为例子：
+以put一个键值对key/value为例子：
 
 ![ArrayMap进行put](/assert/img/androidmap/arraymap_put.jpg)
 
-hashCode碰撞时会发生存储hashCode的int[]数组**二分查找**后得到的index不为负数（因为如果该hashCode存储过数据，index必然大于等于0），那么同时根据index换算后得到的key下标和value下标在Object[]数组已存有数据。
+hashCode碰撞时会发生这样的情景， 存储hashCode的int[]数组**二分查找**后得到的index不为负数（因为如果该hashCode存储过数据，index必然大于等于0，也就是能在int[]数组中查找到值），且同时根据index换算后得到的key下标和value下标在Object[]数组也已存有数据。
 ArrayMap会以当前换算好的key下标为**中心点**，**向后和向前遍历**，查询对比是否有**相同key值**。
 相同则说明重复put了；向后和向前遍历都没有找到相同key值的，最后将在向后遍历的最后一个下标后插入当前key/value。
 
