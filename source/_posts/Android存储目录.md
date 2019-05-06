@@ -30,7 +30,11 @@ Android存储目录的**化身**——A州M社区。
 
 众所周知，A州是一座正在蓬勃发展的城市。M社区是A州引以为傲的设施完备的高档社区（各家各户都是**独门独幢**），有几户大户人家住在M社区，**陶钱豹**陶家、**魏欣**魏家、**窦银**窦家等是其中翘楚。
 
+<center>
+
 ![M社区鸟瞰图](/assert/img/persistence/storage/storage_sample.png)
+
+</center>
 
 * M社区总占地30万平方米,**公共区域面积大**，绿化率高。住宅区是各家各户**私有区域**（有围墙大门），未经主人允许不得擅自闯入。除此之外，社区设有专门的停车区来实现人车分离，当然停车区也属于**私有区域**，与住宅绑定。私有区域都有尊贵的户主标识。
 * 除了私有区域，社区还拥有相册公园、音乐游泳馆、图片图书馆等**九大公共区域**，由物业统一管理，各家各户共享资源。
@@ -43,7 +47,11 @@ Android存储目录的**化身**——A州M社区。
 
 小米5真机文件存储目录：
 
+<center> 
+ 
 ![MI5文件存储](/assert/img/persistence/storage/mi5_file.png)
+
+</center>
 
 * 内部存储根目录：/data
 * 内部存储私有目录根目录：/data/user/0/包名(如com.taobao.taobao)
@@ -55,7 +63,8 @@ Android存储目录的**化身**——A州M社区。
 * 外部存储普通文件私有目录：/storage/emulated/0/Android/data/包名(如com.taobao.taobao)/files 
 * 外部存储缓存文件私有目录：/storage/emulated/0/Android/data/包名(如com.taobao.taobao)/cache
 
-![QQ清理数据](/assert/img/persistence/storage/data_clear.png)
+<div align=center><img width="270" height="480" src="/assert/img/persistence/storage/data_clear.png"/></div> 
+<!--![QQ清理数据](/assert/img/persistence/storage/data_clear.png)-->
 
 清理数据的两个选项：
 1. 清理数据：会清理所有私有目录（内部存储私有目录根目录和外部存储私有目录根目录）
@@ -63,7 +72,11 @@ Android存储目录的**化身**——A州M社区。
 
 附上包含针对开发者的Android存储目录Api整理：
 
+<center>
+
 ![Android存储目录总结](/assert/img/persistence/storage/storage_summary.png)
+
+</center>
 
 ## 总结
 
