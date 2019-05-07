@@ -1,7 +1,7 @@
 ---
 title: Android存储目录
 date: 2019-05-06 07:36:56
-updated: 2019-05-06 07:36:59
+updated: 2019-05-07 08:06:21
 categories:
 - 持久化
 tags:
@@ -53,6 +53,14 @@ Android存储目录的**化身**——A州M社区。
 
 </center>
 
+附上包含针对开发者的Android存储目录Api整理：
+
+<center>
+
+![Android存储目录总结](/assert/img/persistence/storage/storage_summary.png)
+
+</center>
+
 * 内部存储根目录：/data
 * 内部存储私有目录根目录：/data/user/0/包名(如com.taobao.taobao)
 * 内部存储普通文件私有目录：/data/user/0/包名(如com.taobao.taobao)/files
@@ -69,14 +77,6 @@ Android存储目录的**化身**——A州M社区。
 清理数据的两个选项：
 1. 清理数据：会清理所有私有目录（内部存储私有目录根目录和外部存储私有目录根目录）
 2. 清理缓存：会清理所有缓存文件目录（内部存储缓存文件私有目录和外部存储缓存文件私有目录）
-
-附上包含针对开发者的Android存储目录Api整理：
-
-<center>
-
-![Android存储目录总结](/assert/img/persistence/storage/storage_summary.png)
-
-</center>
 
 ## 总结
 
