@@ -106,7 +106,7 @@ debug模式下，Android Studio会在$HOME/.android/debug.keystore 中自动创�
 
 在Android Studio 生成密钥：
 
-![New Key Store](/assert/app/appuniqueness/keystore-example.webp)
+![New Key Store](/assert/app/appuniqueness/keystore-example.png)
 
 密钥库：
 
