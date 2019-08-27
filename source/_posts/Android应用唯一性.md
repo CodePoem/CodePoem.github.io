@@ -135,7 +135,7 @@ keytool 位于 JDK 的 bin/ 目录中。
 
 1. applicationId是应用的唯一标识。发布应用后，**绝不应该更改applicationId**。
 2. 尽管applicationId和包名在设置时完全一样，但**applicationId和包名彼此无关，两者更改互不影响**。
-3. applicationId过去直接关联到代码的软件包名称；所以，有些 Android API 会在其方法名称和参数名称中使用“package name”一词，但这实际上是指applicationId，如**Context.getPackageName() 方法放回的是applicationId**。
+3. applicationId过去直接关联到代码的软件包名称；所以，有些 Android API 会在其方法名称和参数名称中使用“package name”一词，但这实际上是指applicationId，如**Context.getPackageName() 方法返回的是applicationId**。
 4. 无论何时都不需要在应用代码以外分享代码的真实软件包名称。对外暴露的只有applicationId。
 5. 构建工具会在**编译结束时将applicationId 复制替换到 APK 的最终清单文件中**，编译系统利用原始值包名（设置 R 类的命名空间并解析清单类名称）后，它会舍弃该值（包名）并将其替换为applicationId。
 6. 个人推荐applicationId和包名一致或者以包名为前缀。
