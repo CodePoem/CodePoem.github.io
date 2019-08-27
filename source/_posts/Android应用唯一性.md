@@ -139,3 +139,7 @@ keytool 位于 JDK 的 bin/ 目录中。
 4. 无论何时都不需要在应用代码以外分享代码的真实软件包名称。对外暴露的只有applicationId。
 5. 构建工具会在 **编译结束时将applicationId 复制替换到 APK 的最终清单文件中** ，编译系统利用原始值包名（设置 R 类的命名空间并解析清单类名称）后，它会舍弃该值（包名）并将其替换为applicationId。
 6. 个人推荐applicationId和包名一致或者以包名为前缀。
+7. Android 要求所有 APK 必须先使用证书进行数字签署，然后才能安装。
+8. Android Studio默认会自动生成debug签名，签名在$HOME/.android/debug.keystore。
+
+综上所述，不同的APP，applicationId一定不相同，包名和签名可以相同也可以不相同。
