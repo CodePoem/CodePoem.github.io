@@ -46,7 +46,7 @@ Android 构建工具使用 package 属性来发挥两种作用：
 
 ### 定义简介
 
-applicationId是每个应用的唯一应用Id，看起来就和软件包名称一样。此 ID 可以在设备上和 Google Play 商店中对应用进行唯一标识(实际上，Google Play 商店和 Android 平台会查看包名 package 属性来识别您的应用，构建工具会在编译结束时将applicationId 复制替换到 APK 的最终清单文件中)。也就是说，上传新版本的应用，applicationId必须与原始APK相同，否则会被认为是两个完全不同的应用。因此发布应用后，**绝不应该更改applicationId**。
+applicationId是每个应用的唯一应用Id，看起来就和软件包名称一样。此 ID 可以在设备上和 Google Play 商店中对应用进行唯一标识(实际上，Google Play 商店和 Android 平台会查看包名 package 属性来识别您的应用，构建工具会在编译结束时将applicationId 复制替换到 APK 的最终清单文件中)。也就是说，上传新版本的应用，applicationId必须与原始APK相同，否则会被认为是两个完全不同的应用。因此发布应用后， **绝不应该更改applicationId** 。
 
 ### 配置示例
 
@@ -58,7 +58,7 @@ android {
 }
 ```
 
-**PS：**如果需要在清单文件中引用applicationId，可以在任何清单属性中使用 ${applicationId} 占位符，在编译期间，Gradle 会将此标记替换为实际的applicationId。
+**PS：** 如果需要在清单文件中引用applicationId，可以在任何清单属性中使用 ${applicationId} 占位符，在编译期间，Gradle 会将此标记替换为实际的applicationId。
 
 ### 命名规则限制
 
@@ -133,9 +133,9 @@ keytool 位于 JDK 的 bin/ 目录中。
 
 ## 总结
 
-1. applicationId是应用的唯一标识。发布应用后，**绝不应该更改applicationId**。
-2. 尽管applicationId和包名在设置时完全一样，但**applicationId和包名彼此无关，两者更改互不影响**。
-3. applicationId过去直接关联到代码的软件包名称；所以，有些 Android API 会在其方法名称和参数名称中使用“package name”一词，但这实际上是指applicationId，如**Context.getPackageName() 方法返回的是applicationId**。
+1. applicationId是应用的唯一标识。发布应用后 **绝不应该更改applicationId** 。
+2. 尽管applicationId和包名在设置时完全一样，但 **applicationId和包名彼此无关，两者更改互不影响** 。
+3. applicationId过去直接关联到代码的软件包名称；所以，有些 Android API 会在其方法名称和参数名称中使用“package name”一词，但这实际上是指applicationId，如 **Context.getPackageName() 方法返回的是applicationId** 。
 4. 无论何时都不需要在应用代码以外分享代码的真实软件包名称。对外暴露的只有applicationId。
-5. 构建工具会在**编译结束时将applicationId 复制替换到 APK 的最终清单文件中**，编译系统利用原始值包名（设置 R 类的命名空间并解析清单类名称）后，它会舍弃该值（包名）并将其替换为applicationId。
+5. 构建工具会在 **编译结束时将applicationId 复制替换到 APK 的最终清单文件中** ，编译系统利用原始值包名（设置 R 类的命名空间并解析清单类名称）后，它会舍弃该值（包名）并将其替换为applicationId。
 6. 个人推荐applicationId和包名一致或者以包名为前缀。
