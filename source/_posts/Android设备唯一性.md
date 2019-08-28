@@ -55,7 +55,7 @@ MAC地址所需权限：
 
 **PS：** 国内厂商可能不提供ANDROID_ID。
 
-## SN
+### SN
 
 设备序列号（Serial Number）。
 
