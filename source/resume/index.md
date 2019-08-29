@@ -28,6 +28,8 @@ layout:
 
 5. 掌握 Git 版本管理，有团队协作经验，具备 Android 模块化开发经验。
 
+6. 了解 Kotlin、Flutter。
+
 
 ---
 
