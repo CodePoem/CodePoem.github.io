@@ -1,5 +1,5 @@
 ---
-title: 自定义View
+title: Android自定义View
 date: 2019-09-16 12:34:07
 updated: 2019-09-16 12:34:09
 categories:
@@ -9,7 +9,7 @@ tags:
 - 自定义View
 ---
 
-# 自定义View
+# Android自定义View
 
 ## 什么是自定义View
 
