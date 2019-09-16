@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "3.8.0"
+    "version": "3.9.0"
   },
   "dependencies": {
     "ejs": "^2.6.2",
+    "eslint": "^6.4.0",
     "hexo": "^3.9.0",
     "hexo-deployer-git": "^1.0.0",
     "hexo-generator-archive": "^0.1.5",
@@ -19,6 +20,9 @@
     "hexo-renderer-ejs": "^0.2.0",
     "hexo-renderer-marked": "^0.2.11",
     "hexo-renderer-stylus": "^0.3.3",
-    "hexo-server": "^0.2.2"
+    "hexo-server": "^0.2.2",
+    "lodash": "^4.17.15",
+    "mixin-deep": "^2.0.1",
+    "set-value": "^3.0.1"
   }
 }
