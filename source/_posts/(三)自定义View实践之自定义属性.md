@@ -1,7 +1,7 @@
 ---
 title: (三)自定义View实践之自定义属性
 date: 2016/12/11 20:46:25
-updated: 2016/12/11 20:46:25
+updated: 2019-09-16 13:32:24
 categories:
 - Android自定义View
 tags:
@@ -10,8 +10,6 @@ tags:
 ---
 
 # 一、定义与声明
-
-![自定义属性xml文件.png](http://upload-images.jianshu.io/upload_images/3828003-f8e2780b05000359.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 在资源文件夹values下新建attr.xml文件
 
@@ -47,14 +45,30 @@ format有以下几种：
 
 # 二、具体使用
 
-具体的解析需要自行来做对应的修改：
+具体的解析需要自行来做对应的修改（以我自己写的parseAttr方法为例子）：
+自定义View的构造器中调用parseAttr()自定义解析并处理。
 
-```
-/**
+```java
+class CustomView extends View {
+    
+    public CodeView(Context context) {
+        this(context, null);
+    }
+    
+    public CodeView(Context context, @Nullable AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public CodeView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        parseAttr(context, attrs);
+    }
+    
+    /**
      * 解析自定义属性
      *
-     * @param context
-     * @param attrs
+     * @param context 调用方上下文
+     * @param attrs 属性集
      */
     private void parseAttr(Context context, @Nullable AttributeSet attrs) {
         TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.CodeView);
@@ -79,18 +93,5 @@ format有以下几种：
         }
         attributes.recycle();
     }
-```
-
-上述方法是在自定义View的构造器中调用的：
-
-```
-public CodeView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        parseAttr(context, attrs);
-    }
-
-    public CodeView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        parseAttr(context, attrs);
-    }
+}
 ```
