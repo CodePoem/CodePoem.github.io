@@ -246,4 +246,5 @@ after_deploy:
 4. 打 Tag 后 Push 代码触发 CI 。
 
 ---
-模板整理[GitHub](https://github.com/CodePoem/VTemplate)
+
+* 模板整理[GitHub](https://github.com/CodePoem/VTemplate)
