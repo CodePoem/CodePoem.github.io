@@ -86,13 +86,13 @@ android.os.Build.VERSION_CODES.JELLY_BEAN（Android 4.1，16）中引入了对in
 
 ### int inDensity
 
-用于 bitmap 像素密度。这将使得在返回的位图中始终有为其设置的密度（请参阅 Bitmap.setDensity（int））。此外，如果开启了 inScaled（默认情况下开启），并且此密度与 inTargetDensity 不匹配，则 bitmap 在返回之前将被缩放为目标密度。
+用于 bitmap 像素密度。这将使得在返回的位图中始终有为其设置的密度（请参阅 Bitmap.setDensity(int)）。此外，如果开启了 inScaled（默认情况下开启），并且此密度与 inTargetDensity 不匹配，则 bitmap 在返回之前将被缩放为目标密度。
 
 如果设置为0， BitmapFactory.decodeResource(Resources, int) 、 BitmapFactory.decodeResource(Resources, int, android.graphics.BitmapFactory.Options) 、 BitmapFactory.decodeResourceStream 这些 decode 方法将填充与资源关联的密度。其他 decode 方法将保持原样，并且不会应用任何密度。
 
 ### int inTargetDensity
 
-此 bitmap 将被绘制到的目标像素密度。 与 inDensity 和 #inScaled 结合使用，以确定在返回 bitmap 之前是否以及如何缩放位图。
+此 bitmap 将被绘制到的目标像素密度。 与 inDensity 和 inScaled 结合使用，以确定在返回 bitmap 之前是否以及如何缩放位图。
 
 如果设置为0， BitmapFactory.decodeResource(Resources, int) 、 BitmapFactory.decodeResource(Resources, int, android.graphics.BitmapFactory.Options) 、 BitmapFactory.decodeResourceStream 这些 decode 方法将填充与资源对象的 DisplayMetrics 相关的密度。其他 decode 方法将保持原样，并且不会对密度进行缩放。
 
@@ -106,7 +106,7 @@ BitmapFactory 自身永远不会为调用者自动设置。必须明确设置它
 
 ### boolean inScaled
 
-如果设置了该配置，并且 inDensity 和 inTargetDensity 不为 0，bitmap 在加载时将缩放以匹配 inTargetDensity，而不是每次绘制到Canvas时都依赖于图形系统对其进行缩放。
+如果设置了该配置，并且 inDensity 和 inTargetDensity 不为 0，bitmap 在加载时将缩放以匹配 inTargetDensity，而不是每次绘制到 Canvas 时都依赖于图形系统对其进行缩放。
 
 BitmapRegionDecoder 会忽略这个配置，并且不会根据密度缩放输出。（尽管支持 inSampleSize ）
 
