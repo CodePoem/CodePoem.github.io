@@ -315,5 +315,6 @@ ___
 * [Loading Large Bitmaps Efficiently](https://developer.android.com/topic/performance/graphics/load-bitmap.html)
 * [Caching Bitmaps](https://developer.android.google.cn/topic/performance/graphics/cache-bitmap.html)
 * [Managing Bitmap Memory](https://developer.android.com/topic/performance/graphics/manage-memory)
+* [Handling bitmaps](https://developer.android.com/topic/performance/graphics)
 
 后记：可研读核心类Bitmap、BitmapFactory。
