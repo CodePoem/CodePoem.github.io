@@ -83,6 +83,7 @@ public abstract class BaseFragment {
         }
         return false;
     }
+    
+    protected abstract void fetchData();
 }
 ```
-
