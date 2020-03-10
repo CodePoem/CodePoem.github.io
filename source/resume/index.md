@@ -3,8 +3,10 @@ title: resume
 date:
 layout:
 export_on_save:
-    puppeteer: true # 保存文件时导出 PDF
-    puppeteer: ["pdf", "png"] #保存文件时导出 PDF 和 PNG
+    # 保存文件时导出 PDF
+    puppeteer: true 
+    # 保存文件时导出 PDF 和 PNG
+    puppeteer: ["pdf", "png"]
 ---
 
 ## 邓勇标
