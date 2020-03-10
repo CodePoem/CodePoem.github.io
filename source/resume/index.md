@@ -2,11 +2,11 @@
 title: resume
 date:
 layout:
-export_on_save:
+# export_on_save:
     # 保存文件时导出 PDF
-    puppeteer: true 
+    # puppeteer: true 
     # 保存文件时导出 PDF 和 PNG
-    puppeteer: ["pdf", "png"]
+    # puppeteer: ["pdf", "png"]
 ---
 
 ## 邓勇标
