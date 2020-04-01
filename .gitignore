@@ -6,4 +6,4 @@ node_modules/
 public/
 .deploy*/
 .idea
-source/resume/self.md
+source/resume/self.*
