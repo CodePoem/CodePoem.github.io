@@ -3,7 +3,7 @@ title: (三)自定义View实践之自定义属性
 date: 2016/12/11 20:46:25
 updated: 2019-09-16 13:32:24
 categories:
-- Android自定义View
+- Android
 tags:
 - Android
 - 自定义View

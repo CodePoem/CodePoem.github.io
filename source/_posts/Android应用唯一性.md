@@ -3,7 +3,7 @@ title: Android应用唯一性
 date: 2019-08-27 23:39:27
 updated: 2019-08-27 23:39:30
 categories:
-- Android App
+- Android
 tags:
 - Android
 - App

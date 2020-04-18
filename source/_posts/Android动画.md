@@ -3,7 +3,7 @@ title: Android动画
 date: 2019-09-16 23:48:10
 updated: 2019-09-16 23:48:12
 categories:
-- Android动画
+- Android
 tags:
 - Android
 - 动画

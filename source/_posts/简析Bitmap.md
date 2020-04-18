@@ -3,7 +3,7 @@ title: 简析Bitmap
 date: 2019-10-16 11:25:23
 updated: 2019-10-16 11:25:27
 categories:
-- 图片
+- Android
 tags:
 - Android
 - 图片

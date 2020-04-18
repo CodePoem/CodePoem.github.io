@@ -3,7 +3,7 @@ title: (一)自定义View理论之View绘制原理
 date: 2016/12/9 20:46:25
 updated: 2019-09-16 13:32:15
 categories:
-- Android自定义View
+- Android
 tags:
 - Android
 - 自定义View

@@ -3,7 +3,7 @@ title: ViewPager下Fragment预加载与懒加载
 date: 2020-01-11 11:16:48
 updated: 2020-01-11 11:16:52
 categories:
-- Android杂录
+- Android
 tags:
 - ViewPager
 - Fragment

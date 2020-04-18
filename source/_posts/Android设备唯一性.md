@@ -3,7 +3,7 @@ title: Android设备唯一性
 date: 2019-08-28 23:21:55
 updated: 2019-08-28 23:21:58
 categories:
-- Android App
+- Android
 tags:
 - Android
 - App

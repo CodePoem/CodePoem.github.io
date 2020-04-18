@@ -3,7 +3,7 @@ title: Android自定义View
 date: 2019-09-16 12:34:07
 updated: 2019-09-16 12:34:09
 categories:
-- Android自定义View
+- Android
 tags:
 - Android
 - 自定义View

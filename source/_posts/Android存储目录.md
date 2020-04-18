@@ -3,7 +3,7 @@ title: Android存储目录
 date: 2019-05-06 07:36:56
 updated: 2019-05-07 08:06:21
 categories:
-- Android持久化
+- Android
 tags:
 - Android
 - 持久化

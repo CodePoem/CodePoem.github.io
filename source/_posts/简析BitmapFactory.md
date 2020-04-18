@@ -3,7 +3,7 @@ title: 简析BitmapFactory
 date: 2019-10-14 16:59:44
 updated: 2019-10-14 16:59:46
 categories:
-- 图片
+- Android
 tags:
 - Android
 - 图片
