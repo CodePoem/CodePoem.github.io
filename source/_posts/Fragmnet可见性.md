@@ -1,7 +1,7 @@
 ---
 title: Fragment可见性
 date: 2020-03-05 22:40:14
-updated: 2020-03-05 22:40:08
+updated: 2020-05-27 23:17:32
 categories:
 - Android
 tags:
@@ -11,7 +11,7 @@ tags:
 
 ```java
 class ExampleFragment extends Fragment{
-    /**
+        /**
          * 当fragment与viewpager、FragmentPagerAdapter一起使用时，切换页面时会调用此方法
          *
          * @param isVisibleToUser 是否对用户可见
@@ -30,7 +30,7 @@ class ExampleFragment extends Fragment{
                 }
             }
         }
-    
+
         /**
          * 当使用show/hide方法时，会触发此回调
          *
@@ -45,8 +45,8 @@ class ExampleFragment extends Fragment{
                 onVisible();
             }
         }
-    
-    
+
+
         @Override
         public void onResume() {
             super.onResume();
@@ -58,7 +58,7 @@ class ExampleFragment extends Fragment{
                 onVisible();
             }
         }
-    
+
         @Override
         public void onPause() {
             super.onPause();
@@ -68,13 +68,19 @@ class ExampleFragment extends Fragment{
                 onInvisible();
             }
         }
-    
+
         private void onInvisible() {
         }
-    
+
         private void onVisible() {
             initData();
         }
 }
 
 ```
+
+补充 ：
+
+setUserVisibleHint 为什么只在 Viewpager 有效？
+
+实际上查看 setUserVisibleHint 的实际调用方，只有 FragmentPagerAdapter 和 FragmentStatePagerAdapter，也即 ViewPager 的适配器有调用。
