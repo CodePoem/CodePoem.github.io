@@ -1,15 +1,13 @@
 ---
 title: 优雅FindViewById
 date: 2020-04-18 13:06:23
-updated: 2020-04-18 13:06:26
+updated: 2020-11-22 19:40:24
 categories:
 - Android
 tags:
 - Android
 - FindViewById
 ---
-
-# 优雅FindViewById
 
 findBiewById 是 Android 开发中在布局中查找 View 元素的 Api。
 
@@ -71,7 +69,7 @@ PS：ButterKnife Github ReadMe 中说明已不推荐使用，推荐下文提到�
 
 自动查找所有 View 并缓存到 binding 实例中以供访问。性能超过手写的 findViewById，因为它只遍历了一遍 XML 布局，而 findViewById 每次都会去遍历 XML 布局；include 布局中的 view 也能同样能访问，并且保留结构。
 
-布局需要使用 \<layo\> 标签包裹。
+布局需要使用 \<layout\> 标签包裹。
 
 ```java
 class DemoActivity extends AppCompatActivity {

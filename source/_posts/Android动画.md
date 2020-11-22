@@ -9,8 +9,6 @@ tags:
 - 动画
 ---
 
-# Android动画
-
 Android中动画划分为两大类 视图动画（View Animation）和 属性动画（Property Animation）。其中 属性动画（Property Animation）需要在Android3.0之后（API >= 11）使用。
 视图动画（View Animation）又包括了 帧动画（Frame Animation） 和 补间动画（Tweened Animation）。
 

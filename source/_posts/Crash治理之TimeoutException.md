@@ -9,8 +9,6 @@ tags:
 - TimeoutException
 ---
 
-# TimeoutException
-
 ## 产生原因
 
 与 GC 过程相关的守护线程中的2个守护线程 FinalizerDaemon 和 FinalizerWatchdogDaemon 有关。

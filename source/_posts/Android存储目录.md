@@ -10,8 +10,6 @@ tags:
 - 存储目录
 ---
 
-# Android存储目录幻想曲
-
 - 问：三个概念，你弄清楚了吗？
 内存：Memory
 内部存储：InternalStorage

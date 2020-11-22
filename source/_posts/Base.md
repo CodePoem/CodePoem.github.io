@@ -10,8 +10,6 @@ tags:
 top: true
 ---
 
-# 万丈高楼平地起
-
 重拾基础，备忘备战~
 
 - 算法总结-[VAlgorithm](https://github.com/CodePoem/VAlgorithm) -> [LookUp](https://dreamcodepoem.xyz/VAlgorithm/#/)

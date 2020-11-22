@@ -10,8 +10,6 @@ tags:
 - Bitmap
 ---
 
-# 简析Bitmap
-
 基于9.0（29）简析Bitmap类。
 
 我们只关注Bitmap类暴露出来的（即访问权限为public）东西。

@@ -129,7 +129,7 @@ highlight:
 #    Prettify
 #        theme: # Available value in /source/css/prettify/[theme].min.css
 prettify:
-    enable: false
+    enable: true
     theme: "github-v2"
 
 #    Hanabi (https://github.com/egoist/hanabi)

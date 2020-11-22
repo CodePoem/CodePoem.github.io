@@ -10,8 +10,6 @@ tags:
 - Bitmap
 ---
 
-# 简析BitmapFactory
-
 基于9.0（29）简析BitmapFactory类。
 
 我们只关注BitmapFactor类暴露出来的（即访问权限为public）东西。

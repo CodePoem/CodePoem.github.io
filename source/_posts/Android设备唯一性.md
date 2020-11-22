@@ -9,8 +9,6 @@ tags:
 - App
 ---
 
-# Android设备唯一性
-
 如何标识唯一的Android设备呢？
 
 ## 硬件标识符

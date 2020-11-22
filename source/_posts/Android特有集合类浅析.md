@@ -10,8 +10,6 @@ tags:
 - 集合
 ---
 
-# Android特有集合类浅析
-
 * ArrayMap
 * ArraySet
 * SparseArray

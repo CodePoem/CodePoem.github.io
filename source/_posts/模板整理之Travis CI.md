@@ -10,8 +10,6 @@ tags:
 - Travis CI
 ---
 
-# Travis-CI
-
 [官方文档](https://docs.travis-ci.com/)
 
 免费Travis-CI（针对开源项目）：https://travis-ci.org

@@ -1,4 +1,13 @@
-# 记录一次Android7.0适配FileProvider踩坑
+---
+title: 记录一次Android7.0适配FileProvider踩坑
+date: 2019-11-16 11:25:23
+updated: 2019-11-16 11:25:27
+categories:
+- Android
+tags:
+- Android
+- FileProvider
+---
 
 * FileProvider重复
 
