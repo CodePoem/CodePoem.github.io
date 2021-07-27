@@ -66,7 +66,7 @@ pagination_dir: page
 theme: material
 
 plugin:
-- hexo-generator-feed
+  - hexo-generator-feed
 
 # Feed Atom
 feed:
@@ -77,9 +77,6 @@ limit: 0
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-- type: git
-  repo: git@github.com:CodePoem/CodePoem.github.io.git
-  branch: master
-- type: git
-  repo: git@git.coding.net:clownman/clownman.git
-  branch: master
+  - type: git
+    repo: git@github.com:CodePoem/CodePoem.github.io.git
+    branch: master
