@@ -5,6 +5,7 @@
 ## Site
 
 - github pages links: https://codepoem.github.io
+- domain name links: https://codepoem.fun
 
 ## Work Tools
 
