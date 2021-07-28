@@ -1,7 +1,7 @@
 郭霖博客:
     link: http://blog.csdn.net/guolin_blog
     avatar: guolin.jpg
-    descr: "《Android第一行代码》作者"
+    descr: "Android启蒙老师、《Android第一行代码》作者"
 鸿洋博客:
     link: http://blog.csdn.net/lmj623565791
     avatar: hongyang.jpg
@@ -10,7 +10,7 @@
     link: http://www.wjcodes.com
     avatar: wujiao.jpg
     descr: "来自某神秘组织/长发女装大佬"
-Hans:
+曾哥:
     link: https://www.hans-dev.com/
     avatar: hans.png
     descr: "来自某神秘组织/无一不知无一不晓"
@@ -19,13 +19,9 @@ Hans:
     avatar: jing.jpg
     descr: "来自某神秘组织/神秘力量掌控者"
 丁丁丁丁:
-    link: http://www.jianshu.com/users/4bc2080d98c4/timeline
+    link: http://www.jianshu.com/users/4bc2080d98c4
     avatar: ding.jpg
     descr: "来自某神秘组织/嘲讽/圣盾/灰烬使者"
-潘:
-    link: http://www.jianshu.com/users/0bce9e23a8b5/timeline
-    avatar: pan.jpg
-    descr: "来自某神秘组织/嘴角疯狂tm上扬"
 NR:
     link: http://www.jianshu.com/u/e244fad16d0f
     avatar: nr.jpg

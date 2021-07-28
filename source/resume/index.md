@@ -3,7 +3,6 @@ title: resume
 date:
 layout:
 export_on_save:
-  puppeteer: true
   puppeteer: ["pdf", "png"]
 ---
 
