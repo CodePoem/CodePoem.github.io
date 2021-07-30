@@ -911,6 +911,12 @@ links:
       avatar: "/img/links/hongyang.jpg"
     }
     - {
+      title: "丝滑",
+      intro: "Github常驻委员/蛇皮拍地板专家",
+      link: "https://zshnb.github.io/",
+      avatar: "/img/links/sihua.jpeg"
+    }
+    - {
       title: "五角",
       intro: "来自某神秘组织/长发女装大佬",
       link: "http://www.wjcodes.com",
