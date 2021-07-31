@@ -309,7 +309,8 @@ navbar:
     - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
     - { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
-    - { key: "rss", link: "https://codepoem.fun/atom.xml", icon: "iconfont icon-rss" }
+    - { key: "RSS", link: "https://codepoem.fun/atom.xml", icon: "iconfont icon-rss" }
+    - { key: "Github", link: "https://github.com/CodePoem/CodePoem.github.io", icon: "iconfont icon-github-fill" }
     - {
       key: '厚薄',
       icon: 'iconfont icon-books',
