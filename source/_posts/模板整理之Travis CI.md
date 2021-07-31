@@ -3,34 +3,34 @@ title: 模板整理之Travis CI
 date: 2019-10-09 16:54:30
 updated: 2019-10-09 16:54:33
 categories:
-- 模板
+  - 模板
 tags:
-- Android
-- 模板
-- Travis CI
+  - Android
+  - 模板
+  - Travis CI
 ---
 
 [官方文档](https://docs.travis-ci.com/)
 
-免费Travis-CI（针对开源项目）：https://travis-ci.org
+免费 Travis-CI（针对开源项目）：https://travis-ci.org
 
-收费Travis-CI（针对私有和商业项目）：https://travis-ci.com
+收费 Travis-CI（针对私有和商业项目）：https://travis-ci.com
 
 ## 使用步骤
 
 1. 登录 Travis CI 并对指定的项目启用。
 2. 配置 .travis.yml ，参考官方文档。
-3. push（或其他方式）触发Travis-CI。
+3. push（或其他方式）触发 Travis-CI。
 
 ## 实现工作流
 
-1. 构建。开发一些新功能，提交代码后自动构建出一个APK（可以是测试版，也可以是发布版）。
+1. 构建。开发一些新功能，提交代码后自动构建出一个 APK（可以是测试版，也可以是发布版）。
 2. 部署。将 APK 上传到 Github Release / [Fir.im](https://fir.im/) / [蒲公英](https://www.pgyer.com/)等。
 3. 通知。发出通知（邮件、消息等形式）。
 
 ### 构建
 
-#### release签名证书安全
+#### release 签名证书安全
 
 Android 项目发布需要证书文件、密码、别名、别名密码。无论是开源项目还是私有项目，任何时候都不应该将原始证书或密码放入代码库（原则上来讲证书和密码也不应该交于开发人员，而应该只能通过发布服务器进行编译）
 
@@ -49,8 +49,7 @@ Travis CI 为此提供了 2 种解决方案：
 gem install travis
 ```
 
-这一步如果遇到错误, 尝试加sudo，请升级一下 ruby 版本。
-
+这一步如果遇到错误, 尝试加 sudo，请升级一下 ruby 版本。
 
 2. 命令行登录 Travis（第一次登录才要），并输入 GitHub 的用户名和密码。
 
@@ -60,13 +59,13 @@ gem install travis
 travis login --org
 ```
 
-针对收费版Travis-C https://travis-ci.com：
+针对收费版 Travis-C https://travis-ci.com：
 
 ```shell
 travis login --pro
 ```
 
-这一步如果遇到travis命令找不到, 尝试找到travis安装的bin目录，并配置上环境变量。
+这一步如果遇到 travis 命令找不到, 尝试找到 travis 安装的 bin 目录，并配置上环境变量。
 
 3. 进入项目根目录，加密证书。
 
@@ -75,6 +74,7 @@ travis encrypt-file XXX.jks --add
 ```
 
 命令执行结果：
+
 1. 在 Travis CI 控制台自动生成一对秘钥。
 2. 基于秘钥通过 openssl 对文件进行加密，并在根目录生成 XXX.jks.enc 文件。
 3. 在 .travis.yml 中自动生成 Travis CI 环境下解密文件的配置。
@@ -87,11 +87,11 @@ before_install:
 
 ##### 加密证书密码
 
-在Travis CI控制台配置证书密码、证书别名、证书别名密码三个环境变量（KEYSTORE_PWD、KEYSTORE_ALIAS、KEYSTORE_ALIAS_PWD）。
+在 Travis CI 控制台配置证书密码、证书别名、证书别名密码三个环境变量（KEYSTORE_PWD、KEYSTORE_ALIAS、KEYSTORE_ALIAS_PWD）。
 
-##### 实现本地和Travis-CI构建release包互不干扰
+##### 实现本地和 Travis-CI 构建 release 包互不干扰
 
-基本思路，判断环境变量 CI 是否 为 true，通过 System.getenv("CI") 去获取环境变量 CI 的值，fals e即为本地构建，true 即为 Travis-CI 构建。
+基本思路，判断环境变量 CI 是否 为 true，通过 System.getenv("CI") 去获取环境变量 CI 的值，fals e 即为本地构建，true 即为 Travis-CI 构建。
 本地构建去 local.properties 中读取证书配置；Travis-CI 构建通过 System.getenv 去读取环境变量的证书配置。
 
 ```gradle
@@ -159,8 +159,8 @@ android {
 }
 ```
 
-本地构建需要在本地local.properties中配置好证书路径keystore.path、证书密码keystore.password、证书别名keystore.alias、证书别名密码keystore.alias_password；
-分别对应着Travis CI控制台加密的证书秘钥对和环境变量证书密码KEYSTORE_PWD、证书别名KEYSTORE_ALIAS、证书别名密码KEYSTORE_ALIAS_PWD。
+本地构建需要在本地 local.properties 中配置好证书路径 keystore.path、证书密码 keystore.password、证书别名 keystore.alias、证书别名密码 keystore.alias_password；
+分别对应着 Travis CI 控制台加密的证书秘钥对和环境变量证书密码 KEYSTORE_PWD、证书别名 KEYSTORE_ALIAS、证书别名密码 KEYSTORE_ALIAS_PWD。
 
 ### 部署
 
@@ -189,11 +189,11 @@ deploy:
     tags: true
 ```
 
-* provider：发布目标为 GitHub Release ，除了 GitHub 外，Travis CI还支持发布到 AWS 、Google App Engine 等数十种 provider 。
-* secure：是加密后的 GitHub Access Token 。
-* file：发布的文件。
-* skip_cleanup：默认情况下 Travis CI 在完成编译后会清除所有生成的文件，因此要将 skip_cleanup 设置为 true 来忽略此操作。
-* on：发布的时机，这里配置为 tags : true，即只在有 tag 的情况才发布。
+- provider：发布目标为 GitHub Release ，除了 GitHub 外，Travis CI 还支持发布到 AWS 、Google App Engine 等数十种 provider 。
+- secure：是加密后的 GitHub Access Token 。
+- file：发布的文件。
+- skip_cleanup：默认情况下 Travis CI 在完成编译后会清除所有生成的文件，因此要将 skip_cleanup 设置为 true 来忽略此操作。
+- on：发布的时机，这里配置为 tags : true，即只在有 tag 的情况才发布。
 
 2. 打 Tag 后 Push 代码触发 CI 。
 
@@ -205,30 +205,31 @@ git push origin --tags
 #### [Fir.im](https://fir.im/)
 
 1. 登录 Fir.im 获取 API Token 。
-2. 将获取的 API Toke n配置到 Travis CI 的环境变量 FIR_API_TOKEN。
+2. 将获取的 API Toke n 配置到 Travis CI 的环境变量 FIR_API_TOKEN。
 3. 添加配置。
 
 ```yml
 before_install:
-- gem install fir-cli
+  - gem install fir-cli
 after_deploy:
-- fir p app/build/outputs/apk/release/app-release.apk -T $FIR_API_TOKEN -c "`git cat-file tag $TRAVIS_TAG`"
+  - fir p app/build/outputs/apk/release/app-release.apk -T $FIR_API_TOKEN -c "`git cat-file tag $TRAVIS_TAG`"
 ```
+
 4. 打 Tag 后 Push 代码触发 CI 。
 
 ### 通知
 
-#### SendCloud邮件通知
+#### SendCloud 邮件通知
 
 1. 注册 SendCloud 。
 2. 创建触发式模板 update_template 。
 
 ```text
 %TRAVIS_REPO_SLUG%新版本%TRAVIS_TAG%已经发布了，功能更新：
-   
-   
+
+
 %TAG_DESCRIPTION%
-   
+
 去下载：
 https://fir.im/ep8s
 ```
@@ -245,4 +246,4 @@ after_deploy:
 
 ---
 
-* 模板整理[GitHub](https://github.com/CodePoem/VTemplate)
+- 模板整理[GitHub](https://github.com/CodePoem/VTemplate)

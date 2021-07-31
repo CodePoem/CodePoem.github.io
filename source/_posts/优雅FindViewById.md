@@ -178,7 +178,7 @@ class DemoActivity : AppCompatActivity() { {
 
 Kotlin 会自动生成类似 findViewById() 的方法：findCachedViewById()，在这个方法里面创建一个 HashMap 缓存每次查找到的 View，避免每次调用 View 的属性或方法时都会重新调用 findCachedViewById() 进行查找。
 
-PS：在 [Kotlin 1.4.20-M2](https://github.com/JetBrains/kotlin/releases/tag/v1.4.20-M2) 中，JetBrain s废弃了 Kotlin Android Extensions 编译插件。推荐使用 ViewBinding。
+PS：在 [Kotlin 1.4.20-M2](https://github.com/JetBrains/kotlin/releases/tag/v1.4.20-M2) 中，JetBrain s 废弃了 Kotlin Android Extensions 编译插件。推荐使用 ViewBinding。
 
 ## (推荐使用)[ViewBinding](https://developer.android.com/topic/libraries/view-binding)
 
@@ -237,4 +237,4 @@ class DemoActivity : AppCompatActivity() { {
 [你好, View Binding! 再次再见, findViewById!](https://juejin.im/post/5dd407066fb9a020366f85fa#heading-5)
 [Kotlin 干掉了 findViewById，但用不好也会有性能问题](https://juejin.im/entry/5d8caedd518825093a3579b0)
 [Migrating the deprecated Kotlin Android Extensions compiler plugin](https://proandroiddev.com/migrating-the-deprecated-kotlin-android-extensions-compiler-plugin-to-viewbinding-d234c691dec7)
-[【译】迁移被废弃的Kotlin Android Extensions插件](https://blog.csdn.net/qq_17766199/article/details/109557820)
+[【译】迁移被废弃的 Kotlin Android Extensions 插件](https://blog.csdn.net/qq_17766199/article/details/109557820)

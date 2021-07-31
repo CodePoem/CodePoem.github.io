@@ -1,8 +1,18 @@
-# OkHttp
+---
+title: 简析OkHttp
+date: 2019-10-18 11:25:23
+updated: 2021-08-01 11:31:55
+categories:
+  - Android
+tags:
+  - Android
+  - OkHttp
+  - 网络
+---
 
-是对 Socket 的封装。URLConnection 在4.4以后底层也使用了 OkHttp。
+是对 Socket 的封装。URLConnection 在 4.4 以后底层也使用了 OkHttp。
 
-Android源码中 /external/okhttp/jarjar-rules.txt 中表示com.squareup开关的包会在编译时打包成com.android开头的包。
+Android 源码中 /external/okhttp/jarjar-rules.txt 中表示 com.squareup 开关的包会在编译时打包成 com.android 开头的包。
 
 ```text
 rule com.squareup.** com.android.@1
@@ -39,19 +49,19 @@ call.enqueue(new Callback() {
 
 1. 创建请求对象。 (url, method, headers, body, tags)--> Request--> Call
 
-2. 线程池分发请求。同步使用call.excute(),异步使用call.enqueue()请求事件队列, 都交给 Dispatcher 分发， enqueue-->Runnable-->ThreadPoolExecutor
+2. 线程池分发请求。同步使用 call.excute(),异步使用 call.enqueue()请求事件队列, 都交给 Dispatcher 分发， enqueue-->Runnable-->ThreadPoolExecutor
 
 3. 递归 Interceptor 拦截器，发送请求。 getResponseWithInterceptorChain()，InterceptorChain
 
-4. 请求回调，数据解析。  Respose --> (code,message,requestBody)
+4. 请求回调，数据解析。 Respose --> (code,message,requestBody)
 
 不管是异步还是同步，都是一样的三部曲:
 
-1. 加入到 Dispatche r里面的同步(或异步)队列。
-2. 执行 getResponseWithInterceptorChain 方法。（只不过同步操作是直接运行了 getResponseWithInterceptorChain 方法，而异步是通过线程池执行R unnabl e再去执行 getResponseWithInterceptorChain 方法）
+1. 加入到 Dispatche r 里面的同步(或异步)队列。
+2. 执行 getResponseWithInterceptorChain 方法。（只不过同步操作是直接运行了 getResponseWithInterceptorChain 方法，而异步是通过线程池执行 R unnabl e 再去执行 getResponseWithInterceptorChain 方法）
 3. 从 Dispatcher 里面的同步(或异步)队列移除。
 
-Dispatcher 内部维护3个队列及1个线程池:
+Dispatcher 内部维护 3 个队列及 1 个线程池:
 
 - readyAsyncCalls
 
@@ -67,7 +77,7 @@ Dispatcher 内部维护3个队列及1个线程池:
 
 - ExecutorService
 
-线程池，最小0，最大Max的线程池。
+线程池，最小 0，最大 Max 的线程池。
 
 ## 拦截器
 
@@ -89,9 +99,9 @@ Dispatcher 内部维护3个队列及1个线程池:
 
 根据 OkHttpClient 对象的配置以及缓存策略对请求值进行缓存。
 
-内部有Cache类，处理缓存操作，intercache内部类，disklrucache算法等
-重点是不缓存非get的请求。
-CacheStrategy缓存策略类，通过工厂模式获取。
+内部有 Cache 类，处理缓存操作，intercache 内部类，disklrucache 算法等
+重点是不缓存非 get 的请求。
+CacheStrategy 缓存策略类，通过工厂模式获取。
 
 ### ConnectionInterceptor
 
@@ -111,10 +121,10 @@ CacheStrategy缓存策略类，通过工厂模式获取。
 
 在 retryAndFollowUpInterceptor 之前，处于拦截器第一个位置。
 
-它是第一个触发拦截的，这里拦截到的url请求的信息都是最原始的信息。所以我们可以在该拦截器中添加一些我们请求中需要的通用信息，打印一些我们需要的日志。可以定义多个这样的拦截器，例如一个处理 header 信息，一个处理 接口请求的 加解密 。
+它是第一个触发拦截的，这里拦截到的 url 请求的信息都是最原始的信息。所以我们可以在该拦截器中添加一些我们请求中需要的通用信息，打印一些我们需要的日志。可以定义多个这样的拦截器，例如一个处理 header 信息，一个处理 接口请求的 加解密 。
 
 #### NetwrokInterceptor
 
 在 ConnectInterceptor 和 CallServerInterceptor 之间，处于拦截器倒数第二个位置。
 
-会经过 RetryAndFollowIntercptor 进行重定向并且也会通过 BridgeInterceptor 进行 request请求头和 响应 resposne 的处理，因此这里可以得到的是更多的信息。在打印结果可以看到它内部重定向操作和失败重试，这里会有比 Application Interceptor 更多的日志。
+会经过 RetryAndFollowIntercptor 进行重定向并且也会通过 BridgeInterceptor 进行 request 请求头和 响应 resposne 的处理，因此这里可以得到的是更多的信息。在打印结果可以看到它内部重定向操作和失败重试，这里会有比 Application Interceptor 更多的日志。

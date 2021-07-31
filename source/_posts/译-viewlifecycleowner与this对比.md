@@ -3,11 +3,11 @@ title: 译-viewlifecycleowner与this对比
 date: 2020-11-24 13:03:26
 updated: 2020-11-24 13:03:29
 categories:
-- Android
+  - Android
 tags:
-- Android
-- 译文
-- lifecycle
+  - Android
+  - 译文
+  - lifecycle
 ---
 
 哈喽，Android 小伙伴们~
@@ -49,6 +49,6 @@ liveData.observe(this, observer)
 liveData.observe(viewLifecycleOwner, observer)
 ```
 
-___
+---
 
 [原文](https://medium.com/@cs.ibrahimyilmaz/viewlifecycleowner-vs-this-a8259800367b)

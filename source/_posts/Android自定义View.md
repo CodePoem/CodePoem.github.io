@@ -3,31 +3,31 @@ title: Android自定义View
 date: 2019-09-16 12:34:07
 updated: 2019-09-16 12:34:09
 categories:
-- Android
+  - Android
 tags:
-- Android
-- 自定义View
+  - Android
+  - 自定义View
 ---
 
-## 什么是自定义View
+## 什么是自定义 View
 
 自定义 View 就是通过继承 View 或者 View 的子类，并在继承的类里面实现自定义的处理逻辑（重写相应的方法），以达到自己想要的效果。
 
-## 为什么要自定义View
+## 为什么要自定义 View
 
-* 让界面有特定的显示效果、交互
-* 优化布局（减少布局层次）
-* 封装
+- 让界面有特定的显示效果、交互
+- 优化布局（减少布局层次）
+- 封装
 
-## 如何自定义View
+## 如何自定义 View
 
-### 自定义View主要流程
+### 自定义 View 主要流程
 
 1. 测量阶段 measure
 2. 布局阶段 layout
 3. 绘制阶段 draw
 
-背景：DecorView是视图的顶级View，我们添加的布局文件是它的一个子布局，而ViewRootImpl则负责渲染视图，它调用了一个performTraveals方法使得ViewTree开始三大工作流程（performMeasure、performLayout、performDraw），然后使得View展现在我们面前。
+背景：DecorView 是视图的顶级 View，我们添加的布局文件是它的一个子布局，而 ViewRootImpl 则负责渲染视图，它调用了一个 performTraveals 方法使得 ViewTree 开始三大工作流程（performMeasure、performLayout、performDraw），然后使得 View 展现在我们面前。
 
 #### 测量过程
 
@@ -36,7 +36,7 @@ ViewRootImpl.performMeasure() -> View.measure() -> View.onMesure()
 measure()：调度方法，主要做一些前置和优化工作，并最终会调用 onMeasure() 方法执行实际的测量工作。
 onMesure()：实际执行测量任务的方法，主要用与测量 View 尺寸和位置。在自定义 View 的 onMeasure() 方法中，View 根据自己的特性和父 View 对自己的尺寸要求算出自己的期望尺寸，并通过 setMeasuredDimension() 方法告知父 View 自己的期望尺寸。
 
-MeasureSpec：封装View的规格尺寸，由32位整型表示测量模式（高2位）+测量大小（低30位）。
+MeasureSpec：封装 View 的规格尺寸，由 32 位整型表示测量模式（高 2 位）+测量大小（低 30 位）。
 
 #### 布局过程
 
@@ -55,9 +55,9 @@ onDraw()：绘制 View 主体内容的方法，通常情况下，在自定义 Vi
 dispatchDraw()：绘制子 View 的方法。同 onLayout() 方法一样，在自定义 View 中它是空实现，什么也不做。
 onDrawForeground()：绘制 View 前景的方法，也就是说，想要在主体内容之上绘制东西的时候就可以在该方法中实现。
 
-### 自定ViewGroup主要流程
+### 自定 ViewGroup 主要流程
 
-大部分流程和自定义View一致，就不再赘述。这里只列出和自定义View不一样的地方。
+大部分流程和自定义 View 一致，就不再赘述。这里只列出和自定义 View 不一样的地方。
 
 1. onMeasure()：在自定义 ViewGroup 的 onMeasure() 方法中，ViewGroup 会递归调用子 View 的 measure() 方法，并通过 measure() 将 ViewGroup 对子 View 的尺寸要求（ViewGroup 会根据开发者对子 View 的尺寸要求、自己的父 View（ViewGroup 的父 View） 对自己的尺寸要求和自己的可用空间计算出自己对子 View 的尺寸要求）传入，对子 View 进行测量，并把测量结果临时保存，以便在布局阶段使用。测量出子 View 的实际尺寸之后，ViewGroup 会根据子 View 的实际尺寸计算出自己的期望尺寸，并通过 setMeasuredDimension() 方法告知父 View（ViewGroup 的父 View） 自己的期望尺寸。
 

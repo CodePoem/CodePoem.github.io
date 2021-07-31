@@ -1,4 +1,14 @@
-# Glide
+---
+title: 简析Glide
+date: 2019-10-17 11:25:23
+updated: 2021-08-01 11:31:55
+categories:
+  - Android
+tags:
+  - Android
+  - Glide
+  - 图片
+---
 
 ```java
 Glide.with(context)
@@ -8,34 +18,34 @@ Glide.with(context)
 
 ## 生命周期
 
-### 传入ApplicationContext
+### 传入 ApplicationContext
 
-Application对象的生命周期即应用程序的生命周期，因此Glide并不需要做什么特殊的处理，它自动就是和应用程序的生命周期是同步的。
+Application 对象的生命周期即应用程序的生命周期，因此 Glide 并不需要做什么特殊的处理，它自动就是和应用程序的生命周期是同步的。
 
-### 传入非ApplicationContext
+### 传入非 ApplicationContext
 
-无视图的Fragment接管LifeCycle。
+无视图的 Fragment 接管 LifeCycle。
 
 ## 缓存机制
 
 ### 内存缓存
 
-LruCache算法（Least Recently Used），也叫近期最少使用算法。算法原理就是把最近使用的对象用强引用存储在LinkedHashMap中，并且把最近最少使用的对象在缓存值达到预设定值之前从内存中移除。
+LruCache 算法（Least Recently Used），也叫近期最少使用算法。算法原理就是把最近使用的对象用强引用存储在 LinkedHashMap 中，并且把最近最少使用的对象在缓存值达到预设定值之前从内存中移除。
 
-弱引用缓存正在使用的图片，可以保护这些图片不会被LruCache算法回收掉。
+弱引用缓存正在使用的图片，可以保护这些图片不会被 LruCache 算法回收掉。
 
 ### 硬盘缓存
 
 DiskLruCache，journal 文件。
 
-## Bitmap采样和复用机制
+## Bitmap 采样和复用机制
 
 ### 采样
 
 1. 计算缩放因子
 2. 获取采样类型 内存优先（比要求的尺寸小）/ 质量优先（比要求的尺寸大）
 3. 计算整型的缩放因子
-4. 将整型的缩放因子转成2的幂
+4. 将整型的缩放因子转成 2 的幂
 
 ### 复用机制
 
@@ -46,11 +56,11 @@ BitmapPool，默认具体实现 LruBitmapPool。
 #### 复用的前提
 
 inMutable = true
-inBitmap 指定复用的Bitmap
+inBitmap 指定复用的 Bitmap
 
-在Android 4.4之前，仅支持相同大小的bitmap，inSampleSize必须为1，而且必须采用 jpeg 或 png 格式。
+在 Android 4.4 之前，仅支持相同大小的 bitmap，inSampleSize 必须为 1，而且必须采用 jpeg 或 png 格式。
 
-在Android 4.4之后只有一个限制，就是被复用的 bitmap 尺寸要大于新的bitmap，简单来说就是大图可以给小图复用。
+在 Android 4.4 之后只有一个限制，就是被复用的 bitmap 尺寸要大于新的 bitmap，简单来说就是大图可以给小图复用。
 
 #### 复用实现
 
@@ -63,31 +73,31 @@ inBitmap 指定复用的Bitmap
 ## 线程池管理
 
 - diskCacheExecutor 本地缓存任务 newDiskCacheBuilder corePoolSize=maximumPoolSize=1
-- sourceExecutor 资源获取任务  corePoolSize=maximumPoolSize=处理器数量和固定值4之间区最小
-- sourceUnlimitedExecutor 资源获取不限制任务 corePoolSize=0 maximumPoolSize=Integer.MAX_VALUE 10ms超时 SynchronousQueue
-- animationExecutor Gif加载任务 corePoolSize=在处理器数量和固定值4之间区最小 maximumPoolSize=1或2
+- sourceExecutor 资源获取任务 corePoolSize=maximumPoolSize=处理器数量和固定值 4 之间区最小
+- sourceUnlimitedExecutor 资源获取不限制任务 corePoolSize=0 maximumPoolSize=Integer.MAX_VALUE 10ms 超时 SynchronousQueue
+- animationExecutor Gif 加载任务 corePoolSize=在处理器数量和固定值 4 之间区最小 maximumPoolSize=1 或 2
 
 除了 sourceUnlimitedExecutor 都使用了 PriorityBlockingQueue 来作为等待队列。
 
 ## 使用自定义模块解耦
 
 - setMemoryCache()
-用于配置 Glide 的内存缓存策略，默认配置是 LruResourceCache。
+  用于配置 Glide 的内存缓存策略，默认配置是 LruResourceCache。
 
 - setBitmapPool()
-用于配置 Glide 的Bitmap缓存池，默认配置是 LruBitmapPool。
+  用于配置 Glide 的 Bitmap 缓存池，默认配置是 LruBitmapPool。
 
 - setDiskCache()
-用于配置 Glide 的硬盘缓存策略，默认配置是 InternalCacheDiskCacheFactory。
+  用于配置 Glide 的硬盘缓存策略，默认配置是 InternalCacheDiskCacheFactory。
 
 - setDiskCacheService()
-用于配置 Glide 读取缓存中图片的异步执行器，默认配置是 FifoPriorityThreadPoolExecutor，也就是先入先出原则。
+  用于配置 Glide 读取缓存中图片的异步执行器，默认配置是 FifoPriorityThreadPoolExecutor，也就是先入先出原则。
 
 - setResizeService()
-用于配置 Glide 读取非缓存中图片的异步执行器，默认配置也是 FifoPriorityThreadPoolExecutor。
+  用于配置 Glide 读取非缓存中图片的异步执行器，默认配置也是 FifoPriorityThreadPoolExecutor。
 
 - setDecodeFormat()
-用于配置 Glide 加载图片的解码模式，默认配置是 RGB_565。
+  用于配置 Glide 加载图片的解码模式，默认配置是 RGB_565。
 
 Glide 3:
 

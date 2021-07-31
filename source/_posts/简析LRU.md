@@ -3,10 +3,10 @@ title: 简析LRU
 date: 2019/02/22 09:51:29
 updated: 2019/02/22 09:51:29
 categories:
-- 数据结构
+  - 数据结构
 tags:
-- 简析
-- LRU
+  - 简析
+  - LRU
 ---
 
 # LRU
@@ -21,7 +21,7 @@ tags:
 
 - LinkedHashMap，使用 accessOrder=true 基于顺序访问，元素访问后被移动到末尾。
 
-## 自己动手实现LRU
+## 自己动手实现 LRU
 
 ```java
 class Node {
@@ -33,7 +33,7 @@ class Node {
     }
 }
 
-class DoubleList {  
+class DoubleList {
     // 在链表头部添加节点 x，时间 O(1)
     public void addFirst(Node x);
 
@@ -97,22 +97,22 @@ class LRUCache {
 
 ## LruCache
 
-Android SDK里有提供。
+Android SDK 里有提供。
 
 ## DiskLruCache
 
-Android SDK里没有提供，AOSP源码有。
+Android SDK 里没有提供，AOSP 源码有。
 
 很多文件操作都采用了事务的处理方式，即修改文件前先写入一个同名的 tmp 文件，当所有内容写完后再将 tmp 文件的扩展名去掉以覆盖原有文件，这样做的好处就是不会因为应用的异常退出或 Crash 而出现数据损坏，保证了原有文件的完整性。
 
 DiskLruCache 在操作文件的时候使用 journal 文件 来记录操作日志。
 
-journal头：
+journal 头：
 
-- 第一行是固定的字符串“libcore.io.DiskLruCache”，标志着使用的是DiskLruCache技术。
-- 第二行是DiskLruCache的版本号。
+- 第一行是固定的字符串“libcore.io.DiskLruCache”，标志着使用的是 DiskLruCache 技术。
+- 第二行是 DiskLruCache 的版本号。
 - 第三行是应用程序的版本号。
-- 第四行是valueCount
+- 第四行是 valueCount
 - 第五行是一个空行。
 
 DIRTY 脏数据行 正在写入
@@ -121,5 +121,5 @@ REMOVE 移除脏数据行 写入失败
 
 READ 读取数据行
 
-每一行DIRTY的key，后面都应该有一行对应的CLEAN或者REMOVE的记录，否则这条数据就是“脏”的。
-redundantOpCount变量来记录用户操作的次数，每执行一次写入、读取或移除缓存的操作，这个变量值都会加1，当变量值达到2000的时候就会触发重构journal的事件，这时会自动把journal中一些多余的、不必要的记录全部清除掉，保证journal文件的大小始终保持在一个合理的范围内。
+每一行 DIRTY 的 key，后面都应该有一行对应的 CLEAN 或者 REMOVE 的记录，否则这条数据就是“脏”的。
+redundantOpCount 变量来记录用户操作的次数，每执行一次写入、读取或移除缓存的操作，这个变量值都会加 1，当变量值达到 2000 的时候就会触发重构 journal 的事件，这时会自动把 journal 中一些多余的、不必要的记录全部清除掉，保证 journal 文件的大小始终保持在一个合理的范围内。

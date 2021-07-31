@@ -1,8 +1,18 @@
-# LeakCanary
+---
+title: 简析LeakCanary
+date: 2019-10-19 11:25:23
+updated: 2021-08-01 11:31:55
+categories:
+  - Android
+tags:
+  - Android
+  - LeakCanary
+  - 内存
+---
 
 ## 使用
 
-添加依赖（release有no-op版）然后在 Application 初始化。
+添加依赖（release 有 no-op 版）然后在 Application 初始化。
 
 ```gradle
 dependencies {
@@ -37,26 +47,26 @@ Activity：
 
 application.registerActivityLifecycleCallbacks 覆写 onActivityDestroyed
 
-watch（）使用 WeakReference + ReferenceQueue监听对象回收情况
+watch（）使用 WeakReference + ReferenceQueue 监听对象回收情况
 
-watchedObjects（LinkedHashMap<key, KeyedWeakReference>）  watch() 方法传进来的引用，尚未判定为泄露
+watchedObjects（LinkedHashMap<key, KeyedWeakReference>） watch() 方法传进来的引用，尚未判定为泄露
 queue（ReferenceQueue） 怀疑泄漏的对象列表
 
-以 UUID.randomUUID().toString() 为key 构造 KeyedWeakReference（关联ReferenceQueue） 存入watchedObjects。
+以 UUID.randomUUID().toString() 为 key 构造 KeyedWeakReference（关联 ReferenceQueue） 存入 watchedObjects。
 
-***弱引用一旦变得弱可达，就会立即入队 ReferenceQueue。这将在 finalization 或者 GC 之前发生。***
+**_弱引用一旦变得弱可达，就会立即入队 ReferenceQueue。这将在 finalization 或者 GC 之前发生。_**
 
-watch方法最后会调用moveToRetained（）
+watch 方法最后会调用 moveToRetained（）
 
 ### Dump
 
 ### Analysis
 
-计算了到GC Roots的最短强引用路径。
+计算了到 GC Roots 的最短强引用路径。
 
-## 2.0版本
+## 2.0 版本
 
-### 不需要在Application 初始化
+### 不需要在 Application 初始化
 
 ```gradle
 dependencies {
@@ -64,7 +74,7 @@ dependencies {
 }
 ```
 
-#### ContentProvider实现
+#### ContentProvider 实现
 
 leakcanary-android-process 模块的 AndroidManifest.xml 文件:
 
@@ -89,7 +99,7 @@ leakcanary-android-process 模块的 AndroidManifest.xml 文件:
 </manifest>
 ```
 
-看看AppWatcherInstaller干了啥：
+看看 AppWatcherInstaller 干了啥：
 
 ```kotlin
 internal sealed class AppWatcherInstaller : ContentProvider() {
@@ -124,9 +134,9 @@ internal sealed class AppWatcherInstaller : ContentProvider() {
 Application->attachBaseContext =====> ContentProvider->onCreate =====> Application->onCreate =====> Activity->onCreate
 
 优点：实现"免侵入"集成，不需要手动初始化。
-缺点：无法更改初始化时机（App启动优化按需延迟初始化第三方库对这样的集成方式就无能为力了）。考虑到 LeakCanary 是开发 debug 阶段使用的，也无可厚非。一般的 SDK 还是不建议使用这种方式。
+缺点：无法更改初始化时机（App 启动优化按需延迟初始化第三方库对这样的集成方式就无能为力了）。考虑到 LeakCanary 是开发 debug 阶段使用的，也无可厚非。一般的 SDK 还是不建议使用这种方式。
 
-### 添加默认对Fragment的支持
+### 添加默认对 Fragment 的支持
 
 Fragment：
 
