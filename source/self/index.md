@@ -14,7 +14,7 @@ export_on_save:
 
 ### 熟悉 Glide 、 OkHttp 、 LeakCanary 等知名开源库，并阅读过部分源码
 
-[Glide]()
+[Glide](/post/简析Glide.md)
 
 ### 掌握 MVC/MVP/MVVM 架构，并对其有一定的理解
 

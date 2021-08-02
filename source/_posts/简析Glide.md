@@ -10,13 +10,25 @@ tags:
   - 图片
 ---
 
+最简洁的图片加载流程：
+
 ```java
 Glide.with(context)
     .load(myUrl)
     .into(imageView);
 ```
 
+1. with 传递图片加载上下文，获取图片加载请求管理器（RequestManager）。
+2. load 传递图片加载数据源，构建图片加载请求建造器（RequestBuilder）。
+3. into 传递图片加载目标载体，创建图片加载请求（Request），执行图片加载。
+
 ## 生命周期
+
+with 支持传递 Context，Activity，Fragment，Glide 4.0.0 版本后 with 还支持传递 View。
+
+1. 如果是子线程，会使用 ApplicationContext。
+2. 传递 Context 如果是 ContextWrapper 直接会优先向上遍历得到 Activity。
+3. 传递 View ，会优先向上遍历得到 Activity，然后根据得到的 Activity 优先遍历得到 Fragment。
 
 ### 传入 ApplicationContext
 
@@ -30,13 +42,38 @@ Application 对象的生命周期即应用程序的生命周期，因此 Glide �
 
 ### 内存缓存
 
-LruCache 算法（Least Recently Used），也叫近期最少使用算法。算法原理就是把最近使用的对象用强引用存储在 LinkedHashMap 中，并且把最近最少使用的对象在缓存值达到预设定值之前从内存中移除。
+1. 根据图片地址，宽高，变换，签名等生成 key。
+2. 根据 key 从活动缓存取图片资源。取到则完成；取不到进行下一步。
+3. 根据 key 从内存缓存（LRU 实现）。取到则将取到的图片资源添加到活动缓存，完成；取不到进行下一步。
+4. 返回 null，表示未取到。
 
-弱引用缓存正在使用的图片，可以保护这些图片不会被 LruCache 算法回收掉。
+- LRU 缓存。LruCache 算法（Least Recently Used），也叫近期最少使用算法。算法原理就是把最近使用的对象用强引用存储在 LinkedHashMap 中，并且把最近最少使用的对象在缓存值达到预设定值之前从内存中移除。
+
+- 活跃缓存。弱引用缓存正在使用的图片，可以保护这些图片不会被 LruCache 算法回收掉。
+
+缓存写入时机：
+
+- 图片资源执行完加载解码后，写入活跃缓存。
+- 图片资源回收且引用数为 0，先从活跃缓存中删除，后写入 LRU 缓存。
 
 ### 硬盘缓存
 
+DiskCacheStrategy.NONE： 表示不缓存任何内容。
+DiskCacheStrategy.SOURCE： 表示只缓存原始图片。
+DiskCacheStrategy.RESULT： 表示只缓存转换过后的图片（默认选项）。
+DiskCacheStrategy.ALL ： 表示既缓存原始图片，也缓存转换过后的图片。
+
 DiskLruCache，journal 文件。
+
+journal 文件组成：
+
+- libcore.io.DiskLruCache （魔法值，标志着使用 DiskLruCache 技术）
+- DiskLruCache 版本号
+- 应用版本号
+- DIRTY 数据行（正在写数据）
+- CLEAN 数据行（写入数据成功）
+- REMOVE 数据行（写入数据失败）
+- READ 数据行（读取数据）
 
 ## Bitmap 采样和复用机制
 
