@@ -1,0 +1,619 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/v_half.webp">
+  <link rel="icon" href="/img/v_half.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Code a poem and poem a code~">
+  <meta name="author" content="CodePoem">
+  <meta name="keywords" content="undefined">
+  
+  <title>优雅FindViewById - 梦半觉-CodePoem</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"codepoem.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>梦半觉-CodePoem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://codepoem.fun/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/CodePoem/CodePoem.github.io">
+                <i class="iconfont icon-github-fill"></i>
+                Github
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                厚薄
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAlgorithm">
+                    
+                    数据结构与算法-VAlgorithm
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VDesignPatterns">
+                    
+                    设计模式-VDesignPatterns
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAndroidReview">
+                    
+                    Android知识体系-VAndroidReview
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/v_bg.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="优雅FindViewById">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-04-18 13:06" pubdate>
+        2020年4月18日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">优雅FindViewById</h1>
+            
+            <div class="markdown-body">
+              <h2 id="findBiewById"><a href="#findBiewById" class="headerlink" title="findBiewById"></a>findBiewById</h2><p>findBiewById 是 Android 开发中在布局中查找 View 元素的 Api。</p>
+<h3 id="findBiewById-基本使用"><a href="#findBiewById-基本使用" class="headerlink" title="findBiewById 基本使用"></a>findBiewById 基本使用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DemoActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AppCompatActivity</span> </span>&#123;<br>  TextView mTextDemo;<br><br>  <span class="hljs-meta">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>&#123;<br>    <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);<br>    setContentView(R.layout.activity_demo);<br>    mTextDemo = (TextView) findViewById(R.id.tv_demo);<br>    mTextDemo.setText(<span class="hljs-string">&quot;Demo&quot;</span>);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>因为写起来很繁琐（而且还需要手动强转类型），所以逐渐出现了各种简化或者代替它的方式。</p>
+<h3 id="省略强转"><a href="#省略强转" class="headerlink" title="省略强转"></a>省略强转</h3><p>从 <a target="_blank" rel="noopener" href="https://developer.android.google.cn/topic/libraries/support-library/rev-archive.html">Android Support Library 26.0.0 Beta 1</a> 开始 findViewById 将不再需要强转了。</p>
+<p>findViewById() 方法的所有实例现在会返回 &lt;T extends View&gt; T，而不是 View。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DemoActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AppCompatActivity</span> </span>&#123;<br>  TextView mTextDemo;<br><br>  <span class="hljs-meta">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>&#123;<br>    <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);<br>    setContentView(R.layout.activity_demo);<br>    mTextDemo = findViewById(R.id.tv_demo);<br>    mTextDemo.setText(<span class="hljs-string">&quot;Demo&quot;</span>);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="findBiewById-原理"><a href="#findBiewById-原理" class="headerlink" title="findBiewById 原理"></a>findBiewById 原理</h3><p>findBiewById 原理实质上是递归遍历查找匹配 Id 的 View。</p>
+<p>Activity 中 findViewId 方法会调用获取 Window -&gt; DecoreView -&gt; View 的 findBiewById 方法。</p>
+<p>最终会调用到 View 中的 findViewTraversal 方法。方法名看上去是遍历操作，在 View 类中找不到遍历逻辑；<br>实际上 ViewGroup 覆写了 View 的 findViewTraversal 方法，实现了递归遍历查找匹配 View 的方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">View</span> </span>&#123;<br>    <span class="hljs-meta">@Nullable</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> &lt;T extends View&gt; <span class="hljs-function">T <span class="hljs-title">findViewById</span><span class="hljs-params">(<span class="hljs-meta">@IdRes</span> <span class="hljs-keyword">int</span> id)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (id == NO_ID) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> findViewTraversal(id);<br>    &#125;<br><br>    <span class="hljs-keyword">protected</span> &lt;T extends View&gt; <span class="hljs-function">T <span class="hljs-title">findViewTraversal</span><span class="hljs-params">(<span class="hljs-meta">@IdRes</span> <span class="hljs-keyword">int</span> id)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (id == mID) &#123;<br>            <span class="hljs-keyword">return</span> (T) <span class="hljs-keyword">this</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>    &#125;<br>&#125;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ViewGroup</span> </span>&#123;<br><br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * &#123;<span class="hljs-doctag">@hide</span>&#125;</span><br><span class="hljs-comment">   */</span><br>  <span class="hljs-meta">@Override</span><br>  <span class="hljs-keyword">protected</span> &lt;T extends View&gt; <span class="hljs-function">T <span class="hljs-title">findViewTraversal</span><span class="hljs-params">(<span class="hljs-meta">@IdRes</span> <span class="hljs-keyword">int</span> id)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (id == mID) &#123;<br>            <span class="hljs-keyword">return</span> (T) <span class="hljs-keyword">this</span>;<br>        &#125;<br><br>        <span class="hljs-keyword">final</span> View[] where = mChildren;<br>        <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> len = mChildrenCount;<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>            View v = where[i];<br><br>            <span class="hljs-keyword">if</span> ((v.mPrivateFlags &amp; PFLAG_IS_ROOT_NAMESPACE) == <span class="hljs-number">0</span>) &#123;<br>                v = v.findViewById(id);<br><br>                <span class="hljs-keyword">if</span> (v != <span class="hljs-keyword">null</span>) &#123;<br>                    <span class="hljs-keyword">return</span> (T) v;<br>                &#125;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="ButterKnife"><a href="#ButterKnife" class="headerlink" title="ButterKnife"></a><a target="_blank" rel="noopener" href="https://jakewharton.github.io/butterknife/">ButterKnife</a></h2><p>ButterKnife 是 jakewharton 大神开源作品，用于替代 findViewById ，避免繁琐的写法。</p>
+<h3 id="ButterKnife-基本使用"><a href="#ButterKnife-基本使用" class="headerlink" title="ButterKnife 基本使用"></a>ButterKnife 基本使用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DemoActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AppCompatActivity</span> </span>&#123;<br>  <span class="hljs-meta">@BindView(R.id.tv_demo)</span><br>  TextView mTextDemo;<br><br>  <span class="hljs-meta">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>&#123;<br>    <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);<br>    setContentView(R.layout.activity_demo);<br>    ButterKnife.bind(<span class="hljs-keyword">this</span>);<br>    mTextDemo.setText(<span class="hljs-string">&quot;Demo&quot;</span>);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="ButterKnife-原理"><a href="#ButterKnife-原理" class="headerlink" title="ButterKnife 原理"></a>ButterKnife 原理</h3><p>注解编译时生成绑定类，代替我们完成 FindViewById 的操作。</p>
+<p>PS：ButterKnife Github ReadMe 中说明已不推荐使用，推荐下文提到的 Android 官方提供的 <a target="_blank" rel="noopener" href="https://developer.android.com/topic/libraries/view-binding">ViewBinding</a></p>
+<h2 id="Data-Binding-Library"><a href="#Data-Binding-Library" class="headerlink" title="Data Binding Library"></a><a target="_blank" rel="noopener" href="https://developer.android.google.cn/topic/libraries/data-binding/index.html">Data Binding Library</a></h2><h3 id="Data-Binding-基本使用"><a href="#Data-Binding-基本使用" class="headerlink" title="Data Binding 基本使用"></a>Data Binding 基本使用</h3><p>布局需要使用 &lt;layout&gt; 标签包裹。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DemoActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AppCompatActivity</span> </span>&#123;<br><br>  <span class="hljs-meta">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>&#123;<br>    <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);<br>    setContentView(R.layout.demo_activity);<br>    ActivityDemoBinding binding = DataBindingUtil.setContentView(<span class="hljs-keyword">this</span>, R.layout.activity_demo);<br>    binding.tvDemo.setText(<span class="hljs-string">&quot;Demo&quot;</span>);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Data-Binding-原理"><a href="#Data-Binding-原理" class="headerlink" title="Data Binding 原理"></a>Data Binding 原理</h3><p>自动查找所有 View 并缓存到 binding 实例中以供访问。性能超过手写的 findViewById，因为它只遍历了一遍 XML 布局，而 findViewById 每次都会去遍历 XML 布局；include 布局中的 view 也能同样能访问，并且保留结构。</p>
+<h2 id="Kotlin-Android-Extensions"><a href="#Kotlin-Android-Extensions" class="headerlink" title="Kotlin Android Extensions"></a>Kotlin Android Extensions</h2><p>直接生成对应的 View 作为属性，不需要 findViewById，不需要定义变量，直接使用。使用时需要注意访问的 View 属于哪个 Layout，因为智能提示的候选项会提供所有布局中的 View 供你选择，然后帮你 import 对应包以便你访问这个 View；假如 import 的多个同一层级的 layout 中具有相同的 id，则这个 id 对应的 View 将无法访问。</p>
+<h3 id="Kotlin-Android-Extensions-synthetic-基本使用"><a href="#Kotlin-Android-Extensions-synthetic-基本使用" class="headerlink" title="Kotlin Android Extensions synthetic 基本使用"></a>Kotlin Android Extensions synthetic 基本使用</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><br><span class="hljs-keyword">import</span> kotlinx.android.synthetic.main.activity_demo.*<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DemoActivity</span> : <span class="hljs-type">AppCompatActivity</span></span>() &#123; &#123;<br><br>  <span class="hljs-meta">@Override</span> <span class="hljs-keyword">public</span> void onCreate(Bundle savedInstanceState) &#123;<br>    <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);<br>    setContentView(R.layout.demo_activity);<br>    tvDemo.setText(<span class="hljs-string">&quot;Demo&quot;</span>);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Kotlin-Android-Extensions-synthetic-原理"><a href="#Kotlin-Android-Extensions-synthetic-原理" class="headerlink" title="Kotlin Android Extensions synthetic 原理"></a>Kotlin Android Extensions synthetic 原理</h3><p>Kotlin 会自动生成类似 findViewById() 的方法：findCachedViewById()，在这个方法里面创建一个 HashMap 缓存每次查找到的 View，避免每次调用 View 的属性或方法时都会重新调用 findCachedViewById() 进行查找。</p>
+<p>PS：在 <a target="_blank" rel="noopener" href="https://github.com/JetBrains/kotlin/releases/tag/v1.4.20-M2">Kotlin 1.4.20-M2</a> 中，JetBrain s 废弃了 Kotlin Android Extensions 编译插件。推荐使用 ViewBinding。</p>
+<h2 id="推荐使用-ViewBinding"><a href="#推荐使用-ViewBinding" class="headerlink" title="(推荐使用)ViewBinding"></a>(推荐使用)<a target="_blank" rel="noopener" href="https://developer.android.com/topic/libraries/view-binding">ViewBinding</a></h2><h3 id="ViewBinding-基本使用"><a href="#ViewBinding-基本使用" class="headerlink" title="ViewBinding 基本使用"></a>ViewBinding 基本使用</h3><p>Android Studio 3.6 Canary 11 及更高版本中可用。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs gradle">android &#123;<br>  ...<br>  viewBinding &#123;<br>      enabled = <span class="hljs-keyword">true</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DemoActivity</span> : <span class="hljs-type">AppCompatActivity</span></span>() &#123; &#123;<br><br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">lateinit</span> <span class="hljs-keyword">var</span> binding: ActivityDemoBinding<br><br>  <span class="hljs-meta">@Override</span> <span class="hljs-keyword">public</span> void onCreate(Bundle savedInstanceState) &#123;<br>    <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);<br>    binding = ActivityDemoBinding.inflate(layoutInflater)<br>    setContentView(binding.root)<br>    binding.tvDemo.setText(<span class="hljs-string">&quot;Demo&quot;</span>);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="ViewBinding-原理"><a href="#ViewBinding-原理" class="headerlink" title="ViewBinding 原理"></a>ViewBinding 原理</h3><h3 id="ViewBinding-优缺点"><a href="#ViewBinding-优缺点" class="headerlink" title="ViewBinding 优缺点"></a>ViewBinding 优缺点</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li><p>Null 安全：由于视图绑定会创建对视图的直接引用，因此不存在因视图 ID 无效而引发 Null 指针异常的风险。此外，如果视图仅出现在布局的某些配置中，则绑定类中包含其引用的字段会使用 @Nullable 标记。</p>
+</li>
+<li><p>类型安全：每个绑定类中的字段均具有与它们在 XML 文件中引用的视图相匹配的类型。这意味着不存在发生类转换异常的风险。</p>
+</li>
+<li><p>更快的编译速度：视图绑定不需要处理注释，因此编译时间更短。</p>
+</li>
+<li><p>易于使用：视图绑定不需要特别标记的 XML 布局文件，因此在应用中采用速度更快。在模块中启用视图绑定后，它会自动应用于该模块的所有布局。</p>
+</li>
+</ul>
+<h4 id="缺点与限制"><a href="#缺点与限制" class="headerlink" title="缺点与限制"></a>缺点与限制</h4><ul>
+<li>布局和代码之间的不兼容性可能会导致编译版本在编译时（而非运行时）失败。</li>
+<li>视图绑定不支持布局变量或布局表达式，因此不能用于直接在 XML 布局文件中声明动态界面内容。</li>
+<li>视图绑定不支持双向数据绑定。</li>
+</ul>
+<hr>
+<p>相关文章</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.im/post/5e69cb55e51d4526d87c8610#heading-4">使用视图绑定替代 findViewById</a><br><a target="_blank" rel="noopener" href="https://juejin.im/post/5dd407066fb9a020366f85fa#heading-5">你好, View Binding! 再次再见, findViewById!</a><br><a target="_blank" rel="noopener" href="https://juejin.im/entry/5d8caedd518825093a3579b0">Kotlin 干掉了 findViewById，但用不好也会有性能问题</a><br><a target="_blank" rel="noopener" href="https://proandroiddev.com/migrating-the-deprecated-kotlin-android-extensions-compiler-plugin-to-viewbinding-d234c691dec7">Migrating the deprecated Kotlin Android Extensions compiler plugin</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_17766199/article/details/109557820">【译】迁移被废弃的 Kotlin Android Extensions 插件</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Android/">Android</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Android/">Android</a>
+                    
+                      <a class="hover-with-bg" href="/tags/FindViewById/">FindViewById</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/post/%E8%AF%91-viewlifecycleowner%E4%B8%8Ethis%E5%AF%B9%E6%AF%94/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">译-viewlifecycleowner与this对比</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/post/Fragmnet%E5%8F%AF%E8%A7%81%E6%80%A7/">
+                        <span class="hidden-mobile">Fragment可见性</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script>
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          Fluid.utils.createCssLink('https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqusjs.css');
+          Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqus.js', function() {
+            new DisqusJS({
+              shortname: 'codepoem',
+              apikey: 'null'
+            });
+          });
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

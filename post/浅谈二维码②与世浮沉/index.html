@@ -1,0 +1,638 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/v_half.webp">
+  <link rel="icon" href="/img/v_half.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Code a poem and poem a code~">
+  <meta name="author" content="CodePoem">
+  <meta name="keywords" content="undefined">
+  
+  <title>浅谈二维码②与世浮沉 - 梦半觉-CodePoem</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"codepoem.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>梦半觉-CodePoem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://codepoem.fun/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/CodePoem/CodePoem.github.io">
+                <i class="iconfont icon-github-fill"></i>
+                Github
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                厚薄
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAlgorithm">
+                    
+                    数据结构与算法-VAlgorithm
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VDesignPatterns">
+                    
+                    设计模式-VDesignPatterns
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAndroidReview">
+                    
+                    Android知识体系-VAndroidReview
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/v_bg.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="浅谈二维码②与世浮沉">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-02-22 12:15" pubdate>
+        2019年2月22日 中午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      19
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">浅谈二维码②与世浮沉</h1>
+            
+            <div class="markdown-body">
+              <h2 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h2><p>上次我们讲到二维码比条形码<strong>更优秀</strong>，可以承载更多信息等；也讲到了我们平常所说的二维码是<strong>QR Code</strong>，是<strong>狭义的二维码</strong>。后文所说的二维码除特殊说明外，也都指的是 QR 码。<br>忘了的同学或者没看过上一篇的同学可以点<a href="/2019/02/22/浅谈二维码①身世谜题/index.html#一、引言">这里</a>。</p>
+<center>
+
+<p><img src="/assert/img/qrcode/life/wxscan.jpg" srcset="/img/loading.gif" lazyload alt="扫一扫"></p>
+</center>
+
+<p>这个界面想必大家都很熟悉，那么扫二维码的这一过程到底发生了什么呢，作为社交和移动支付“宠儿”的二维码是如何与世浮沉的呢，今天我们来了解一下。</p>
+<h2 id="二、二维码识别基本过程"><a href="#二、二维码识别基本过程" class="headerlink" title="二、二维码识别基本过程"></a>二、二维码识别基本过程</h2><h3 id="简易流程图"><a href="#简易流程图" class="headerlink" title="简易流程图"></a>简易流程图</h3><p>我随意画了一张简陋的流程图，你们也随意看一下吧~<br>（普通的迪斯科要普通地摇，随意的流程图要随意地看）</p>
+<div align=center><img width="400" height="800" src="/assert/img/qrcode/life/qrcodeProcess.jpg" srcset="/img/loading.gif" lazyload/></div>
+
+<p><strong>好了，你应该看懂了吧，那本文到此为止，散了吧！（哎哎哎，你不会真的走了吧，后面还有精彩的，嘿嘿~）</strong></p>
+<p><strong>我们以一张彩色二维码图为例子。（里面承载了一串文本信息，不信你可以扫一扫试试，没毒的，死不了，放心吧，哈哈~）</strong><br><strong>不正经警告！</strong> 下面将以第一人称视角来描述，欢迎来到戏精表演现场。</p>
+<p>嗨，大家好，我来自二维码种族，是一位地下工作者，我的使命是传递信息，虽然我长得很美，但我很害羞。什么？你不相信？那我先收起我的矜持，给你发张我的自拍照，我大概长这样子：</p>
+<div align=center><img width="150" height="150" src="/assert/img/qrcode/life/qrcodeBeautiful.png" srcset="/img/loading.gif" lazyload/></div>
+
+<p>–怎么样，我美吗？<br>–美爆！！！<br>–(窃喜<del>~</del>)</p>
+<h3 id="关键步骤阐述"><a href="#关键步骤阐述" class="headerlink" title="关键步骤阐述"></a>关键步骤阐述</h3><p>因为珍贵的信息被藏在了我的身体里，为了完成传递信息的使命，我要经历许多“磨难”，不过我相信我可以的。<br>古有云，天降大任于斯人也，必先苦其心志，劳其筋骨，饿其体肤……<br>这次地下任务和我接头的是一位外科医生（好像叫“扫一扫”的家伙），他高超的手术技术能将藏在了我的身体的信息取出来。</p>
+<h4 id="1-读取图像，将原始图像变成黑白图像"><a href="#1-读取图像，将原始图像变成黑白图像" class="headerlink" title="1. 读取图像，将原始图像变成黑白图像"></a>1. 读取图像，将原始图像变成黑白图像</h4><p>为了让外科医生方便地取出我身体里的珍贵信息，我要舍弃我美丽的容颜，剥去华丽的外衣，换上病号服，做好手术前的准备。</p>
+<table>
+<thead>
+<tr>
+<th align="center">原本美丽的我（原始图像）</th>
+<th align="center">花容失色的我（灰度图像）</th>
+<th align="center">以身殉道的我（二值化图像或称黑白图像）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><div align=center><img width="150" height="150" src="/assert/img/qrcode/life/qrcodeBeautiful.png" srcset="/img/loading.gif" lazyload/></div></td>
+<td align="center"><div align=center><img width="150" height="150" src="/assert/img/qrcode/life/qrcodeBeautifulGray.png" srcset="/img/loading.gif" lazyload/></div></td>
+<td align="center"><div align=center><img width="150" height="150" src="/assert/img/qrcode/life/qrcodeBeautiful2value.jpg" srcset="/img/loading.gif" lazyload/></div></td>
+</tr>
+</tbody></table>
+<h4 id="2-判断黑白图像中是否存在二维码"><a href="#2-判断黑白图像中是否存在二维码" class="headerlink" title="2. 判断黑白图像中是否存在二维码"></a>2. 判断黑白图像中是否存在二维码</h4><p>他和我接头的时候小心翼翼，会确认我的身份，观察我的头和双手、摸摸我的肩膀、骨架，以初步确认我到底是不是他的接头人。<br>确认之后，他才开始和我聊起天来。从聊天中我发现这个外科医生对我们二维码种族的身体构造十分了解，简直比我自己还了解我的身体。他还向我介绍相关的知识。<br>他说，他见到过许多二维码，都是方方正正的，一共有 40 种尺寸（Version）,最小的尺寸是 21 x 21 的正方形，最大的尺寸是 177 x 177 的正方形，每加一个尺寸长和宽都会增加 4。<br>他还给我画了两张图，向我解释刚刚为什么要观察摸索我的那几个部位。</p>
+<h5 id="基本构造图"><a href="#基本构造图" class="headerlink" title="基本构造图"></a>基本构造图</h5><div align=center><img width="300" height="300" src="/assert/img/qrcode/life/qrcodeBeautiful45.png" srcset="/img/loading.gif" lazyload/></div>
+
+<div align=center><img width="600" height="360" src="/assert/img/qrcode/life/qrcode-format.png" srcset="/img/loading.gif" lazyload/></div>
+
+<h6 id="定位图案"><a href="#定位图案" class="headerlink" title="定位图案"></a>定位图案</h6><ul>
+<li>位置探测图形、位置探测图形分隔符: 用于对二维码的定位，对每个 QR 码来说，位置都是固定存在的，只是尺寸规格会有所差异。</li>
+<li>定位图形: 辅助定位，尺寸过大了后需要有根标准线，不然扫描的时候可能会扫歪了。</li>
+<li>校正图形: 尺寸规格确定，校正图形的数量和位置也就确定了。</li>
+</ul>
+<h6 id="功能性数据"><a href="#功能性数据" class="headerlink" title="功能性数据"></a>功能性数据</h6><ul>
+<li>格式信息: 表示改二维码的纠错级别，分为 L、M、Q、H；</li>
+<li>版本信息: 即二维码的尺寸规格，QR 码符号共有 40 种尺寸规格的矩阵（一般为黑白色），从 21x21（版本 1），到 177x177（版本 40），每一版本符号比前一版本 每边增加 4 个模块。</li>
+</ul>
+<h6 id="数据码和纠错码"><a href="#数据码和纠错码" class="headerlink" title="数据码和纠错码"></a>数据码和纠错码</h6><ul>
+<li>数据和纠错码字: 实际保存的二维码信息，和纠错码字（用于修正二维码损坏带来的错误）。</li>
+</ul>
+<p><strong>只要了解二维码种族的基本构造，就可以通过鉴别头和双手（三个位置探测图形）、肩膀（定位图形）、骨架（校正图形）来初步判断来者是否是二维码了。</strong></p>
+<h4 id="3-通过解码，读取二维码承载信息，并做相应处理"><a href="#3-通过解码，读取二维码承载信息，并做相应处理" class="headerlink" title="3. 通过解码，读取二维码承载信息，并做相应处理"></a>3. 通过解码，读取二维码承载信息，并做相应处理</h4><p>之后这位外科医生给我打了全麻，我昏睡了过去，等我醒来，他已经拿到了藏在我体内的信息。<br>后来他给我解释他用了一种名为“解码”的高超手术，还说如果我感兴趣，可以教我。（不，我不感兴趣！）<br>（解码可以简单理解为将已加密的信息，通过对应的解密方法，还原出原本的信息，暂时不深入探讨。）<br>最后，他将信息不知道到交给了谁（扫描二维码的使用者和调用方），不过这已经不是我需要关心的了，我已经完成了我的使命。<br>不过后来，我听到“滴”的一声。听说那天是情人节，阿珍收到了阿强的 520 元转账。</p>
+<h2 id="三、走出二维码认知误区"><a href="#三、走出二维码认知误区" class="headerlink" title="三、走出二维码认知误区"></a>三、走出二维码认知误区</h2><ul>
+<li><strong>二维码就是微信、支付宝等应用吗？</strong></li>
+</ul>
+<p>非也，虽然平常我们一看到二维码就习惯用微信或者支付宝去扫，但是<strong>微信和支付宝也只是二维码的使用者</strong>。<br>二维码是独立存在的，它并不依赖某一个<strong>特定的应用</strong>而存在。<strong>通用的信息</strong>，例如文本信息，普通的网页链接等，一般的扫一扫程序都能扫出来；</p>
+<ul>
+<li><strong>为什么有的二维码只能微信扫才能扫出来，有的二维码只能支付宝扫才能才出来呢？</strong></li>
+</ul>
+<p>那是因为这样的二维码往往承载的不是通用的信息而是<strong>特殊的链接信息</strong>，需要程序做出对应的处理。<br>比如我的微信的个人二维码实际承载的信息是这样的“ <a target="_blank" rel="noopener" href="http://weixin.qq.com/cgi-bin/readtemplate?check=false&amp;t=weixin_getdownurl_sms&amp;s=download&amp;from=100&amp;stype=10037102">http://weixin.qq.com/cgi-bin/readtemplate?check=false&amp;t=weixin_getdownurl_sms&amp;s=download&amp;from=100&amp;stype=10037102</a> ”，这种携带了微信特有信息的链接用支付宝当然扫不出来了。<br>实际就是每个二维码的用户（微信、支付宝等）在上面流程图中最后一步对二维码扫描结果的相应处理（显示文本、跳转链接）都有着自己不同的一套处理机制。</p>
+<ul>
+<li><strong>二维码有一个正面，需要正面才能扫？</strong></li>
+</ul>
+<p>二维码没有所谓的正面，从 360° 都可以扫描，甚至镜面反转后都可以扫描，这都归功于二维码的三个定位点，三个定位点可以确定一个二维码，甚至扫描的时候图像有倾斜都可以通过算法复原后扫描。</p>
+<h2 id="四、结语"><a href="#四、结语" class="headerlink" title="四、结语"></a>四、结语</h2><p>经过上面的介绍，二维码扫描的基本过程想必大家已经有了初步了解，那么对于二维码具体的编解码过程又是怎样的呢？（教练，orz，我想做手术）那么<strong>预知后事如何，请听下回分解</strong>！（啪，拍案！）</p>
+<hr>
+<p><strong>浅谈二维码系列文章</strong></p>
+<ul>
+<li><a href="/2019/02/22/浅谈二维码①身世谜题/index.html#一、引言">浅谈二维码 ① 身世谜题</a></li>
+<li><a href="/2019/02/22/浅谈二维码②与世浮沉/index.html#一、引言">浅谈二维码 ② 与世浮沉</a></li>
+</ul>
+<hr>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E4%BA%8C%E7%BB%B4%E7%A0%81/">二维码</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%BA%8C%E7%BB%B4%E7%A0%81/">二维码</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/post/Android%E7%89%B9%E6%9C%89%E9%9B%86%E5%90%88%E7%B1%BB%E6%B5%85%E6%9E%90/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Android特有集合类浅析</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/post/%E6%B5%85%E8%B0%88%E4%BA%8C%E7%BB%B4%E7%A0%81%E2%91%A0%E8%BA%AB%E4%B8%96%E8%B0%9C%E9%A2%98/">
+                        <span class="hidden-mobile">浅谈二维码①身世谜题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script>
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          Fluid.utils.createCssLink('https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqusjs.css');
+          Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqus.js', function() {
+            new DisqusJS({
+              shortname: 'codepoem',
+              apikey: 'null'
+            });
+          });
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

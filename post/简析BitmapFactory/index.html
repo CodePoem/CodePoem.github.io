@@ -1,0 +1,694 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/v_half.webp">
+  <link rel="icon" href="/img/v_half.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Code a poem and poem a code~">
+  <meta name="author" content="CodePoem">
+  <meta name="keywords" content="undefined">
+  
+  <title>简析BitmapFactory - 梦半觉-CodePoem</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"codepoem.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>梦半觉-CodePoem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://codepoem.fun/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/CodePoem/CodePoem.github.io">
+                <i class="iconfont icon-github-fill"></i>
+                Github
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                厚薄
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAlgorithm">
+                    
+                    数据结构与算法-VAlgorithm
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VDesignPatterns">
+                    
+                    设计模式-VDesignPatterns
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAndroidReview">
+                    
+                    Android知识体系-VAndroidReview
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/v_bg.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="简析BitmapFactory">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-10-14 16:59" pubdate>
+        2019年10月14日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      48
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">简析BitmapFactory</h1>
+            
+            <div class="markdown-body">
+              <p>基于 9.0（29）简析 BitmapFactory 类。</p>
+<p>我们只关注 BitmapFactor 类暴露出来的（即访问权限为 public）东西。</p>
+<ul>
+<li>静态内部类 Options</li>
+<li>若干 decode 方法</li>
+</ul>
+<h2 id="静态内部类-Options"><a href="#静态内部类-Options" class="headerlink" title="静态内部类 Options"></a>静态内部类 Options</h2><p>Options，顾名思义，是 BitmapFactory 用于 decode 方法的选项参数。让我们看看有哪些：</p>
+<h3 id="Bitmap-inBitmap"><a href="#Bitmap-inBitmap" class="headerlink" title="Bitmap inBitmap"></a>Bitmap inBitmap</h3><p>如果使用此参数，decode 方法会在加载内容时尝试重用此 bitmap ，如果编码操作不能使用此 bitmap （有限制条件），则会抛出 java.lang.IllegalArgumentException 异常。当前的重用实现方式要求 bitmap 必须是可变的，并且即使一个资源在 decode 后通常会得到不可变的 bitmap，在重用成功后所得到的重用 bitmap 也将保持可变性。任何可变的 bitmap 都可以被 BitmapFactory 重用，以解码任何其他 bitmap，只要解码后的 bitmap （待分配内存）的字节数（getByteCount 方法，解码后待分配内存状态的大小）小于或等于分配的字节数（getAllocationByteCount 方法，占用内存的实际大小）。这可能是因为待分配内存的 bitmap 固有尺寸较小，或者其缩放后的尺寸（对于密度/样本尺寸）较小。</p>
+<p>在 android.os.Build.VERSION_CODES.KITKAT（Android4.4，19）之前，使用有更多限制：</p>
+<ul>
+<li>解码的图像（无论是作为资源还是作为流）必须为 jpeg 或 png 格式。</li>
+<li>仅支持大小相等的 bitmap，并且 inSampleSize 设置为 1。</li>
+<li>另外，重用 bitmap 的 Bitmap.Config 配置 inPreferredConfig 将被覆盖（如果已设置）。</li>
+</ul>
+<p>BitmapRegionDecoder 会将其请求的内容绘制到提供的 bitmap 中，如果输出内容大小（缩放后）大于提供的 bitmap ，则进行裁剪。提供的 bitmap 的宽度，高度和 Bitmap.Config 不会更改。<br>android.os.Build.VERSION_CODES.JELLY_BEAN（Android 4.1，16）中引入了对 inBitmap 的 BitmapRegionDecoder 支持。 BitmapRegionDecoder 支持的所有格式 通过 inBitmap 支持 bitmap 重用。</p>
+<h3 id="boolean-inMutable"><a href="#boolean-inMutable" class="headerlink" title="boolean inMutable"></a>boolean inMutable</h3><p>在 native 代码中使用。</p>
+<p>如果开启该设置，则 decode 方法将始终返回可变的 bitmap。这可以用于以编程方式将效果应用于通过 BitmapFactory 加载的 Bitmap。不能与 inPreferredConfig = Bitmap.Config.HARDWARE 同时设置，因为硬件 bitmap 始终是不可变的。</p>
+<h3 id="boolean-inJustDecodeBounds"><a href="#boolean-inJustDecodeBounds" class="headerlink" title="boolean inJustDecodeBounds"></a>boolean inJustDecodeBounds</h3><p>如果开启该设置， 解码器将会返回 null （不返回 bitmap ），但是 out… 字段（如 outWidth 、 outHeight 、 outMimeType ）会被赋值，从而允许调用者查询 bitmap ，而不必为其像素分配内存。</p>
+<h3 id="int-inSampleSize"><a href="#int-inSampleSize" class="headerlink" title="int inSampleSize"></a>int inSampleSize</h3><p>如果设置的值大于 1，将会请求解码器对原始图像进行二次采样，返回较小的图像以节省内存。样本大小是任一维度中与已解码 bitmap 中单个像素对应的像素数。例如，设置 inSampleSize == 4 ，将会返回一张是宽高为原始宽度和高度的 1/4 的图像，像素为原来的 1/16。任何小于等于 1 的值都与 1 相同。注意：解码器使用基于 2 的幂的最终值，任何其他值将四舍五入为最接近的 2 的幂。</p>
+<h3 id="Bitmap-Config-inPreferredConfig"><a href="#Bitmap-Config-inPreferredConfig" class="headerlink" title="Bitmap.Config inPreferredConfig"></a>Bitmap.Config inPreferredConfig</h3><p>如果该配置不为 null ，解码器将会尝试解析 bitmap 成此内部配置（bitmap 的像素存储方式）。如果该配置为 null，或者无法满足要求，解码器将会基于系统屏幕深度和原始图像的特征（如是否有每像素透明度）来选择最合适的配置（要求该配置也满足要求）。</p>
+<p>图像默认以 Bitmap.Config.ARGB_8888 的配置加载。</p>
+<h3 id="ColorSpace-inPreferredColorSpace"><a href="#ColorSpace-inPreferredColorSpace" class="headerlink" title="ColorSpace inPreferredColorSpace"></a>ColorSpace inPreferredColorSpace</h3><p>如果改配置不为 null ，则解码器将尝试解码 bitmap 到此颜色空间中。如果该配置为 null ，或者无法满足要求，则解码器将选择嵌在图像的颜色空间或最适合请求的图像配置的颜色空间（例如，ColorSpace.Named.SRGB 对应 Bitmap.Config.ARGB_8888 ; ColorSpace.Named.EXTENDED_SRGB 对应 Bitmap.Config.RGBA_F16）。</p>
+<p>目前只支持 ColorSpace.Model.RGB 颜色空间，如果设置了非 RGB 颜色空间（例如 ColorSpace.Named.CIE_LAB）， decode 方法将会抛出异常（IllegalArgumentException）。</p>
+<p>指定的色彩空间的传递函数必须是 ColorSpace.Rgb.TransferParameters() ICC 参数曲线。如果在指定的色彩空间调用方法 ColorSpace.Rgb.getTransferParameters() 返回 null ， decode 方法将会抛出异常（IllegalArgumentException）。</p>
+<p>解码之后，bitmap 的色彩空间存储在 BitmapFactory.Options.outColorSpace 字段。</p>
+<h3 id="boolean-inPremultiplied"><a href="#boolean-inPremultiplied" class="headerlink" title="boolean inPremultiplied"></a>boolean inPremultiplied</h3><p>如果开启此配置（默认开启），则生成的 bitmap 的颜色通道将被 alpha 通道预乘。</p>
+<p>由视图系统或通过 Canvas 直接绘制的图像，不应将其设置为 false。视图系统和 Canvas 假定所有绘制的图像都已预乘以简化绘制时融合，并且在绘制未预乘时将抛出 RuntimeException 。</p>
+<p>仅当您要处理原始编码的图像数据（例如，使用 RenderScript 或自定义 OpenGL）时才是合适的。</p>
+<p>不会影响没有 Alpha 通道的 bitmap 。</p>
+<p>将 inScaled 设置为 true 时将此标志设置为 false 可能会导致颜色错误。</p>
+<h3 id="boolean-inDither"><a href="#boolean-inDither" class="headerlink" title="boolean inDither"></a>boolean inDither</h3><p>@deprecated 自 android.os.Build.VERSION_CODES.N （Android7.0，24）起，此配置被忽略。</p>
+<p>在 android.os.Build.VERSION_CODES.M (Android6.0，23)及以下版本中，如果设置为 true，则解码器将尝试对解码的图像进行抖动。</p>
+<h3 id="int-inDensity"><a href="#int-inDensity" class="headerlink" title="int inDensity"></a>int inDensity</h3><p>用于 bitmap 像素密度。这将使得在返回的位图中始终有为其设置的密度（请参阅 Bitmap.setDensity(int)）。此外，如果开启了 inScaled（默认情况下开启），并且此密度与 inTargetDensity 不匹配，则 bitmap 在返回之前将被缩放为目标密度。</p>
+<p>如果设置为 0， BitmapFactory.decodeResource(Resources, int) 、 BitmapFactory.decodeResource(Resources, int, android.graphics.BitmapFactory.Options) 、 BitmapFactory.decodeResourceStream 这些 decode 方法将填充与资源关联的密度。其他 decode 方法将保持原样，并且不会应用任何密度。</p>
+<h3 id="int-inTargetDensity"><a href="#int-inTargetDensity" class="headerlink" title="int inTargetDensity"></a>int inTargetDensity</h3><p>此 bitmap 将被绘制到的目标像素密度。 与 inDensity 和 inScaled 结合使用，以确定在返回 bitmap 之前是否以及如何缩放位图。</p>
+<p>如果设置为 0， BitmapFactory.decodeResource(Resources, int) 、 BitmapFactory.decodeResource(Resources, int, android.graphics.BitmapFactory.Options) 、 BitmapFactory.decodeResourceStream 这些 decode 方法将填充与资源对象的 DisplayMetrics 相关的密度。其他 decode 方法将保持原样，并且不会对密度进行缩放。</p>
+<h3 id="int-inScreenDensity"><a href="#int-inScreenDensity" class="headerlink" title="int inScreenDensity"></a>int inScreenDensity</h3><p>正在使用的实际屏幕的像素密度。 仅用于以密度兼容代码运行的应用程序，其中 inTargetDensity 实际上是应用程序看到的密度而不是实际的屏幕密度。</p>
+<p>通过设置此选项，允许加载代码避免将当前的屏幕密度的 bitmap 缩放到/降低到兼容密度。相反的，如果 inDensity 与 inScreenDensity 相同，则 bitmap 将保持不变。任何使用生成的 bitmap 的对象，还必须使用 Bitmap.getScaledWidth 和 Bitmap.getScaledHeight 来说明 bitmap 的密度与目标密度之间的任何差异。</p>
+<p>BitmapFactory 自身永远不会为调用者自动设置。必须明确设置它，因为调用者必须以密度感知的方式处理结果位图。</p>
+<h3 id="boolean-inScaled"><a href="#boolean-inScaled" class="headerlink" title="boolean inScaled"></a>boolean inScaled</h3><p>如果设置了该配置，并且 inDensity 和 inTargetDensity 不为 0，bitmap 在加载时将缩放以匹配 inTargetDensity，而不是每次绘制到 Canvas 时都依赖于图形系统对其进行缩放。</p>
+<p>BitmapRegionDecoder 会忽略这个配置，并且不会根据密度缩放输出。（尽管支持 inSampleSize ）</p>
+<p>此配置默认开启，如果需要 bitmap 的非缩放版本，则应将其关闭。.9 bitmaps（Nine-patch bitmaps）会忽略此配置，并且始终会缩放。</p>
+<p>如果 inPremultiplied 设置为 false ，并且图像具有 Alpha 透明度，将此配置设置为 true 可能会导致颜色错误。</p>
+<h3 id="boolean-inPurgeable"><a href="#boolean-inPurgeable" class="headerlink" title="boolean inPurgeable"></a>boolean inPurgeable</h3><p>@deprecated 自 android.os.Build.VERSION_CODES.LOLLIPOP（Android5.0，21） 起，此配置被忽略。</p>
+<p>在 android.os.Build.VERSION_CODES.KITKAT（Android4.4，19）及以下版本中，如果将此配置设置为 true ，那么生成的 bitmap 将分配其像素，以便在系统需要回收内存时可以将其清除。在那种情况下，当需要再次访问像素时（例如绘制 bitmap，调用 getPixels（）），它们将被自动重新解码。</p>
+<p>为了进行重新解码，bitmap 必须通过共享对输入的引用或对其进行复制来访问编码的数据。此区别由 inInputShareable 控制。如果 inInputShareable 为 true，则 bitmap 可能会保留对输入的浅引用。如果这 inInputShareable 为 false，则 bitmap 将显式地复制输入数据，并将其保留。即使允许共享，实现仍可以决定对输入数据进行深拷贝。</p>
+<p>尽管 inPurgeable 可以帮助避免大的 Dalvik 堆分配（从 API 级别 11 开始），但是它牺牲了性能可预测性，因为视图系统尝试绘制的任何图像都可能会导致解码延迟，从而导致帧丢失。因此，大多数应用应避免使用 inPurgeable 来提供快速流畅的 UI。为了最小化 Dalvik 堆分配，请使用 inBitmap 配置。</p>
+<p>该配置会被 decodeResource(Resources, int, android.graphics.BitmapFactory.Options) 或者 decodeFile(String,<br>android.graphics.BitmapFactory.Options)</p>
+<h3 id="boolean-inInputShareable"><a href="#boolean-inInputShareable" class="headerlink" title="boolean inInputShareable"></a>boolean inInputShareable</h3><p>@deprecated 自 android.os.Build.VERSION_CODES.LOLLIPOP（Android5.0，21） 起，此配置被忽略。</p>
+<p>在 android.os.Build.VERSION_CODES.KITKAT（Android4.4，19）及以下版本中，此配置与 inPurgeable 结合使用。如果 inPurgeable 为 false ，则会忽略此字段。如果 inPurgeable 为 true ，则配置确定 bitmap 是否可以共享对输数据（inputstream，数组等）的引用，或者是否必须进行深拷贝。</p>
+<h3 id="boolean-inPreferQualityOverSpeed"><a href="#boolean-inPreferQualityOverSpeed" class="headerlink" title="boolean inPreferQualityOverSpeed"></a>boolean inPreferQualityOverSpeed</h3><p>@deprecated 自 android.os.Build.VERSION_CODE.N （Android7.0，24）起，此配置被忽略。输出将始终是高质量的。</p>
+<p>在 android.os.Build.VERSION_CODES.M (Android6.0，23)及以下版本中，如果将 inPreferQualityOverSpeed 设置为 true ，则解码器将尝试以牺牲解码速度为代价，将重构图像解码为更高质量的图像。当前该字段仅影响 JPEG 解码，在这种情况下，将使用更准确但稍慢的 IDCT 方法代替。</p>
+<h3 id="int-outWidth"><a href="#int-outWidth" class="headerlink" title="int outWidth"></a>int outWidth</h3><p>bitmap 的解码结果宽度。如果 inJustDecodeBounds 设置为 false，这将是应用所有缩放后输出 bitmap 的宽度。如果为 true，它将是输入图像的宽度，不考虑缩放。</p>
+<p>如果尝试解码时发生错误，outWidth 将设置为-1。</p>
+<h3 id="int-outHeight"><a href="#int-outHeight" class="headerlink" title="int outHeight"></a>int outHeight</h3><p>bitmap 的解码结果高度。如果 inJustDecodeBounds 设置为 false，这将是应用所有缩放后输出 bitmap 的高度。如果为 true，它将是输入图像的高度，不考虑缩放。</p>
+<p>如果尝试解码时发生错误，outHeight 将设置为-1。</p>
+<h3 id="String-outMimeType"><a href="#String-outMimeType" class="headerlink" title="String outMimeType"></a>String outMimeType</h3><p>如果明确，则将该字符串设置为解码图像的媒体类型。 如果未知或有错误，则将其设置为 null 。</p>
+<h3 id="Bitmap-Config-outConfig"><a href="#Bitmap-Config-outConfig" class="headerlink" title="Bitmap.Config outConfig"></a>Bitmap.Config outConfig</h3><p>如果明确，为解码 bitmap 具有的像素存储方式配置。 如果未知或有错误，则将其设置为 null 。</p>
+<h3 id="ColorSpace-outColorSpace"><a href="#ColorSpace-outColorSpace" class="headerlink" title="ColorSpace outColorSpace"></a>ColorSpace outColorSpace</h3><p>如果明确，为解码后的 bitmap 具有的色彩空间。注意，输出颜色空间不保证是 bitmap 编码的颜色空间。如果未知（例如，配置为 Bitmap.Config.ALPHA_8）或存在错误，则将其设置为 null 。</p>
+<h3 id="byte-inTempStorage"><a href="#byte-inTempStorage" class="headerlink" title="byte[] inTempStorage"></a>byte[] inTempStorage</h3><p>用于解码的临时存储。建议 16K 左右。</p>
+<h3 id="boolean-mCancel"><a href="#boolean-mCancel" class="headerlink" title="boolean mCancel"></a>boolean mCancel</h3><p>@deprecated 自 android.os.Build.VERSION_CODES.N （Android7.0，24）起。</p>
+<p>指示已在此对象上调用 cancel 的标志。如果有一个中间人想要首先解码边界然后解码图像，则此配置很有用。在那种情况下，中间人可以在边界解码和图像解码之间检查是否取消了该操作。</p>
+<h3 id="public-void-requestCancelDecode"><a href="#public-void-requestCancelDecode" class="headerlink" title="public void requestCancelDecode()"></a>public void requestCancelDecode()</h3><p>@deprecated 自 android.os.Build.VERSION_CODES.N （Android7.0，24）起，不影响解码，尽管设置了 mCancel 的值为 true。</p>
+<p>在 android.os.Build.VERSION_CODES.M (Android6.0，23)及以下版本。调用此命令将通知解码器应该取消其操作。这不能保证取消解码，但是如果成功取消解码，则解码器操作结果将返回 null ，或者如果 inJustDecodeBounds 为 true ，则将 outWidth / outHeight 设置为-1。</p>
+<h2 id="decode-方法"><a href="#decode-方法" class="headerlink" title="decode 方法"></a>decode 方法</h2><h3 id="decode-方法简析"><a href="#decode-方法简析" class="headerlink" title="decode 方法简析"></a>decode 方法简析</h3><h4 id="Bitmap-decodeFile-String-pathName-Options-opts"><a href="#Bitmap-decodeFile-String-pathName-Options-opts" class="headerlink" title="Bitmap decodeFile(String pathName, Options opts)"></a>Bitmap decodeFile(String pathName, Options opts)</h4><p>将文件路径解码为 bitmap 。如果指定的文件名为 null ，或无法解码为 bitmap，则该函数返回 null 。</p>
+<ul>
+<li>String pathName：待解码文件的完整路径名</li>
+<li>Options opts：控制下采样以及是否应完全解码图像或仅返回尺寸的选项参数，可为 null。</li>
+</ul>
+<p>实际内部调用了另外一个 decode 方法：<br>Bitmap decodeStream(@Nullable InputStream is, @Nullable Rect outPadding, @Nullable Options opts)<br>（参数 String pathName -&gt; InputStream is, Rect null , Options opts）</p>
+<h4 id="Bitmap-decodeFile-String-pathName"><a href="#Bitmap-decodeFile-String-pathName" class="headerlink" title="Bitmap decodeFile(String pathName)"></a>Bitmap decodeFile(String pathName)</h4><p>重载 Bitmap decodeFile(String pathName, Options opts)</p>
+<p>decodeFile(pathName, null);</p>
+<h4 id="Bitmap-decodeResourceStream-Nullable-Resources-res-Nullable-TypedValue-value-Nullable-InputStream-is-Nullable-Rect-pad-Nullable-Options-opts"><a href="#Bitmap-decodeResourceStream-Nullable-Resources-res-Nullable-TypedValue-value-Nullable-InputStream-is-Nullable-Rect-pad-Nullable-Options-opts" class="headerlink" title="Bitmap decodeResourceStream(@Nullable Resources res, @Nullable TypedValue value, @Nullable InputStream is, @Nullable Rect pad, @Nullable Options opts)"></a>Bitmap decodeResourceStream(@Nullable Resources res, @Nullable TypedValue value, @Nullable InputStream is, @Nullable Rect pad, @Nullable Options opts)</h4><p>从 InputStream 解码新的 bitmap 。此 InputStream 是从资源获得的，我们通过传递这些资源可以相应地缩放位图。</p>
+<h4 id="Bitmap-decodeResource-Resources-res-int-id-Options-opts"><a href="#Bitmap-decodeResource-Resources-res-int-id-Options-opts" class="headerlink" title="Bitmap decodeResource(Resources res, int id, Options opts)"></a>Bitmap decodeResource(Resources res, int id, Options opts)</h4><p>打开给定的资源并且调用 decodeResourceStream 方法的代名词。</p>
+<ul>
+<li>Resources res：包含图像数据的资源对象。</li>
+<li>int id：图像数据的资源 ID。</li>
+<li>Options opts：控制下采样以及是否应完全解码图像或仅返回尺寸的选项参数，可为 null。</li>
+</ul>
+<p>实际内部调用了另外一个 decode 方法：<br>decodeResourceStream(@Nullable Resources res, @Nullable TypedValue value, @Nullable InputStream is, @Nullable Rect pad, @Nullable Options opts)<br>（参数 Resources res, TypedValue value = new TypedValue(), InputStream res.openRawResource(id, value), Rect null, Options opts）</p>
+<h4 id="Bitmap-decodeResource-Resources-res-int-id"><a href="#Bitmap-decodeResource-Resources-res-int-id" class="headerlink" title="Bitmap decodeResource(Resources res, int id)"></a>Bitmap decodeResource(Resources res, int id)</h4><p>重载 Bitmap decodeResource(Resources res, int id, Options opts)</p>
+<p>decodeResource(res, id, null);</p>
+<h4 id="Bitmap-decodeByteArray-byte-data-int-offset-int-length-Options-opts"><a href="#Bitmap-decodeByteArray-byte-data-int-offset-int-length-Options-opts" class="headerlink" title="Bitmap decodeByteArray(byte[] data, int offset, int length, Options opts)"></a>Bitmap decodeByteArray(byte[] data, int offset, int length, Options opts)</h4><p>从指定的字节数组解码不可变的 bitmap。</p>
+<ul>
+<li>byte[] data：压缩图像数据的字节数组。</li>
+<li>int offset：解码器应开始解析的 imageData 的偏移量。</li>
+<li>int length：从偏移量开始解析的字节数。</li>
+<li>Options opts：控制下采样以及是否应完全解码图像或仅返回尺寸的选项参数，可为 null。</li>
+</ul>
+<p>调用 native 解码方法：<br>private static native Bitmap nativeDecodeByteArray(byte[] data, int offset, int length, Options opts, long inBitmapHandle, long colorSpaceHandle)</p>
+<h4 id="Bitmap-decodeByteArray-byte-data-int-offset-int-length"><a href="#Bitmap-decodeByteArray-byte-data-int-offset-int-length" class="headerlink" title="Bitmap decodeByteArray(byte[] data, int offset, int length)"></a>Bitmap decodeByteArray(byte[] data, int offset, int length)</h4><p>重载 Bitmap decodeByteArray(byte[] data, int offset, int length, Options opts)</p>
+<p>decodeByteArray(data, offset, length, null);</p>
+<h4 id="Bitmap-decodeStream-Nullable-InputStream-is-Nullable-Rect-outPadding-Nullable-Options-opts"><a href="#Bitmap-decodeStream-Nullable-InputStream-is-Nullable-Rect-outPadding-Nullable-Options-opts" class="headerlink" title="Bitmap decodeStream(@Nullable InputStream is, @Nullable Rect outPadding, @Nullable Options opts)"></a>Bitmap decodeStream(@Nullable InputStream is, @Nullable Rect outPadding, @Nullable Options opts)</h4><p>将输入流解码为 bitmap 。如果输入流为 null ，或者不能用于解码 bitmap ，则该函数返回 null 。 流的位置将是读取编码数据之后的位置。</p>
+<ul>
+<li>InputStream is：输入流，其中包含要解码为 bitmap 的原始数据。</li>
+<li>Rect outPadding：如果不为 null ，则返回 bitmap 的填充矩形（如果存在），否则将填充设置为[-1，-1，-1，-1]。如果没有 bitmap 返回（ null ），则填充是不变的。</li>
+<li>Options opts：控制下采样以及是否应完全解码图像或仅返回尺寸的选项参数，可为 null。</li>
+</ul>
+<p>如果输入流是 AssetManager.AssetInputStrea，调用 native 解码方法：<br>private static native Bitmap nativeDecodeAsset(long nativeAsset, Rect padding, Options opts,<br>long inBitmapHandle, long colorSpaceHandle)<br>否则调用私有内部方法：<br>Bitmap decodeStreamInternal(@NonNull InputStream is, @Nullable Rect outPadding, @Nullable Options opts)</p>
+<h4 id="decodeStream-InputStream-is"><a href="#decodeStream-InputStream-is" class="headerlink" title="decodeStream(InputStream is)"></a>decodeStream(InputStream is)</h4><p>重载 Bitmap decodeStream(@Nullable InputStream is, @Nullable Rect outPadding, @Nullable Options opts)</p>
+<p>decodeStream(is, null, null);</p>
+<h4 id="Bitmap-decodeFileDescriptor-FileDescriptor-fd-Rect-outPadding-Options-opts"><a href="#Bitmap-decodeFileDescriptor-FileDescriptor-fd-Rect-outPadding-Options-opts" class="headerlink" title="Bitmap decodeFileDescriptor(FileDescriptor fd, Rect outPadding, Options opts)"></a>Bitmap decodeFileDescriptor(FileDescriptor fd, Rect outPadding, Options opts)</h4><p>从文件描述符解码 bitmap 。如果 bitmap 无法解码返回 null 。当返回时，描述符中的位置不会更改，因此可以按原样再次使用描述符。</p>
+<ul>
+<li>FileDescriptor fd：包含要解码的 bitmap 数据的文件描述符。</li>
+<li>Rect outPadding：如果不为 null ，则返回 bitmap 的填充矩形（如果存在），否则将填充设置为[-1，-1，-1，-1]。如果没有 bitmap 返回（ null ），则填充是不变的。</li>
+<li>Options opts：控制下采样以及是否应完全解码图像或仅返回尺寸的选项参数，可为 null。</li>
+</ul>
+<h4 id="Bitmap-decodeFileDescriptor-FileDescriptor-fd"><a href="#Bitmap-decodeFileDescriptor-FileDescriptor-fd" class="headerlink" title="Bitmap decodeFileDescriptor(FileDescriptor fd)"></a>Bitmap decodeFileDescriptor(FileDescriptor fd)</h4><p>重载 Bitmap decodeFileDescriptor(FileDescriptor fd, Rect outPadding, Options opts)</p>
+<p>decodeFileDescriptor(fd, null, null);</p>
+<h3 id="decode-方法总结"><a href="#decode-方法总结" class="headerlink" title="decode 方法总结"></a>decode 方法总结</h3><p>所有的 decode 方法最后都会走下面三个 decode 方法：</p>
+<p>Bitmap decodeStream(@Nullable InputStream is, @Nullable Rect outPadding, @Nullable Options opts)</p>
+<p>Bitmap decodeByteArray(byte[] data, int offset, int length, Options opts)</p>
+<p>Bitmap decodeFileDescriptor(FileDescriptor fd, Rect outPadding, Options opts)</p>
+<p>其中 decodeStream 和 decodeFileDescriptor 方法 有可能走以下这个方法：</p>
+<p>Bitmap decodeStreamInternal(@NonNull InputStream is, @Nullable Rect outPadding, @Nullable Options opts)</p>
+<p>实质是调用了 native 解码方法：<br>Bitmap nativeDecodeStream(InputStream is, byte[] storage, Rect padding, Options opts, long inBitmapHandle, long colorSpaceHandle)</p>
+<p>因此 native 以下四个方法是 decode 的最终归宿：</p>
+<ul>
+<li>private static native Bitmap nativeDecodeStream(InputStream is, byte[] storage, Rect padding, Options opts, long inBitmapHandle, long colorSpaceHandle);</li>
+<li>private static native Bitmap nativeDecodeFileDescriptor(FileDescriptor fd, Rect padding, Options opts, long inBitmapHandle, long colorSpaceHandle);</li>
+<li>private static native Bitmap nativeDecodeAsset(long nativeAsset, Rect padding, Options opts, long inBitmapHandle, long colorSpaceHandle);</li>
+<li>private static native Bitmap nativeDecodeByteArray(byte[] data, int offset, int length, Options opts, long inBitmapHandle, long colorSpaceHandle);</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Android/">Android</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Android/">Android</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%9B%BE%E7%89%87/">图片</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Bitmap/">Bitmap</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/post/Android%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Android图片压缩</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/post/%E6%A8%A1%E6%9D%BF%E6%95%B4%E7%90%86%E4%B9%8B%E4%B8%8A%E4%BC%A0%E4%BB%93%E5%BA%93/">
+                        <span class="hidden-mobile">模板整理之上传仓库</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script>
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          Fluid.utils.createCssLink('https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqusjs.css');
+          Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqus.js', function() {
+            new DisqusJS({
+              shortname: 'codepoem',
+              apikey: 'null'
+            });
+          });
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

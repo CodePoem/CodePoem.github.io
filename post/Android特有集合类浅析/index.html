@@ -1,0 +1,622 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/v_half.webp">
+  <link rel="icon" href="/img/v_half.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Code a poem and poem a code~">
+  <meta name="author" content="CodePoem">
+  <meta name="keywords" content="undefined">
+  
+  <title>Android特有集合类浅析 - 梦半觉-CodePoem</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"codepoem.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>梦半觉-CodePoem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://codepoem.fun/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/CodePoem/CodePoem.github.io">
+                <i class="iconfont icon-github-fill"></i>
+                Github
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                厚薄
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAlgorithm">
+                    
+                    数据结构与算法-VAlgorithm
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VDesignPatterns">
+                    
+                    设计模式-VDesignPatterns
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAndroidReview">
+                    
+                    Android知识体系-VAndroidReview
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/v_bg.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Android特有集合类浅析">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-04-21 10:02" pubdate>
+        2019年4月21日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      13
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Android特有集合类浅析</h1>
+            
+            <div class="markdown-body">
+              <ul>
+<li>ArrayMap</li>
+<li>ArraySet</li>
+<li>SparseArray</li>
+<li>SparseIntArray</li>
+<li>SparseBooleanArray</li>
+<li>SparseLongArray</li>
+</ul>
+<h2 id="设计这些-Android-特有的集合类的意义"><a href="#设计这些-Android-特有的集合类的意义" class="headerlink" title="设计这些 Android 特有的集合类的意义"></a>设计这些 Android 特有的集合类的意义</h2><p>为什么要设计这些 Android 特有的集合类呢?</p>
+<p>主要目的： 优化内存占用。在移动设备端内存资源很珍贵，Java 原本的集合类为实现快速查询带来了很大内存的浪费。</p>
+<h2 id="ArrayMap"><a href="#ArrayMap" class="headerlink" title="ArrayMap"></a>ArrayMap</h2><h3 id="设计目的"><a href="#设计目的" class="headerlink" title="设计目的"></a>设计目的</h3><p>代替 HashMap&lt;Object,Object&gt;，且 key 唯一。</p>
+<h4 id="HashMap-实现方式"><a href="#HashMap-实现方式" class="headerlink" title="HashMap 实现方式"></a>HashMap 实现方式</h4><p>我们先来简单回忆下 HashMap，HashMap 是用散列表（数组+链表）实现：</p>
+<p><img src="/assert/img/androidmap/hashmap.jpg" srcset="/img/loading.gif" lazyload alt="HashMap"></p>
+<h4 id="HashMap-碰撞冲突解决方式"><a href="#HashMap-碰撞冲突解决方式" class="headerlink" title="HashMap 碰撞冲突解决方式"></a>HashMap 碰撞冲突解决方式</h4><p>HashMap 用<strong>链地址法</strong>解决 hashCode 冲突，这就是链表的设计目的，碰撞冲突就用头插法在对应 key 的链表插入 value。</p>
+<p>顺便提一下解决碰撞冲突的常用四个方法：</p>
+<ol>
+<li>链地址法</li>
+<li>再 Hash 法</li>
+<li>开放地址法(线性探测,二次探测,伪随机探测)</li>
+<li>建立公共溢出区</li>
+</ol>
+<h4 id="HashMap-扩容机制"><a href="#HashMap-扩容机制" class="headerlink" title="HashMap 扩容机制"></a>HashMap 扩容机制</h4><p>HasMap 默认初始容量 16，加载因子 0.75。<br>HasMap 扩容机制：元素个数超过数组容量 *负载因子，扩大为 2 倍。</p>
+<h4 id="HashMap-总结"><a href="#HashMap-总结" class="headerlink" title="HashMap 总结"></a>HashMap 总结</h4><p>HashMap 的存取速度都是相对比较快的，在一般情况下都能实现<strong>O(1)</strong>的速度。但是代价是什么呢？<br>但是从初始容量和负载因子都可以看出，这种快速的读是通消耗更多内存来换取的(<strong>空间换时间</strong>)。</p>
+<h3 id="设计原理"><a href="#设计原理" class="headerlink" title="设计原理"></a>设计原理</h3><p>对比上面回忆的 HashMap 特征来看 ArrayMap。</p>
+<h4 id="ArrayMap-实现方式"><a href="#ArrayMap-实现方式" class="headerlink" title="ArrayMap 实现方式"></a>ArrayMap 实现方式</h4><p>ArrayMap 是用双数组实现：</p>
+<p>一个 int[]数组，用于保存每个 item 的<strong>hashCode</strong>.<br>一个 Object[]数组，保存 key/value 键值对。容量是上一个数组的<strong>两倍</strong>。</p>
+<p><img src="/assert/img/androidmap/arraymap.jpg" srcset="/img/loading.gif" lazyload alt="ArrayMap"></p>
+<h4 id="ArrayMap-解决碰撞冲突方式"><a href="#ArrayMap-解决碰撞冲突方式" class="headerlink" title="ArrayMap 解决碰撞冲突方式"></a>ArrayMap 解决碰撞冲突方式</h4><p>ArrayMap 会对 key<strong>从小到大排序</strong>，使用<strong>二分法查询</strong>key 对应在数组中的下标。<br>先对存储 hashCode 的 int[]数组使用<strong>二分查找法</strong>得到相应的 index，通过 index 换算，可以得到 Object[]数组的<strong>key 下标（index*2）</strong>和<strong>value 下标（index*2+1）</strong>。</p>
+<p>那么如果出现 hashCode 冲突，该怎么办呢？<br>ArrayMap 采用自己的<strong>开放地址法</strong>来解决碰撞冲突。</p>
+<p>以 put 一个键值对 key/value 为例子：</p>
+<p><img src="/assert/img/androidmap/arraymap_put.jpg" srcset="/img/loading.gif" lazyload alt="ArrayMap进行put"></p>
+<p>hashCode 碰撞时会发生这样的情景， 存储 hashCode 的 int[]数组<strong>二分查找</strong>后得到的 index 不为负数（因为如果该 hashCode 存储过数据，index 必然大于等于 0，也就是能在 int[]数组中查找到值），且同时根据 index 换算后得到的 key 下标和 value 下标在 Object[]数组也已存有数据。<br>ArrayMap 会以当前换算好的 key 下标为<strong>中心点</strong>，<strong>向后和向前遍历</strong>，查询对比是否有<strong>相同 key 值</strong>。<br>相同则说明重复 put 了；向后和向前遍历都没有找到相同 key 值的，最后将在向后遍历的最后一个下标后插入当前 key/value。</p>
+<h4 id="ArrayMap-扩容机制"><a href="#ArrayMap-扩容机制" class="headerlink" title="ArrayMap 扩容机制"></a>ArrayMap 扩容机制</h4><p>ArrayMap 默认容量为 0。</p>
+<p>ArrayMap 扩容机制：</p>
+<ol>
+<li>如果容量大于等于 8，则扩容一半</li>
+<li>否则容量大于等于 4，则扩容到 8</li>
+<li>否则扩容到 4</li>
+<li>扩容时只需要数组拷贝工作，不需要重建哈希表</li>
+</ol>
+<p>为什么 4 是扩容默认的 size， 因为 4 是相对效率较高的大小。</p>
+<h4 id="ArrayMap-总结"><a href="#ArrayMap-总结" class="headerlink" title="ArrayMap 总结"></a>ArrayMap 总结</h4><p>从存储方式和扩容机制可以看出，ArrayMap 将内存的使用率提高了很多，但是读取的复杂度却是<strong>O(lgN)</strong>（因为二分法查找）。在数据量不是很大（<strong>千级以内</strong>）的时候，使用 ArrapMap 可以优化内存，并且存取速度几乎是不受什么影响的。</p>
+<p>尚未提及的一点是，ArrayMap 在删除元素时，如果集合剩余元素少于一定阈值，还有<strong>收缩（shrunk）</strong>功能。（等以后研究一下后补上）</p>
+<p>可以看出 ArrayMap 和 HashMap 大体上是时间和空间的权衡罢了。</p>
+<h2 id="ArraySet"><a href="#ArraySet" class="headerlink" title="ArraySet"></a>ArraySet</h2><h3 id="设计目的-1"><a href="#设计目的-1" class="headerlink" title="设计目的"></a>设计目的</h3><p>代替 HashSet,只保存 value，value 唯一</p>
+<h3 id="设计原理-1"><a href="#设计原理-1" class="headerlink" title="设计原理"></a>设计原理</h3><p>和 ArrayMap 类似，不做展开。</p>
+<h2 id="SparseArray"><a href="#SparseArray" class="headerlink" title="SparseArray"></a>SparseArray</h2><h3 id="设计目的-2"><a href="#设计目的-2" class="headerlink" title="设计目的"></a>设计目的</h3><p>代替 HashMap&lt;Integer,Object&gt;，SparseArray 只能在 key 为 int 的时候才能使用，注意是 int 而不是 Integer。<br>这样做就是为了进步一优化 ArrayMap，避免装箱拆箱的操作，从而节省内存和提高效率。</p>
+<h3 id="设计原理-2"><a href="#设计原理-2" class="headerlink" title="设计原理"></a>设计原理</h3><p>原理和 Arraymap 基本一致，也是基于双数组和二分查找，这里就不展开。</p>
+<h2 id="SparseIntArray"><a href="#SparseIntArray" class="headerlink" title="SparseIntArray"></a>SparseIntArray</h2><h3 id="设计目的-3"><a href="#设计目的-3" class="headerlink" title="设计目的"></a>设计目的</h3><p>代替 HashMap&lt;Integer,Integer&gt;，进一步优化 SparseArray，避免 value 为 Integer 的时候的装箱拆箱操作。</p>
+<h2 id="SparseBooleanArray"><a href="#SparseBooleanArray" class="headerlink" title="SparseBooleanArray"></a>SparseBooleanArray</h2><h3 id="设计目的-4"><a href="#设计目的-4" class="headerlink" title="设计目的"></a>设计目的</h3><p>代替 HashMap&lt;Integer,Boolean&gt;，进一步优化 SparseArray，避免 value 为 Boolean 的时候的装箱拆箱操作。</p>
+<h2 id="SparseLongArray"><a href="#SparseLongArray" class="headerlink" title="SparseLongArray"></a>SparseLongArray</h2><h3 id="设计目的-5"><a href="#设计目的-5" class="headerlink" title="设计目的"></a>设计目的</h3><p>代替 HashMap&lt;Integer,Long&gt;，进一步优化 SparseArray，避免 value 为 Long 的时候的装箱拆箱操作。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Android/">Android</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9B%86%E5%90%88/">集合</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/post/Android%E5%AD%98%E5%82%A8%E7%9B%AE%E5%BD%95/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Android存储目录</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/post/%E6%B5%85%E8%B0%88%E4%BA%8C%E7%BB%B4%E7%A0%81%E2%91%A1%E4%B8%8E%E4%B8%96%E6%B5%AE%E6%B2%89/">
+                        <span class="hidden-mobile">浅谈二维码②与世浮沉</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script>
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          Fluid.utils.createCssLink('https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqusjs.css');
+          Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqus.js', function() {
+            new DisqusJS({
+              shortname: 'codepoem',
+              apikey: 'null'
+            });
+          });
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

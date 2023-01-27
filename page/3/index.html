@@ -1,0 +1,1083 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/v_half.webp">
+  <link rel="icon" href="/img/v_half.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Code a poem and poem a code~">
+  <meta name="author" content="CodePoem">
+  <meta name="keywords" content="undefined">
+  
+  <title>梦半觉-CodePoem</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"codepoem.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>梦半觉-CodePoem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://codepoem.fun/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/CodePoem/CodePoem.github.io">
+                <i class="iconfont icon-github-fill"></i>
+                Github
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                厚薄
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAlgorithm">
+                    
+                    数据结构与算法-VAlgorithm
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VDesignPatterns">
+                    
+                    设计模式-VDesignPatterns
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAndroidReview">
+                    
+                    Android知识体系-VAndroidReview
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/v_bg.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="大梦谁先觉，平生我自知~">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/post/Java%E6%B3%9B%E5%9E%8B/" target="_self">
+          <img src="/gallery/1.png" srcset="/img/loading.gif" lazyload alt="Java泛型">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/post/Java%E6%B3%9B%E5%9E%8B/" target="_self">
+          Java泛型
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/post/Java%E6%B3%9B%E5%9E%8B/" target="_self">
+          
+          
+            
+          
+          概述泛型：参数化类型（将类型由原来的具体的类型参数化）。
+特点：
+
+适用于多种数据类型执行相同的代码。
+使用泛型时，在实际使用之前类型就已经确定了，不需要强制类型转换。
+泛型只在编译阶段有效。
+
+泛型命名标识字母（常见字母）：
+
+T Type
+K V Key Value
+E Element
+
+简单使用泛型类1234class 类名称&lt;泛型命名标识&gt; &#123;  private 泛型
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-09-10 07:49" pubdate>
+              2019-09-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Java/">Java</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java/">Java</a>
+            
+              <a href="/tags/%E6%B3%9B%E5%9E%8B/">泛型</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/post/Android%E8%AE%BE%E5%A4%87%E5%94%AF%E4%B8%80%E6%80%A7/" target="_self">
+          <img src="/gallery/1.png" srcset="/img/loading.gif" lazyload alt="Android设备唯一性">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/post/Android%E8%AE%BE%E5%A4%87%E5%94%AF%E4%B8%80%E6%80%A7/" target="_self">
+          Android设备唯一性
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/post/Android%E8%AE%BE%E5%A4%87%E5%94%AF%E4%B8%80%E6%80%A7/" target="_self">
+          
+          
+            
+          
+          如何标识唯一的 Android 设备呢？
+硬件标识符IMEI国际移动设备身份码(International Mobile Equipment Identity)，是由 15 位数字组成的”电子串号”，它与每台手机一一对应，而且该码是全世界唯一的。
+IMEI 所需权限：
+1&lt;uses-permission android:name=&quot;android.permission.READ_P
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-08-28 23:21" pubdate>
+              2019-08-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Android/">Android</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Android/">Android</a>
+            
+              <a href="/tags/App/">App</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/post/Android%E5%BA%94%E7%94%A8%E5%94%AF%E4%B8%80%E6%80%A7/" target="_self">
+          <img src="/gallery/1.png" srcset="/img/loading.gif" lazyload alt="Android应用唯一性">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/post/Android%E5%BA%94%E7%94%A8%E5%94%AF%E4%B8%80%E6%80%A7/" target="_self">
+          Android应用唯一性
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/post/Android%E5%BA%94%E7%94%A8%E5%94%AF%E4%B8%80%E6%80%A7/" target="_self">
+          
+          
+            
+          
+          说到应用唯一性，下面三个关键词，有何区别和联系呢？
+
+包名
+applicationId
+签名
+
+包名定义简介包名指的是软件包名称（代码命名空间）。就是我们平常写代码 import 的 package。
+配置示例123&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;    xmlns:t
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-08-27 23:39" pubdate>
+              2019-08-27
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Android/">Android</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Android/">Android</a>
+            
+              <a href="/tags/App/">App</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/post/Android%E5%AD%98%E5%82%A8%E7%9B%AE%E5%BD%95/" target="_self">
+          <img src="/gallery/1.png" srcset="/img/loading.gif" lazyload alt="Android存储目录">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/post/Android%E5%AD%98%E5%82%A8%E7%9B%AE%E5%BD%95/" target="_self">
+          Android存储目录
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/post/Android%E5%AD%98%E5%82%A8%E7%9B%AE%E5%BD%95/" target="_self">
+          
+          
+            
+          
+          
+问：三个概念，你弄清楚了吗？内存：Memory内部存储：InternalStorage外部存储：ExternalStorage
+答：说到这三个概念，就不得不说一下平时我们选购手机的参数 6G+128G、8G+256G 等，这里的 6G 和 8G 指的是手机内存（手机运行时存储），而 128G 和 256G 指的是手机存储空间（由内部存储的空间和外部存储的空间构成）。PS：所以如果追求手机的运行速
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-05-06 07:36" pubdate>
+              2019-05-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Android/">Android</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Android/">Android</a>
+            
+              <a href="/tags/%E6%8C%81%E4%B9%85%E5%8C%96/">持久化</a>
+            
+              <a href="/tags/%E5%AD%98%E5%82%A8%E7%9B%AE%E5%BD%95/">存储目录</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/post/Android%E7%89%B9%E6%9C%89%E9%9B%86%E5%90%88%E7%B1%BB%E6%B5%85%E6%9E%90/" target="_self">
+          <img src="/gallery/1.png" srcset="/img/loading.gif" lazyload alt="Android特有集合类浅析">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/post/Android%E7%89%B9%E6%9C%89%E9%9B%86%E5%90%88%E7%B1%BB%E6%B5%85%E6%9E%90/" target="_self">
+          Android特有集合类浅析
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/post/Android%E7%89%B9%E6%9C%89%E9%9B%86%E5%90%88%E7%B1%BB%E6%B5%85%E6%9E%90/" target="_self">
+          
+          
+            
+          
+          
+ArrayMap
+ArraySet
+SparseArray
+SparseIntArray
+SparseBooleanArray
+SparseLongArray
+
+设计这些 Android 特有的集合类的意义为什么要设计这些 Android 特有的集合类呢?
+主要目的： 优化内存占用。在移动设备端内存资源很珍贵，Java 原本的集合类为实现快速查询带来了很大内存的浪费。
+ArrayMap设计目的代
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-04-21 10:02" pubdate>
+              2019-04-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Android/">Android</a>
+            
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+            
+              <a href="/tags/%E9%9B%86%E5%90%88/">集合</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/post/%E6%B5%85%E8%B0%88%E4%BA%8C%E7%BB%B4%E7%A0%81%E2%91%A1%E4%B8%8E%E4%B8%96%E6%B5%AE%E6%B2%89/" target="_self">
+          <img src="/gallery/1.png" srcset="/img/loading.gif" lazyload alt="浅谈二维码②与世浮沉">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/post/%E6%B5%85%E8%B0%88%E4%BA%8C%E7%BB%B4%E7%A0%81%E2%91%A1%E4%B8%8E%E4%B8%96%E6%B5%AE%E6%B2%89/" target="_self">
+          浅谈二维码②与世浮沉
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/post/%E6%B5%85%E8%B0%88%E4%BA%8C%E7%BB%B4%E7%A0%81%E2%91%A1%E4%B8%8E%E4%B8%96%E6%B5%AE%E6%B2%89/" target="_self">
+          
+          
+            
+          
+          一、引言上次我们讲到二维码比条形码更优秀，可以承载更多信息等；也讲到了我们平常所说的二维码是QR Code，是狭义的二维码。后文所说的二维码除特殊说明外，也都指的是 QR 码。忘了的同学或者没看过上一篇的同学可以点这里。
+
+
+
+
+
+这个界面想必大家都很熟悉，那么扫二维码的这一过程到底发生了什么呢，作为社交和移动支付“宠儿”的二维码是如何与世浮沉的呢，今天我们来了解一下。
+二、二维码识别基本过程简易
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-02-22 12:15" pubdate>
+              2019-02-22
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E4%BA%8C%E7%BB%B4%E7%A0%81/">二维码</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E4%BA%8C%E7%BB%B4%E7%A0%81/">二维码</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/post/%E6%B5%85%E8%B0%88%E4%BA%8C%E7%BB%B4%E7%A0%81%E2%91%A0%E8%BA%AB%E4%B8%96%E8%B0%9C%E9%A2%98/" target="_self">
+          <img src="/gallery/1.png" srcset="/img/loading.gif" lazyload alt="浅谈二维码①身世谜题">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/post/%E6%B5%85%E8%B0%88%E4%BA%8C%E7%BB%B4%E7%A0%81%E2%91%A0%E8%BA%AB%E4%B8%96%E8%B0%9C%E9%A2%98/" target="_self">
+          浅谈二维码①身世谜题
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/post/%E6%B5%85%E8%B0%88%E4%BA%8C%E7%BB%B4%E7%A0%81%E2%91%A0%E8%BA%AB%E4%B8%96%E8%B0%9C%E9%A2%98/" target="_self">
+          
+          
+            
+          
+          一、引言二维码在如今的生活中随处可见，移动支付、社交 App 等都可以见到二维码的身影。今天我们就来了解一下二维码。
+
+
+
+二维码足迹
+二维码足迹
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+二、什么是二维码二维码的身世谜题：我们日常说的二维码究竟是何方神圣？
+基础知识二维码 ，又称二维条码。说到二维条码，不得不先说一下一维条码。所谓的一维条码指的就是条形码（没错，就是你能在许多商品包装上，书本背后能看到的条形
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-02-22 09:51" pubdate>
+              2019-02-22
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E4%BA%8C%E7%BB%B4%E7%A0%81/">二维码</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E4%BA%8C%E7%BB%B4%E7%A0%81/">二维码</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/post/%E7%AE%80%E6%9E%90LRU/" target="_self">
+          <img src="/gallery/1.png" srcset="/img/loading.gif" lazyload alt="简析LRU">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/post/%E7%AE%80%E6%9E%90LRU/" target="_self">
+          简析LRU
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/post/%E7%AE%80%E6%9E%90LRU/" target="_self">
+          
+          
+            
+          
+          LRU最近最少使用算法。
+基本原理
+-要求查找快，插入快，删除快，有顺序之分。哈希表查找快，但是数据无固定顺序；链表有顺序之分，插入删除快，但是查找慢。所以结合一下，形成一种新的数据结构：哈希链表。
+
+按顺序插入 ，所以需要双向链表。
+
+LinkedHashMap，使用 accessOrder=true 基于顺序访问，元素访问后被移动到末尾。
+
+
+自己动手实现 LRU123456789101112
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-02-22 09:51" pubdate>
+              2019-02-22
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%AE%80%E6%9E%90/">简析</a>
+            
+              <a href="/tags/LRU/">LRU</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/post/%E8%AF%BB%E3%80%8A%E5%A4%A7%E8%AF%9D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E4%B9%8B%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/" target="_self">
+          <img src="/gallery/1.png" srcset="/img/loading.gif" lazyload alt="读《大话设计模式》之工厂方法模式">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/post/%E8%AF%BB%E3%80%8A%E5%A4%A7%E8%AF%9D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E4%B9%8B%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/" target="_self">
+          读《大话设计模式》之工厂方法模式
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/post/%E8%AF%BB%E3%80%8A%E5%A4%A7%E8%AF%9D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E4%B9%8B%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/" target="_self">
+          
+          
+            
+          
+          一、模式概述定义一个用于创建对象的接口，让子类决定实例化哪一个类。工厂方法是一个类的实例化延迟到其子类。
+UML 图
+
+
+抽象工厂角色： 这是工厂方法模式的核心，它与应用程序无关。是具体工厂角色必须实现的接口或者必须继承的父类。在 java 中它由抽象类或者接口来实现。
+
+具体工厂角色：它含有和具体业务逻辑有关的代码。由应用程序调用以创建对应的具体产品的对象。在 java 中它由具体的类来实现。
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2017-02-11 20:46" pubdate>
+              2017-02-11
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+            
+              <a href="/tags/%E3%80%8A%E5%A4%A7%E8%AF%9D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B/">《大话设计模式》</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/post/(%E4%B8%89)%E8%87%AA%E5%AE%9A%E4%B9%89View%E5%AE%9E%E8%B7%B5%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7/" target="_self">
+          <img src="/gallery/1.png" srcset="/img/loading.gif" lazyload alt="(三)自定义View实践之自定义属性">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/post/(%E4%B8%89)%E8%87%AA%E5%AE%9A%E4%B9%89View%E5%AE%9E%E8%B7%B5%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7/" target="_self">
+          (三)自定义View实践之自定义属性
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/post/(%E4%B8%89)%E8%87%AA%E5%AE%9A%E4%B9%89View%E5%AE%9E%E8%B7%B5%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7/" target="_self">
+          
+          
+            
+          
+          一、定义与声明在资源文件夹 values 下新建 attr.xml 文件
+1234567891011121314&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;resources&gt;    &lt;attr name=&quot;text&quot; format=&quot;string&quot;/&g
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2016-12-11 20:46" pubdate>
+              2016-12-11
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Android/">Android</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Android/">Android</a>
+            
+              <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/">自定义View</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/2/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#board">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#board">4</a><a class="extend next" rel="next" href="/page/4/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

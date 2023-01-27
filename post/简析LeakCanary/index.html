@@ -1,0 +1,598 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/v_half.webp">
+  <link rel="icon" href="/img/v_half.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Code a poem and poem a code~">
+  <meta name="author" content="CodePoem">
+  <meta name="keywords" content="undefined">
+  
+  <title>简析LeakCanary - 梦半觉-CodePoem</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"codepoem.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>梦半觉-CodePoem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://codepoem.fun/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/CodePoem/CodePoem.github.io">
+                <i class="iconfont icon-github-fill"></i>
+                Github
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                厚薄
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAlgorithm">
+                    
+                    数据结构与算法-VAlgorithm
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VDesignPatterns">
+                    
+                    设计模式-VDesignPatterns
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAndroidReview">
+                    
+                    Android知识体系-VAndroidReview
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/v_bg.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="简析LeakCanary">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-10-19 11:25" pubdate>
+        2019年10月19日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      610 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">简析LeakCanary</h1>
+            
+            <div class="markdown-body">
+              <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>添加依赖（release 有 no-op 版）然后在 Application 初始化。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-keyword">dependencies</span> &#123;<br>  debugImplementation <span class="hljs-string">&#x27;com.squareup.leakcanary:leakcanary-android:1.X&#x27;</span><br>  releaseImplementation <span class="hljs-string">&#x27;com.squareup.leakcanary:leakcanary-android-no-op:1.X&#x27;</span><br>  <span class="hljs-comment">// Optional, if you use support library fragments:</span><br>  debugImplementation <span class="hljs-string">&#x27;com.squareup.leakcanary:leakcanary-support-fragment:1.X&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExampleApplication</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Application</span> </span>&#123;<br><br>    <span class="hljs-meta">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">super</span>.onCreate();<br>    <span class="hljs-keyword">if</span> (LeakCanary.isInAnalyzerProcess(<span class="hljs-keyword">this</span>)) &#123;<br>        <span class="hljs-comment">// This process is dedicated to LeakCanary for heap analysis.</span><br>        <span class="hljs-comment">// You should not init your app in this process.</span><br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    LeakCanary.install(<span class="hljs-keyword">this</span>);<br>    <span class="hljs-comment">// Normal app init code...</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h3 id="Watch"><a href="#Watch" class="headerlink" title="Watch"></a>Watch</h3><p>Activity：</p>
+<p>application.registerActivityLifecycleCallbacks 覆写 onActivityDestroyed</p>
+<p>watch（）使用 WeakReference + ReferenceQueue 监听对象回收情况</p>
+<p>watchedObjects（LinkedHashMap&lt;key, KeyedWeakReference&gt;） watch() 方法传进来的引用，尚未判定为泄露<br>queue（ReferenceQueue） 怀疑泄漏的对象列表</p>
+<p>以 UUID.randomUUID().toString() 为 key 构造 KeyedWeakReference（关联 ReferenceQueue） 存入 watchedObjects。</p>
+<p><strong><em>弱引用一旦变得弱可达，就会立即入队 ReferenceQueue。这将在 finalization 或者 GC 之前发生。</em></strong></p>
+<p>watch 方法最后会调用 moveToRetained（）</p>
+<h3 id="Dump"><a href="#Dump" class="headerlink" title="Dump"></a>Dump</h3><h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>计算了到 GC Roots 的最短强引用路径。</p>
+<h2 id="2-0-版本"><a href="#2-0-版本" class="headerlink" title="2.0 版本"></a>2.0 版本</h2><h3 id="不需要在-Application-初始化"><a href="#不需要在-Application-初始化" class="headerlink" title="不需要在 Application 初始化"></a>不需要在 Application 初始化</h3><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-keyword">dependencies</span> &#123;<br>  debugImplementation <span class="hljs-string">&#x27;com.squareup.leakcanary:leakcanary-android:2.X&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="ContentProvider-实现"><a href="#ContentProvider-实现" class="headerlink" title="ContentProvider 实现"></a>ContentProvider 实现</h4><p>leakcanary-android-process 模块的 AndroidManifest.xml 文件:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">manifest</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">package</span>=<span class="hljs-string">&quot;com.squareup.leakcanary&quot;</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">application</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">service</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;leakcanary.internal.HeapAnalyzerService&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:exported</span>=<span class="hljs-string">&quot;false&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:process</span>=<span class="hljs-string">&quot;:leakcanary&quot;</span> /&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">provider</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;leakcanary.internal.AppWatcherInstaller$LeakCanaryProcess&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:authorities</span>=<span class="hljs-string">&quot;$&#123;applicationId&#125;.leakcanary-process.installer&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:process</span>=<span class="hljs-string">&quot;:leakcanary&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:exported</span>=<span class="hljs-string">&quot;false&quot;</span>/&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">application</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">manifest</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>看看 AppWatcherInstaller 干了啥：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">internal</span> <span class="hljs-keyword">sealed</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppWatcherInstaller</span> : <span class="hljs-type">ContentProvider</span></span>() &#123;<br><br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * [MainProcess] automatically sets up the LeakCanary code that runs in the main app process.</span><br><span class="hljs-comment">   */</span><br>  <span class="hljs-keyword">internal</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainProcess</span> : <span class="hljs-type">AppWatcherInstaller</span></span>()<br><br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * When using the `leakcanary-android-process` artifact instead of `leakcanary-android`,</span><br><span class="hljs-comment">   * [LeakCanaryProcess] automatically sets up the LeakCanary code</span><br><span class="hljs-comment">   */</span><br>  <span class="hljs-keyword">internal</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LeakCanaryProcess</span> : <span class="hljs-type">AppWatcherInstaller</span></span>() &#123;<br>    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onCreate</span><span class="hljs-params">()</span></span>: <span class="hljs-built_in">Boolean</span> &#123;<br>      <span class="hljs-keyword">super</span>.onCreate()<br>      AppWatcher.config = AppWatcher.config.copy(enabled = <span class="hljs-literal">false</span>)<br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>    &#125;<br>  &#125;<br><br>   <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onCreate</span><span class="hljs-params">()</span></span>: <span class="hljs-built_in">Boolean</span> &#123;<br>    <span class="hljs-keyword">val</span> application = context!!.applicationContext <span class="hljs-keyword">as</span> Application<br>    InternalAppWatcher.install(application)<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>利用加载顺序实现自动注入：</p>
+<p>Application-&gt;attachBaseContext =====&gt; ContentProvider-&gt;onCreate =====&gt; Application-&gt;onCreate =====&gt; Activity-&gt;onCreate</p>
+<p>优点：实现”免侵入”集成，不需要手动初始化。<br>缺点：无法更改初始化时机（App 启动优化按需延迟初始化第三方库对这样的集成方式就无能为力了）。考虑到 LeakCanary 是开发 debug 阶段使用的，也无可厚非。一般的 SDK 还是不建议使用这种方式。</p>
+<h3 id="添加默认对-Fragment-的支持"><a href="#添加默认对-Fragment-的支持" class="headerlink" title="添加默认对 Fragment 的支持"></a>添加默认对 Fragment 的支持</h3><p>Fragment：</p>
+<p>Android O 版本 androidx 都具备对 Fragment 生命周期的监听功能。</p>
+<p>application.registerActivityLifecycleCallbacks 覆写 onActivityCreated<br>然后 fragmentManager.registerFragmentLifecycleCallbacks 覆写 onFragmentViewDestroyed() onFragmentDestroyed()</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Android/">Android</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Android/">Android</a>
+                    
+                      <a class="hover-with-bg" href="/tags/LeakCanary/">LeakCanary</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%86%85%E5%AD%98/">内存</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/post/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1Android7.0%E9%80%82%E9%85%8DFileProvider%E8%B8%A9%E5%9D%91/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">记录一次Android7.0适配FileProvider踩坑</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/post/%E7%AE%80%E6%9E%90OkHttp/">
+                        <span class="hidden-mobile">简析OkHttp</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script>
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          Fluid.utils.createCssLink('https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqusjs.css');
+          Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqus.js', function() {
+            new DisqusJS({
+              shortname: 'codepoem',
+              apikey: 'null'
+            });
+          });
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

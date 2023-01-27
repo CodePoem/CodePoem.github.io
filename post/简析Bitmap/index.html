@@ -1,0 +1,848 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/v_half.webp">
+  <link rel="icon" href="/img/v_half.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Code a poem and poem a code~">
+  <meta name="author" content="CodePoem">
+  <meta name="keywords" content="undefined">
+  
+  <title>简析Bitmap - 梦半觉-CodePoem</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"codepoem.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>梦半觉-CodePoem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://codepoem.fun/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/CodePoem/CodePoem.github.io">
+                <i class="iconfont icon-github-fill"></i>
+                Github
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                厚薄
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAlgorithm">
+                    
+                    数据结构与算法-VAlgorithm
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VDesignPatterns">
+                    
+                    设计模式-VDesignPatterns
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAndroidReview">
+                    
+                    Android知识体系-VAndroidReview
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/v_bg.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="简析Bitmap">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-10-16 11:25" pubdate>
+        2019年10月16日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      75
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">简析Bitmap</h1>
+            
+            <div class="markdown-body">
+              <p>基于 9.0（29）简析 Bitmap 类。</p>
+<p>我们只关注 Bitmap 类暴露出来的（即访问权限为 public）东西。</p>
+<ul>
+<li>枚举类 Config</li>
+<li>枚举类 CompressFormat</li>
+<li>若干 createBitmap 静态方法</li>
+<li>其他方法</li>
+</ul>
+<h2 id="枚举类-Config"><a href="#枚举类-Config" class="headerlink" title="枚举类 Config"></a>枚举类 Config</h2><p>可能的 bitmap 配置。bitmap 配置描述像素的存储方式。这会影响质量（颜色深度）以及显示透明/半透明颜色的能力。</p>
+<table>
+<thead>
+<tr>
+<th>Config</th>
+<th>每个像素占用字节数</th>
+<th>表示颜色种数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ALPHA_8</td>
+<td>1 个字节，A 分量占 8 位，不存储颜色信息</td>
+<td>0</td>
+<td>单透明通道</td>
+</tr>
+<tr>
+<td>RGB_565</td>
+<td>两个字节，R 分量占 5 位，G 分量占 6 位，B 分量占 5 位</td>
+<td>2^16(65536)</td>
+<td>简易 RGB 色调</td>
+</tr>
+<tr>
+<td>RGB_888</td>
+<td>三个字节，R、G、B 分量各占 8 位</td>
+<td>2^24(16777216)</td>
+<td>RGB 色调</td>
+</tr>
+<tr>
+<td>ARGB_4444</td>
+<td>两个字节，A、R、G、B 分量各占 4 位</td>
+<td>2^12(4096)</td>
+<td>已弃用，成像效果比较差，并且 v4.4+后如果使用了它会自动转成用 ARGB_8888。</td>
+</tr>
+<tr>
+<td>ARGB_8888</td>
+<td>四个字节，A、R、G、B 分量各占 8 位</td>
+<td>2^24(16777216)</td>
+<td>24 位真彩色，Android 中默认的配置</td>
+</tr>
+<tr>
+<td>RGBA_F16</td>
+<td>八个字节，A、R、G、B 分量各占 16 位</td>
+<td>2^48(281474976710656)</td>
+<td>特别适合于宽色域和 HDR 内容，在 8.0（api 26）引入。</td>
+</tr>
+<tr>
+<td>HARDWARE</td>
+<td>-</td>
+<td>-</td>
+<td>特殊配置。bitmap 始终存储在图形内存中，在 8.0（api 26）引入。</td>
+</tr>
+</tbody></table>
+<h2 id="枚举类-CompressFormat"><a href="#枚举类-CompressFormat" class="headerlink" title="枚举类 CompressFormat"></a>枚举类 CompressFormat</h2><p>指定可以将 bitmap 压缩为的已知格式。</p>
+<ul>
+<li>JPEG</li>
+<li>PNG</li>
+<li>WEBP</li>
+</ul>
+<h2 id="若干-createBitmap-静态方法"><a href="#若干-createBitmap-静态方法" class="headerlink" title="若干 createBitmap 静态方法"></a>若干 createBitmap 静态方法</h2><h3 id="public-static-Bitmap-wrapHardwareBuffer-NonNull-HardwareBuffer-hardwareBuffer-Nullable-ColorSpace-colorSpace"><a href="#public-static-Bitmap-wrapHardwareBuffer-NonNull-HardwareBuffer-hardwareBuffer-Nullable-ColorSpace-colorSpace" class="headerlink" title="public static Bitmap wrapHardwareBuffer(@NonNull HardwareBuffer hardwareBuffer, @Nullable ColorSpace colorSpace)"></a>public static Bitmap wrapHardwareBuffer(@NonNull HardwareBuffer hardwareBuffer, @Nullable ColorSpace colorSpace)</h3><p>创建由 HardwareBuffer 支持的硬件位图。</p>
+<p>传递的 HardwareBuffer 使用标志必须包含 HardwareBuffer.USAGE_GPU_SAMPLED_IMAGE。</p>
+<p>bitmap 将保留对缓冲区的引用，以便调用者可以安全地关闭 HardwareBuffer 而不会影响 bitmap 。但是，在包装 bitmap 访问硬件缓冲区时，不能对其进行修改。这样做将导致不确定的行为。</p>
+<ul>
+<li>HardwareBuffer hardwareBuffer：包装的 HardwareBuffer。</li>
+<li>ColorSpace colorSpace：bitmap 的颜色空间。必须是 ColorSpace.Rgb 颜色空间。如果为 null ，则假定为 SRGB。</li>
+</ul>
+<h3 id="public-static-Bitmap-createScaledBitmap-NonNull-Bitmap-src-int-dstWidth-int-dstHeight-boolean-filter"><a href="#public-static-Bitmap-createScaledBitmap-NonNull-Bitmap-src-int-dstWidth-int-dstHeight-boolean-filter" class="headerlink" title="public static Bitmap createScaledBitmap(@NonNull Bitmap src, int dstWidth, int dstHeight, boolean filter)"></a>public static Bitmap createScaledBitmap(@NonNull Bitmap src, int dstWidth, int dstHeight, boolean filter)</h3><p>如果可能，创建一个新的 bitmap ，从现有的 bitmap 缩放。如果指定的宽度和高度与源位图的当前宽度和高度相同，则返回源位图，并且不创建新的位图。</p>
+<ul>
+<li>Bitmap src：源 bitmap。</li>
+<li>int dstWidth：新 bitmap 的所需宽度</li>
+<li>int dstHeight：新 bitmap 的所需高度</li>
+<li>boolean filter：缩放 bitmap 时是否使用双线性滤波。如果为 true ，则在缩放时将使用双线性滤波，从而以较差的性能为代价来获得更好的图像质量。如果为 false ，则使用邻近采样缩放，这将使图像质量较差，但速度更快。推荐的默认值是将设置为 true，因为双线性滤镜的成本通常很小，并且改善的图像质量非常重要。</li>
+</ul>
+<h3 id="public-static-Bitmap-createBitmap-NonNull-Bitmap-src"><a href="#public-static-Bitmap-createBitmap-NonNull-Bitmap-src" class="headerlink" title="public static Bitmap createBitmap(@NonNull Bitmap src)"></a>public static Bitmap createBitmap(@NonNull Bitmap src)</h3><p>重载 Bitmap createBitmap(@NonNull Bitmap source, int x, int y, int width, int height)</p>
+<p>createBitmap(src, 0, 0, src.getWidth(), src.getHeight());</p>
+<h3 id="public-static-Bitmap-createBitmap-NonNull-Bitmap-source-int-x-int-y-int-width-int-height"><a href="#public-static-Bitmap-createBitmap-NonNull-Bitmap-source-int-x-int-y-int-width-int-height" class="headerlink" title="public static Bitmap createBitmap(@NonNull Bitmap source, int x, int y, int width, int height)"></a>public static Bitmap createBitmap(@NonNull Bitmap source, int x, int y, int width, int height)</h3><p>重载 Bitmap createBitmap(@NonNull Bitmap source, int x, int y, int width, int height, @Nullable Matrix m, boolean filter)</p>
+<p>createBitmap(source, x, y, width, height, null, false);</p>
+<h3 id="public-static-Bitmap-createBitmap-NonNull-Bitmap-source-int-x-int-y-int-width-int-height-Nullable-Matrix-m-boolean-filter"><a href="#public-static-Bitmap-createBitmap-NonNull-Bitmap-source-int-x-int-y-int-width-int-height-Nullable-Matrix-m-boolean-filter" class="headerlink" title="public static Bitmap createBitmap(@NonNull Bitmap source, int x, int y, int width, int height, @Nullable Matrix m, boolean filter)"></a>public static Bitmap createBitmap(@NonNull Bitmap source, int x, int y, int width, int height, @Nullable Matrix m, boolean filter)</h3><p>从源 bitmap 返回一个 bitmap 。新的 bitmap 可能与源 bitmap 是同一对象，或者可能已复制。使用与源 bitmap 相同的密度和色彩空间进行初始化。</p>
+<p>如果源 bitmap 是不可变的，并且所请求的子集与源 bitmsp 本身相同，则返回源 bitmap ，并且不会创建新 bitmap 。</p>
+<p>除非在以下情况下，否则返回的 bitmap 将始终是可变的：<br>（1）在返回源 bitmap 且源 bitmap 不可变的情况下<br>（2）源 bitmap 是硬件 bitmap 。即 getConfig() = Config.HARDWARE 。</p>
+<ul>
+<li>Bitmap source：源 bitmap 。</li>
+<li>int x：源中第一个像素的 x 坐标</li>
+<li>int y：源中第一个像素的 y 坐标</li>
+<li>int width：每行像素数</li>
+<li>int height：行数</li>
+<li>Matrix m：应用于像素的可选矩阵</li>
+<li>boolean filter：是否使用双线性滤波，则为 true。仅在矩阵包含的不仅仅是平移时适用。</li>
+</ul>
+<h3 id="public-static-Bitmap-createBitmap-int-width-int-height-NonNull-Config-config"><a href="#public-static-Bitmap-createBitmap-int-width-int-height-NonNull-Config-config" class="headerlink" title="public static Bitmap createBitmap(int width, int height, @NonNull Config config)"></a>public static Bitmap createBitmap(int width, int height, @NonNull Config config)</h3><p>重载 Bitmap createBitmap(int width, int height, @NonNull Config config, boolean hasAlpha)</p>
+<p>createBitmap(null, width, height, config, hasAlpha)</p>
+<h3 id="public-static-Bitmap-createBitmap-Nullable-DisplayMetrics-display-int-width-int-height-NonNull-Config-config"><a href="#public-static-Bitmap-createBitmap-Nullable-DisplayMetrics-display-int-width-int-height-NonNull-Config-config" class="headerlink" title="public static Bitmap createBitmap(@Nullable DisplayMetrics display, int width, int height, @NonNull Config config)"></a>public static Bitmap createBitmap(@Nullable DisplayMetrics display, int width, int height, @NonNull Config config)</h3><p>重载 Bitmap createBitmap(@Nullable DisplayMetrics display, int width, int height, @NonNull Config config, boolean hasAlpha)</p>
+<p>createBitmap(display, width, height, config, true);</p>
+<h3 id="public-static-Bitmap-createBitmap-int-width-int-height-NonNull-Config-config-boolean-hasAlpha"><a href="#public-static-Bitmap-createBitmap-int-width-int-height-NonNull-Config-config-boolean-hasAlpha" class="headerlink" title="public static Bitmap createBitmap(int width, int height, @NonNull Config config, boolean hasAlpha)"></a>public static Bitmap createBitmap(int width, int height, @NonNull Config config, boolean hasAlpha)</h3><p>重载 Bitmap createBitmap(@Nullable DisplayMetrics display, int width, int height, @NonNull Config config, boolean hasAlpha)</p>
+<p>createBitmap(null, width, height, config, hasAlpha);</p>
+<h3 id="public-static-Bitmap-createBitmap-int-width-int-height-NonNull-Config-config-boolean-hasAlpha-NonNull-ColorSpace-colorSpace"><a href="#public-static-Bitmap-createBitmap-int-width-int-height-NonNull-Config-config-boolean-hasAlpha-NonNull-ColorSpace-colorSpace" class="headerlink" title="public static Bitmap createBitmap(int width, int height, @NonNull Config config, boolean hasAlpha, @NonNull ColorSpace colorSpace)"></a>public static Bitmap createBitmap(int width, int height, @NonNull Config config, boolean hasAlpha, @NonNull ColorSpace colorSpace)</h3><p>重载 Bitmap createBitmap(@Nullable DisplayMetrics display, int width, int height, @NonNull Config config, boolean hasAlpha, @NonNull ColorSpace colorSpace)</p>
+<p>createBitmap(null, width, height, config, hasAlpha, colorSpace);</p>
+<h3 id="public-static-Bitmap-createBitmap-Nullable-DisplayMetrics-display-int-width-int-height-NonNull-Config-config-boolean-hasAlpha"><a href="#public-static-Bitmap-createBitmap-Nullable-DisplayMetrics-display-int-width-int-height-NonNull-Config-config-boolean-hasAlpha" class="headerlink" title="public static Bitmap createBitmap(@Nullable DisplayMetrics display, int width, int height, @NonNull Config config, boolean hasAlpha)"></a>public static Bitmap createBitmap(@Nullable DisplayMetrics display, int width, int height, @NonNull Config config, boolean hasAlpha)</h3><p>重载 Bitmap createBitmap(@Nullable DisplayMetrics display, int width, int height, @NonNull Config config, boolean hasAlpha, @NonNull ColorSpace colorSpace)</p>
+<p>createBitmap(display, width, height, config, hasAlpha, ColorSpace.get(ColorSpace.Named.SRGB));</p>
+<h3 id="public-static-Bitmap-createBitmap-Nullable-DisplayMetrics-display-int-width-int-height-NonNull-Config-config-boolean-hasAlpha-NonNull-ColorSpace-colorSpace"><a href="#public-static-Bitmap-createBitmap-Nullable-DisplayMetrics-display-int-width-int-height-NonNull-Config-config-boolean-hasAlpha-NonNull-ColorSpace-colorSpace" class="headerlink" title="public static Bitmap createBitmap(@Nullable DisplayMetrics display, int width, int height, @NonNull Config config, boolean hasAlpha, @NonNull ColorSpace colorSpace)"></a>public static Bitmap createBitmap(@Nullable DisplayMetrics display, int width, int height, @NonNull Config config, boolean hasAlpha, @NonNull ColorSpace colorSpace)</h3><p>返回具有指定宽度和高度的可变 bitmap。它的初始密度由给定的 DisplayMetrics 确定。新创建的 bitmap 位于 ColorSpace.Named.SRGB 颜色空间中。</p>
+<ul>
+<li>DisplayMetrics display：将被绘制的 bitmap 的显示的显示度量。</li>
+<li>int width：bitmap 的宽度。</li>
+<li>int height：bitmap 的高度。</li>
+<li>Config config：创建的 bitmap 的配置。</li>
+<li>boolean hasAlpha：如果 bitmap 是 ARGB_8888 或 RGBA_16F ，则此标志可用于将 bitmap 标记为不透明。这样做将以黑色而不是透明的方式清除 bitmap。</li>
+<li>ColorSpace colorSpace：bitmap 的颜色空间。如果配置为 Config.RGBA_F16 和 ColorSpace.Named.SRGB sRGB 或 ColorSpace.Named.LINEAR_SRGB ，则假定为相应的扩展范围变体。</li>
+</ul>
+<h3 id="public-static-Bitmap-createBitmap-NonNull-ColorInt-int-colors-int-offset-int-stride-int-width-int-height-NonNull-Config-config"><a href="#public-static-Bitmap-createBitmap-NonNull-ColorInt-int-colors-int-offset-int-stride-int-width-int-height-NonNull-Config-config" class="headerlink" title="public static Bitmap createBitmap(@NonNull @ColorInt int[] colors, int offset, int stride, int width, int height, @NonNull Config config)"></a>public static Bitmap createBitmap(@NonNull @ColorInt int[] colors, int offset, int stride, int width, int height, @NonNull Config config)</h3><p>重载 Bitmap createBitmap(@NonNull DisplayMetrics display, @NonNull @ColorInt int[] colors, int offset, int stride, int width, int height, @NonNull Config config)</p>
+<p>createBitmap(null, colors, offset, stride, width, height, config)</p>
+<h3 id="public-static-Bitmap-createBitmap-NonNull-DisplayMetrics-display-NonNull-ColorInt-int-colors-int-offset-int-stride-int-width-int-height-NonNull-Config-config"><a href="#public-static-Bitmap-createBitmap-NonNull-DisplayMetrics-display-NonNull-ColorInt-int-colors-int-offset-int-stride-int-width-int-height-NonNull-Config-config" class="headerlink" title="public static Bitmap createBitmap(@NonNull DisplayMetrics display, @NonNull @ColorInt int[] colors, int offset, int stride, int width, int height, @NonNull Config config)"></a>public static Bitmap createBitmap(@NonNull DisplayMetrics display, @NonNull @ColorInt int[] colors, int offset, int stride, int width, int height, @NonNull Config config)</h3><p>返回具有指定宽度和高度的不可变 bitmap，每个像素值设置为 colors 数组中的相应值。它的初始密度由给定的 DisplayMetrics 确定。新创建的 bitmap 位于 ColorSpace.Named.SRGB 颜色空间中。</p>
+<ul>
+<li>DisplayMetrics display：将被绘制的 bitmap 的显示的显示度量。</li>
+<li>@ColorInt int[] colors：sRGB Color 数组，用于初始化像素。</li>
+<li>int offset：颜色数组中第一个颜色之前要跳过的值数。</li>
+<li>int stride：行之间数组中的颜色数（必须为 &gt;= width 或 &lt;= -width）。</li>
+<li>int width：bitmap 的宽度。</li>
+<li>int height：bitmap 的高度。</li>
+<li>Config config：创建的 bitmap 的配置。如果配置不支持每像素的 alpha（例如 RGB_565），那么 colors []中的 alpha 字节将被忽略（假定为 FF）</li>
+</ul>
+<h3 id="public-static-Bitmap-createBitmap-NonNull-ColorInt-int-colors-int-width-int-height-Config-config"><a href="#public-static-Bitmap-createBitmap-NonNull-ColorInt-int-colors-int-width-int-height-Config-config" class="headerlink" title="public static Bitmap createBitmap(@NonNull @ColorInt int[] colors, int width, int height, Config config)"></a>public static Bitmap createBitmap(@NonNull @ColorInt int[] colors, int width, int height, Config config)</h3><p>重载 Bitmap createBitmap(@NonNull DisplayMetrics display, @NonNull @ColorInt int[] colors, int offset, int stride, int width, int height, @NonNull Config config)</p>
+<p>createBitmap(null, colors, 0, width, width, height, config);</p>
+<h3 id="public-static-Bitmap-createBitmap-Nullable-DisplayMetrics-display-NonNull-ColorInt-int-colors-int-width-int-height-NonNull-Config-config"><a href="#public-static-Bitmap-createBitmap-Nullable-DisplayMetrics-display-NonNull-ColorInt-int-colors-int-width-int-height-NonNull-Config-config" class="headerlink" title="public static Bitmap createBitmap(@Nullable DisplayMetrics display, @NonNull @ColorInt int colors[], int width, int height, @NonNull Config config)"></a>public static Bitmap createBitmap(@Nullable DisplayMetrics display, @NonNull @ColorInt int colors[], int width, int height, @NonNull Config config)</h3><p>重载 Bitmap createBitmap(@NonNull DisplayMetrics display, @NonNull @ColorInt int[] colors, int offset, int stride, int width, int height, @NonNull Config config)</p>
+<p>createBitmap(display, colors, 0, width, width, height, config);</p>
+<h3 id="public-static-NonNull-Bitmap-createBitmap-NonNull-Picture-source"><a href="#public-static-NonNull-Bitmap-createBitmap-NonNull-Picture-source" class="headerlink" title="public static @NonNull Bitmap createBitmap(@NonNull Picture source)"></a>public static @NonNull Bitmap createBitmap(@NonNull Picture source)</h3><p>重载 Bitmap createBitmap(@NonNull Picture source, int width, int height, @NonNull Config config)</p>
+<p>createBitmap(source, source.getWidth(), source.getHeight(), Config.HARDWARE);</p>
+<h3 id="public-static-NonNull-Bitmap-createBitmap-NonNull-Picture-source-int-width-int-height-NonNull-Config-config"><a href="#public-static-NonNull-Bitmap-createBitmap-NonNull-Picture-source-int-width-int-height-NonNull-Config-config" class="headerlink" title="public static @NonNull Bitmap createBitmap(@NonNull Picture source, int width, int height, @NonNull Config config)"></a>public static @NonNull Bitmap createBitmap(@NonNull Picture source, int width, int height, @NonNull Config config)</h3><p>从记录的绘图命令中给定 Picture 源创建 bitmap。</p>
+<p>在给定的宽度和高度下，bitmap 将不可变。如果宽度和高度与图片的宽度和高度不同，则图片将缩放以适应给定的宽度和高度。</p>
+<ul>
+<li>Picture source：记录的绘图命令 Picture 将会被绘制到返回的 bitmap 中</li>
+<li>int width：要创建的 bitmap 的宽度。图片的宽度将根据需要缩放以匹配。</li>
+<li>int height：要创建的 bitmap 的高度。图片的高度将根据需要缩放以匹配。</li>
+<li>Config config：创建的 bitmap 的配置。</li>
+</ul>
+<h2 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h2><h3 id="int-getDensity"><a href="#int-getDensity" class="headerlink" title="int getDensity()"></a>int getDensity()</h3><p>返回此 bitmap 的密度。</p>
+<p>默认密度与当前显示的密度相同，除非当前应用程序不支持不同的屏幕密度，这种情况下默认密度为 android.util.DisplayMetric.DENSITY_DEFAULT = DENSITY_MEDIUM = 160。请注意，兼容性模式由最初加载到进程中的应用程序确定-共享同一进程的应用程序应该全部具有相同的兼容性，或者确保它们适当地显式设置其 bitmap 的密度。</p>
+<h3 id="void-setDensity-int-density"><a href="#void-setDensity-int-density" class="headerlink" title="void setDensity(int density)"></a>void setDensity(int density)</h3><p>指定此 bitmap 的密度。当 bitmap 绘制到也具有密度的 Canvas 时，它将适当缩放。</p>
+<ul>
+<li>int densit：该 bitmap 使用的密度缩放因子；如果密度未知，则使用 DENSITY_NONE = 0。</li>
+</ul>
+<h3 id="void-reconfigure-int-width-int-height-Config-config"><a href="#void-reconfigure-int-width-int-height-Config-config" class="headerlink" title="void reconfigure(int width, int height, Config config)"></a>void reconfigure(int width, int height, Config config)</h3><p>将 bitmap 修改为具有指定的宽度，高度和 Config ，而不影响该 bitmap 的底层分配。 对于新配置，bitmap 像素数据未重新初始化。</p>
+<p>此方法可用于避免分配新的 bitmap，而是将现有 bitmap 的分配重用于大小等于或小于的新配置。如果 bitmap 的分配不足以支持新配置，则将抛出 IllegalArgumentException，并且 bitmap 将不会被修改。</p>
+<p>getByteCount（）的结果将反映新的配置，而 getAllocationByteCount（）的结果将反映初始的配置。</p>
+<p>注意：这可能会更改 hasAlpha（）的结果。当转换为 565 时，新的 bitmap 将始终被视为不透明的。从 565 转换时，新的 bitmap 将被认为是不透明的，并且将遵循由 setPremultiplied（）设置的值。</p>
+<p>警告：不应在当前正在 view 系统、Canvas 或 AndroidBitmap NDK API 使用的 bitmap 上调用此方法。它不能保证基础像素缓冲区如何重新映射到新配置，而只是保证分配已被重用。此外，view 系统无法确定使用过程中正在修改的 bitmap 属性，例如何时附着在 drawables 上。</p>
+<p>为了安全地确保 view 系统不再使用 bitmap，必须等待正在 invalidate（）的任何在最后的绘制过程中由于硬件加速对绘制命令的缓存已经在之前绘制过此 bitmap 的 view 完成绘制过程。举一个例子，以下是以 ImageView 完成的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java">ImageView myImageView = ...;<br><span class="hljs-keyword">final</span> Bitmap myBitmap = ...;<br>myImageView.setImageDrawable(<span class="hljs-keyword">null</span>);<br>myImageView.post(<span class="hljs-keyword">new</span> Runnable() &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-comment">// myBitmap is now no longer in use by the ImageView</span><br>        <span class="hljs-comment">// and can be safely reconfigured.</span><br>        myBitmap.reconfigure(...);<br>    &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h3 id="void-setWidth-int-width"><a href="#void-setWidth-int-width" class="headerlink" title="void setWidth(int width)"></a>void setWidth(int width)</h3><p>使用当前已有高度和配置调用 reconfigure（int，int，Config）的便捷方法。</p>
+<p>警告：此方法不应在 view 系统当前使用的 bitmap 上使用，有关更多详细信息，请参见 reconfigure（int，int，Config）。</p>
+<h3 id="void-setHeight-int-height"><a href="#void-setHeight-int-height" class="headerlink" title="void setHeight(int height)"></a>void setHeight(int height)</h3><p>使用当前已有宽度和配置调用 reconfigure（int，int，Config）的便捷方法。</p>
+<p>警告：此方法不应在 view 系统当前使用的 bitmap 上使用，有关更多详细信息，请参见 reconfigure（int，int，Config）。</p>
+<h3 id="void-setConfig-Config-config"><a href="#void-setConfig-Config-config" class="headerlink" title="void setConfig(Config config)"></a>void setConfig(Config config)</h3><p>使用当前已有宽度和高度调用 reconfigure（int，int，Config）的便捷方法。</p>
+<p>警告：此方法不应在 view 系统当前使用的 bitmap 上使用，有关更多详细信息，请参见 reconfigure（int，int，Config）。</p>
+<h3 id="void-setNinePatchChunk-byte-chunk"><a href="#void-setNinePatchChunk-byte-chunk" class="headerlink" title="void setNinePatchChunk(byte[] chunk)"></a>void setNinePatchChunk(byte[] chunk)</h3><p>设置.9 图数据块。</p>
+<ul>
+<li>byte[] chunk .9 图相关定义数据块</li>
+</ul>
+<h3 id="void-recycle"><a href="#void-recycle" class="headerlink" title="void recycle()"></a>void recycle()</h3><p>释放与此 bitmap 关联的 native 对象，并清除对像素数据的引用。这将不会同步释放像素数据。 如果没有其他引用，它只是允许对其进行垃圾回收。bitmap 被标记为“死亡”，这意味着如果 getPixels（）或 setPixels（）被调用，它将抛出异常，并且不会绘制任何内容。 此操作不能撤消，因此只有在确定 bitmap 没有进一步用途时才应调用它。这是一个高级调用，通常不需要，因为当没有更多对该 bitmap 的引用时，正常的 GC 进程将释放此内存。</p>
+<h3 id="boolean-isRecycled"><a href="#boolean-isRecycled" class="headerlink" title="boolean isRecycled()"></a>boolean isRecycled()</h3><p>如果此 bitmap 已被回收，则返回 true。如果是被回收，则尝试访问其像素是一个错误，并且 bitmap 将不会绘制。</p>
+<h3 id="int-getGenerationId"><a href="#int-getGenerationId" class="headerlink" title="int getGenerationId()"></a>int getGenerationId()</h3><p>返回此 bitmap 的生成 ID。只要修改 bitmap，生成 ID 就会改变。这是一个可用于检查 bitmap 是否已更改的高效方法。</p>
+<h3 id="void-copyPixelsToBuffer-Buffer-dst"><a href="#void-copyPixelsToBuffer-Buffer-dst" class="headerlink" title="void copyPixelsToBuffer(Buffer dst)"></a>void copyPixelsToBuffer(Buffer dst)</h3><p>将 bitmap 的像素复制到指定的缓冲区（由调用者分配）。如果缓冲区的大小不足以容纳所有像素（考虑到每个像素的字节数），或者如果 Buffer 子类不是支持类型之一（ByteBuffer，ShortBuffer，IntBuffer），则抛出异常。</p>
+<p>bitmap 的内容按原样复制到缓冲区中。这意味着如果该 bitmap 存储了预乘的像素（请参见 isPremultiplied()），则缓冲区中的值也将被预乘。像素保留在 bitmap 的颜色空间中）。</p>
+<p>返回此方法后，将更新缓冲区的当前位置：位置将增加写入缓冲区的元素数量。</p>
+<h3 id="void-copyPixelsFromBuffer-Buffer-src"><a href="#void-copyPixelsFromBuffer-Buffer-src" class="headerlink" title="void copyPixelsFromBuffer(Buffer src)"></a>void copyPixelsFromBuffer(Buffer src)</h3><p>从当前位置开始，从缓冲区复制像素，覆盖 bitmap 的像素。缓冲区中的数据不会以任何方式更改（不同于 setPixels（），后者会从未预乘的 32bit 转换为 bitmap 的 native 格式。源缓冲区中的像素假定位于 bitmap 的色彩空间中）。</p>
+<p>返回此方法后，将更新缓冲区的当前位置：该位置将增加从缓冲区读取的元素数。如果需要再次从缓冲区读取 bitmap，则必须首先倒带缓冲区。</p>
+<h3 id="Bitmap-copy-Config-config-boolean-isMutable"><a href="#Bitmap-copy-Config-config-boolean-isMutable" class="headerlink" title="Bitmap copy(Config config, boolean isMutable)"></a>Bitmap copy(Config config, boolean isMutable)</h3><p>尝试根据此 bitmap 的尺寸制作一个新的 bitmap，将新 bitmap 的配置设置为指定的配置，然后将该 bitmap 的像素复制到新的位图中。如果不支持转换，或者分配器失败，则返回 NULL 。返回的 bitmap 具有与原始 bitmap 相同的密度和色彩空间，以下情况除外。复制到 Config.ALPHA_8 时，颜色空间将被删除。复制到 Config.RGBA_F16 或从 Config.RGBA_F16 复制时， EXTENDED 或 non-EXTENDED 变体可能会适当调整。</p>
+<ul>
+<li>Config config：生成的 bitmap 所需的配置。</li>
+<li>boolean isMutable：是否结果 bitmap 是可变的（即像素可以修改）。</li>
+</ul>
+<h3 id="byte-getNinePatchChunk"><a href="#byte-getNinePatchChunk" class="headerlink" title="byte[] getNinePatchChunk()"></a>byte[] getNinePatchChunk()</h3><p>返回一个可选的私有数据数组，UI 系统用于一些 bitmap 。不应由应用程序调用。</p>
+<h3 id="boolean-compress-CompressFormat-format-int-quality-OutputStream-stream"><a href="#boolean-compress-CompressFormat-format-int-quality-OutputStream-stream" class="headerlink" title="boolean compress(CompressFormat format, int quality, OutputStream stream)"></a>boolean compress(CompressFormat format, int quality, OutputStream stream)</h3><p>将 bitmap 的压缩版本写入指定的输出流。如果返回 true，则可以通过将相应的输入流传递给 BitmapFactory.decodeStream（）来重构位图。注意：不是所有格式都直接支持所有 bitmap 配置，因此从 BitmapFactory 返回的 bitmap 可能处于不同的位深中，并且/或者 丢失了每个像素的 alpha（例如 JPEG 仅支持不透明像素）。</p>
+<ul>
+<li>CompressFormat format：压缩图像的格式</li>
+<li>int qualit：给压缩器的提示，0-100。 0 表示压缩已获得最低质量，100 表示 ​​ 压缩以获得最高质量。某些格式（例如无损的 PNG）将忽略该质量设置。</li>
+<li>OutputStream stream：写入压缩数据的输出流。</li>
+</ul>
+<h3 id="final-boolean-isMutable"><a href="#final-boolean-isMutable" class="headerlink" title="final boolean isMutable()"></a>final boolean isMutable()</h3><p>返回 bitmap 是否为可变的。</p>
+<h3 id="final-boolean-isPremultiplied"><a href="#final-boolean-isPremultiplied" class="headerlink" title="final boolean isPremultiplied()"></a>final boolean isPremultiplied()</h3><p>指示是否存储在此 bitmap 中的像素被预乘。 当像素预乘时，RGB 分量已乘以 alpha 分量。例如，如果原始颜色为 50％半透明红色（128，255，0，0），则预乘形式为（128，128，0，0）。</p>
+<p>如果 getConfig() 为 Bitmap.Config.RGB_565 ，则方法始终返回 false。</p>
+<p>如果 getConfig() 为 Bitmap.Config.ALPHA_8 ，则方法返回值不确定。</p>
+<p>仅当 hasAlpha() 返回 true 时，此方法才返回 true 。 没有 alpha 通道的 bitmap 既可以用作预乘位，也可以用作非预乘 bitmap 。</p>
+<p>view 系统或 Canvas 只能绘制预乘的 bitmap。如果将带有 Alpha 通道的非预乘 bitmap 绘制到了 Canvas 上，则会抛出 RuntimeException。</p>
+<h3 id="final-int-getWidth"><a href="#final-int-getWidth" class="headerlink" title="final int getWidth()"></a>final int getWidth()</h3><p>返回 bitmap 的宽度。</p>
+<h3 id="final-int-getHeight"><a href="#final-int-getHeight" class="headerlink" title="final int getHeight()"></a>final int getHeight()</h3><p>返回 bitmap 的高度。</p>
+<h3 id="int-getScaledWidth-Canvas-canvas"><a href="#int-getScaledWidth-Canvas-canvas" class="headerlink" title="int getScaledWidth(Canvas canvas)"></a>int getScaledWidth(Canvas canvas)</h3><p>使用给定 Canva 的目标密度调用 getScaledWidth(int) 的便捷方法。</p>
+<h3 id="int-getScaledHeight-Canvas-canvas"><a href="#int-getScaledHeight-Canvas-canvas" class="headerlink" title="int getScaledHeight(Canvas canvas)"></a>int getScaledHeight(Canvas canvas)</h3><p>使用给定 Canva 的目标密度调用 getScaledWidth(int) 的便捷方法。</p>
+<h3 id="int-getScaledWidth-DisplayMetrics-metrics"><a href="#int-getScaledWidth-DisplayMetrics-metrics" class="headerlink" title="int getScaledWidth(DisplayMetrics metrics)"></a>int getScaledWidth(DisplayMetrics metrics)</h3><p>使用给定 DisplayMetrics 的目标密度调用 getScaledWidth(int) 的便捷方法。</p>
+<h3 id="int-getScaledHeight-DisplayMetrics-metrics"><a href="#int-getScaledHeight-DisplayMetrics-metrics" class="headerlink" title="int getScaledHeight(DisplayMetrics metrics)"></a>int getScaledHeight(DisplayMetrics metrics)</h3><p>使用给定 DisplayMetrics 的目标密度调用 getScaledWidth(int) 的便捷方法。</p>
+<h3 id="int-getScaledWidth-int-targetDensity"><a href="#int-getScaledWidth-int-targetDensity" class="headerlink" title="int getScaledWidth(int targetDensity)"></a>int getScaledWidth(int targetDensity)</h3><p>返回此 bitmap 宽度除以密度比例因子的便捷方法。</p>
+<p>返回 bitmap 的宽度乘以目标密度与 bitmap 的源密度的比率。</p>
+<ul>
+<li>int targetDensity：bitmap 的目标 canvas 的密度。</li>
+</ul>
+<h3 id="int-getScaledHeight-int-targetDensity"><a href="#int-getScaledHeight-int-targetDensity" class="headerlink" title="int getScaledHeight(int targetDensity)"></a>int getScaledHeight(int targetDensity)</h3><p>返回此 bitmap 高度除以密度比例因子的便捷方法。</p>
+<p>返回 bitmap 的高度乘以目标密度与 bitmap 的源密度的比率。</p>
+<ul>
+<li>int targetDensity：bitmap 的目标 canvas 的密度。</li>
+</ul>
+<h3 id="final-int-getRowBytes"><a href="#final-int-getRowBytes" class="headerlink" title="final int getRowBytes()"></a>final int getRowBytes()</h3><p>返回 bitmap 像素中 行之间的字节数。请注意，指的是由 bitmap 由 native 存储的像素。如果调用 getPixels() 或 setPixels() ，则像素将被统一视为 32 位值，并根据 Color 类打包。</p>
+<p>从 android.os.Build.VERSION_CODES.KITKAT （Android 4.4，19）开始，此方法不应用于计算 bitmap 的内存使用情况。而应使用 getAllocationByteCount() 。</p>
+<h3 id="final-int-getByteCount"><a href="#final-int-getByteCount" class="headerlink" title="final int getByteCount()"></a>final int getByteCount()</h3><p>返回可用于存储该 bitmap 像素的最小字节数。</p>
+<p>从 android.os.Build.VERSION_CODES.KITKAT （Android 4.4，19）开始，此方法不应用于计算 bitmap 的内存使用情况。而应使用 getAllocationByteCount() 。</p>
+<h3 id="final-int-getAllocationByteCount"><a href="#final-int-getAllocationByteCount" class="headerlink" title="final int getAllocationByteCount()"></a>final int getAllocationByteCount()</h3><p>返回用于存储此 bitmap 像素的已分配内存的大小。</p>
+<p>如果 bitmap 被重用以解码其他较小尺寸的 bitmap，或者通过手动重新配置，则此结果可能大于 getByteCount() 的结果。请参见 reconfigure(int，int，Config)，setWidth(int) ，setHeight(int) ，setConfig(Bitmap.Config) 和 BitmapFactory.Options.inBitmap 。如果未以这种方式修改 bitmap ，则此值将 getByteCount() 返回的值相同。</p>
+<h3 id="final-Config-getConfig"><a href="#final-Config-getConfig" class="headerlink" title="final Config getConfig()"></a>final Config getConfig()</h3><p>如果 bitmap 的内部配置采用一种公共格式，则返回该配置，否则返回 null 。</p>
+<h3 id="final-boolean-hasAlpha"><a href="#final-boolean-hasAlpha" class="headerlink" title="final boolean hasAlpha()"></a>final boolean hasAlpha()</h3><p>如果 bitmap 的配置支持每个像素的 alpha ，则返回 true；如果像素可能包含非透明的 alpha 值，则返回。对于某些配置，始终为 false（例如 RGB_565），因为它们不支持按像素 alpha。但是，对于需要这样做的配置，可以将 bitmap 标记为知道其所有像素都是不透明的。在这种情况下，hasAlpha（）也将返回 false 。如果未对 ARGB_8888 之类的配置进行标记，则默认情况下将返回 true。</p>
+<h3 id="final-boolean-hasMipMap"><a href="#final-boolean-hasMipMap" class="headerlink" title="final boolean hasMipMap()"></a>final boolean hasMipMap()</h3><p>指示负责绘制此 bitmap 的渲染器是否应按比例缩小 bitmap 图时尝试使用 mipmaps 。</p>
+<p>如果知道要以小于其原始大小的 50％绘制此 bitmap ，则可能可以获得更高的质量。</p>
+<p>此属性只是一个渲染器可以忽略的建议。不能保证有任何效果。</p>
+<h3 id="final-void-setHasMipMap-boolean-hasMipMap"><a href="#final-void-setHasMipMap-boolean-hasMipMap" class="headerlink" title="final void setHasMipMap(boolean hasMipMap)"></a>final void setHasMipMap(boolean hasMipMap)</h3><p>指示负责绘制此 bitmap 的渲染器是否应按比例缩小 bitmap 图时尝试使用 mipmaps 。</p>
+<p>如果知道要以小于其原始大小的 50％绘制此 bitmap ，则可能可以获得更高的质量。</p>
+<p>此属性只是一个渲染器可以忽略的建议。不能保证有任何效果。</p>
+<ul>
+<li>boolean hasMipMap；指示渲染器是否应尝试使用 mipmaps。</li>
+</ul>
+<h3 id="final-ColorSpace-getColorSpace"><a href="#final-ColorSpace-getColorSpace" class="headerlink" title="final ColorSpace getColorSpace()"></a>final ColorSpace getColorSpace()</h3><p>返回与此 bitmap 关联的色彩空间。如果颜色空间未知，则此方法返回 null 。</p>
+<h3 id="void-setColorSpace-NonNull-ColorSpace-colorSpace"><a href="#void-setColorSpace-NonNull-ColorSpace-colorSpace" class="headerlink" title="void setColorSpace(@NonNull ColorSpace colorSpace)"></a>void setColorSpace(@NonNull ColorSpace colorSpace)</h3><p>将 bitmap 识别为具有指定的 ColorSpace ，而不影响 bitma 的底层分配。</p>
+<p>这影响 framework 层如何解释每个像素的颜色。具有 Config.ALPHA_8 的 bitmap 永远不会有颜色空间，因为颜色空间不会影响 a​​lpha 通道。其他 Config 一定具有非 null 的 ColorSpace。</p>
+<h3 id="void-eraseColor-ColorInt-int-c"><a href="#void-eraseColor-ColorInt-int-c" class="headerlink" title="void eraseColor(@ColorInt int c)"></a>void eraseColor(@ColorInt int c)</h3><p>用指定的 Color 填充 bitmap 的像素。</p>
+<h3 id="void-eraseColor-ColorLong-long-color"><a href="#void-eraseColor-ColorLong-long-color" class="headerlink" title="void eraseColor(@ColorLong long color)"></a>void eraseColor(@ColorLong long color)</h3><p>用指定的 ColorLong 填充 bitmap 的像素。</p>
+<h3 id="int-getPixel-int-x-int-y"><a href="#int-getPixel-int-x-int-y" class="headerlink" title="int getPixel(int x, int y)"></a>int getPixel(int x, int y)</h3><p>返回指定位置的 Color 。如果 x 或 y 超出范围（负值或者分别大于等于宽度或高度，则抛出异常）。返回的颜色是 ColorSpace.Named.SRGB 颜色空间中的非预乘 ARGB 值。</p>
+<ul>
+<li>int x：要返回像素的 x 坐标（0 … width-1）。</li>
+<li>int y：要返回像素的 y 坐标（0 … height-1）。</li>
+</ul>
+<h3 id="Color-getColor-int-x-int-y"><a href="#Color-getColor-int-x-int-y" class="headerlink" title="Color getColor(int x, int y)"></a>Color getColor(int x, int y)</h3><p>返回指定位置的 Color 。如果 x 或 y 超出范围（负值或者分别大于等于宽度或高度，则抛出异常）。返回的颜色是 ColorSpace.Named.SRGB 颜色空间中的非预乘 ARGB 值。</p>
+<ul>
+<li>int x：要返回像素的 x 坐标（0 … width-1）。</li>
+<li>int y：要返回像素的 y 坐标（0 … height-1）。</li>
+</ul>
+<h3 id="void-getPixels-ColorInt-int-pixels-int-offset-int-stride-int-x-int-y-int-width-int-height"><a href="#void-getPixels-ColorInt-int-pixels-int-offset-int-stride-int-x-int-y-int-width-int-height" class="headerlink" title="void getPixels(@ColorInt int[] pixels, int offset, int stride, int x, int y, int width, int height)"></a>void getPixels(@ColorInt int[] pixels, int offset, int stride, int x, int y, int width, int height)</h3><p>以 pixel[] 数组的形式返回 bitmap 中数据的副本。每个值都是表示 Color 的包装 int 。 stride 参数允许调用方在行之间的返回像素数组中设置步长。对于正常的打包结果，只需通过宽度作为步长即可。 返回的颜色是 ColorSpace.Named.SRGB 颜色空间中的非预乘 ARGB 值。</p>
+<ul>
+<li>int[] pixels：接收 bitmap 颜色的数组。</li>
+<li>int offset：写入像素的第一个索引[]。</li>
+<li>int stride：要在行之间跳过的像素数[]的条目数（必须 &gt;= bitmap 的宽度）。可以为负。</li>
+<li>int x：从 bitmap 读取的第一个像素的 x 坐标。</li>
+<li>int y：从 bitmap 读取的第一个像素的 y 坐标。</li>
+<li>int width：每行要读取的像素数。</li>
+<li>int height：要读取的行数。</li>
+</ul>
+<h3 id="void-setPixel-int-x-int-y-ColorInt-int-color"><a href="#void-setPixel-int-x-int-y-ColorInt-int-color" class="headerlink" title="void setPixel(int x, int y, @ColorInt int color)"></a>void setPixel(int x, int y, @ColorInt int color)</h3><p>在 x，y 坐标处将指定的 Color 写入 bitmap（假设 bitmap 是可变的）。颜色必须是 ColorSpace.Named.SRGB 颜色空间中的非预乘 ARGB 值。</p>
+<ul>
+<li>int x：要替换的像素的 x 坐标（0 … width-1）。</li>
+<li>int y：要替换的像素的 y 坐标（0 … height-1）。</li>
+<li>int color：写入 bitmap 的 ARGB 颜色。</li>
+</ul>
+<h3 id="void-setPixels-ColorInt-int-pixels-int-offset-int-stride-int-x-int-y-int-width-int-height"><a href="#void-setPixels-ColorInt-int-pixels-int-offset-int-stride-int-x-int-y-int-width-int-height" class="headerlink" title="void setPixels(@ColorInt int[] pixels, int offset, int stride, int x, int y, int width, int height)"></a>void setPixels(@ColorInt int[] pixels, int offset, int stride, int x, int y, int width, int height)</h3><p>用数组中的颜色替换 bitmap 中的像素。数组中的每个元素是一个包装 int ，表示 ColorSpace.Named.SRGB 颜色空间中未预乘的 ARGB Color。</p>
+<ul>
+<li>int[] pixels：写入 bitma 的颜色数组。</li>
+<li>int offset：从像素读取的第一种颜色的索引[]。</li>
+<li>int stride：以像素为单位的颜色数，以在行之间跳过。通常，此值将与 bitmap 的宽度相同，但是可以更大（或为负）。</li>
+<li>int x：bitmap 中要写入的第一个像素的 x 坐标。</li>
+<li>int y：bitmap 中要写入的第一个像素的 y 坐标。</li>
+<li>int width：每行要从 pixel[] 复制的颜色数。</li>
+<li>int height：写入 bitmap 的行数。</li>
+</ul>
+<h3 id="Bitmap-extractAlpha"><a href="#Bitmap-extractAlpha" class="headerlink" title="Bitmap extractAlpha()"></a>Bitmap extractAlpha()</h3><p>返回捕获原始图像的 Alpha 值的新 bitmap。 可以使用 Canvas.drawBitmap() 进行绘制，其中颜色将从传递给绘图调用的 paint 中获取。</p>
+<h3 id="Bitmap-extractAlpha-Paint-paint-int-offsetXY"><a href="#Bitmap-extractAlpha-Paint-paint-int-offsetXY" class="headerlink" title="Bitmap extractAlpha(Paint paint, int[] offsetXY)"></a>Bitmap extractAlpha(Paint paint, int[] offsetXY)</h3><p>返回捕获原始图像的 Alpha 值的新 bitmap。 这些值可能会受到可选的 Paint 参数的影响，该参数可以包含自己的 alph 值，还可以包含 MaskFilter ，后者可以更改结果 bitmap 的实际尺寸（例如模糊 maskfilter 可能会放大结果 bitmap）。如果 offsetXY 不为 null ，则返回偏移返回 bitmap 的量，以便在逻辑上与原始对齐。例如，如果绘画包含半径为 2 的模糊，则 offsetXY[] 将包含 -2，-2，这样绘制 alpha 的 bitmap 偏移量为（-2，-2），然后绘制原图将使得模糊效果与原图在视觉上对齐。</p>
+<ul>
+<li>Paint paint：用于修改结果 bitmap 中的 alpha 值的可选画笔。为默认传递 null 。</li>
+<li>int[] offsetXY：可选数组，该数组返回放置返回的 bitmpa 所需的 X（索引 0）和 Y（索引 1）偏移，以使其在视觉上与原始行对齐。</li>
+</ul>
+<h3 id="boolean-sameAs-Bitmap-other"><a href="#boolean-sameAs-Bitmap-other" class="headerlink" title="boolean sameAs(Bitmap other)"></a>boolean sameAs(Bitmap other)</h3><p>给定另一个 bitmap ，如果它具有与此 bitmap 相同的尺寸，配置，和像素数据，则返回 true。如果其中任何一个不同，则返回 false。 如果 other 为 null ，则返回 false 。</p>
+<h3 id="void-prepareToDraw"><a href="#void-prepareToDraw" class="headerlink" title="void prepareToDraw()"></a>void prepareToDraw()</h3><p>构建与用于绘制 bitmap 的 bitmap 关联的缓存。</p>
+<p>从 android.os.Build.VERSION_CODES.N（Android 7.0，24）开始，如果尚未上传 bitmap，则此调用会在 RenderThread 上启动异步上传到 GPU。使用硬件加速时，必须将 bitmap 上传到 GPU 才能进行渲染。默认情况下，这是在第一次绘制 bitmap 时完成的，但是此过程可能需要几毫秒的时间，具体取决于 bitmap 的大小。每次修改并再次绘制 bitmap 时，都必须重新上传。</p>
+<p>提前调用此方法可以节省使用第一帧的时间。例如，建议在解码的 bitmap 即将显示时在图像解码工作线程上调用此方法。建议在调用此方法之前对 bitmap 进行任何预绘制修改，以便可以重新使用缓存的上传副本，而无需重新上传。</p>
+<p>在 android.os.Build.VERSION_CODES.KITKAT （Android 6.0，23）及以下版本中，对于可清除的 bitmap ，此调用将尝试确保像素已解码。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Android/">Android</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Android/">Android</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%9B%BE%E7%89%87/">图片</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Bitmap/">Bitmap</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/post/%E7%AE%80%E6%9E%90Glide/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">简析Glide</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/post/Android%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/">
+                        <span class="hidden-mobile">Android图片压缩</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script>
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          Fluid.utils.createCssLink('https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqusjs.css');
+          Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqus.js', function() {
+            new DisqusJS({
+              shortname: 'codepoem',
+              apikey: 'null'
+            });
+          });
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,631 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/v_half.webp">
+  <link rel="icon" href="/img/v_half.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Code a poem and poem a code~">
+  <meta name="author" content="CodePoem">
+  <meta name="keywords" content="undefined">
+  
+  <title>Android动画 - 梦半觉-CodePoem</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"codepoem.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>梦半觉-CodePoem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://codepoem.fun/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/CodePoem/CodePoem.github.io">
+                <i class="iconfont icon-github-fill"></i>
+                Github
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                厚薄
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAlgorithm">
+                    
+                    数据结构与算法-VAlgorithm
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VDesignPatterns">
+                    
+                    设计模式-VDesignPatterns
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAndroidReview">
+                    
+                    Android知识体系-VAndroidReview
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/v_bg.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Android动画">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-09-16 23:48" pubdate>
+        2019年9月16日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      16
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Android动画</h1>
+            
+            <div class="markdown-body">
+              <p>Android 中动画划分为两大类 视图动画（View Animation）和 属性动画（Property Animation）。其中 属性动画（Property Animation）需要在 Android3.0 之后（API &gt;= 11）使用。<br>视图动画（View Animation）又包括了 帧动画（Frame Animation） 和 补间动画（Tweened Animation）。</p>
+<h2 id="视图动画（View-Animation）"><a href="#视图动画（View-Animation）" class="headerlink" title="视图动画（View Animation）"></a>视图动画（View Animation）</h2><h3 id="帧动画（Frame-Animation）"><a href="#帧动画（Frame-Animation）" class="headerlink" title="帧动画（Frame Animation）"></a>帧动画（Frame Animation）</h3><p>帧动画（Frame Animation） 有时也叫 Drawable 动画，这种动画的实质其实是 Drawable。像播放幻灯片一样，利用视觉残留产生动画效果。</p>
+<p>核心类：AnimationDrawable</p>
+<p>使用方式：</p>
+<h4 id="XML-定义帧动画"><a href="#XML-定义帧动画" class="headerlink" title="XML 定义帧动画"></a>XML 定义帧动画</h4><p>推荐使用 XML 定义动画：</p>
+<p>在 res/drawable 下新建 animation_frame_test.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">animation-list</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:oneshot</span>=<span class="hljs-string">&quot;false&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">item</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:drawable</span>=<span class="hljs-string">&quot;@color/colorPrimary&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:duration</span>=<span class="hljs-string">&quot;300&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">item</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:drawable</span>=<span class="hljs-string">&quot;@color/colorPrimaryDark&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">android:duration</span>=<span class="hljs-string">&quot;300&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">animation-list</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="Java-代码创建帧动画"><a href="#Java-代码创建帧动画" class="headerlink" title="Java 代码创建帧动画"></a>Java 代码创建帧动画</h4><p>创建 AnimationDrawable 对象，addFrame(Drawable frame,int duration)向动画中添加帧，调用 start()和 stop()。</p>
+<h3 id="补间动画（Tweened-Animation）"><a href="#补间动画（Tweened-Animation）" class="headerlink" title="补间动画（Tweened Animation）"></a>补间动画（Tweened Animation）</h3><p>补间动画（Tweened Animation）只能应用于 View 对象，而且只支持一部分属性，它只是改变了 View 对象绘制的位置，而没有改变 View 对象本身（所以点击响应区域还在原来的位置）。多用于 Window 切换动画或 Activity 跳转动画。</p>
+<p>核心类：android.view.animation.Animator</p>
+<p>补间动画可以分为四种形式，分别是 alpha（淡入淡出），translate（位移），scale（缩放大小），rotate（旋转）。</p>
+<h4 id="java-类"><a href="#java-类" class="headerlink" title="java 类"></a>java 类</h4><ul>
+<li>AlphaAnimation 渐变透明度动画效果</li>
+<li>RotateAnimation 画面转移旋转动画效果</li>
+<li>ScaleAnimation 渐变尺寸伸缩动画效果</li>
+<li>TranslateAnimation 画面转换位置移动动画效果</li>
+<li>AnimationSet 一个持有其它动画元素 alpha、scale、translate、rotate 或者其它 set 元素的容器</li>
+</ul>
+<p>插值器：</p>
+<ul>
+<li>LinearInterpolator：动画以均匀的速度改变</li>
+<li>AccelerateInterpolator：在动画开始的地方改变速度较慢，然后开始加速</li>
+<li>AccelerateDecelerateInterpolator：在动画开始、结束的地方改变速度较慢，中间时加速</li>
+<li>CycleInterpolator：动画循环播放特定次数，变化速度按正弦曲线改变： Math.sin(2 mCycles Math.PI * input)</li>
+<li>DecelerateInterpolator：在动画开始的地方改变速度较快，然后开始减速</li>
+<li>AnticipateInterpolator：反向，先向相反方向改变一段再加速播放</li>
+<li>AnticipateOvershootInterpolator：开始的时候向后然后向前甩一定值后返回最后的值</li>
+<li>BounceInterpolator： 跳跃，快到目的值时值会跳跃，如目的值 100，后面的值可能依次为 85，77，70，80，90，100</li>
+<li>OvershottInterpolator：回弹，最后超出目的值然后缓慢改变到目的值</li>
+</ul>
+<h4 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h4><p>在 res/anim 下新建 animation_tweened_test_rotate.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">rotate</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:duration</span>=<span class="hljs-string">&quot;1000&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:fromDegrees</span>=<span class="hljs-string">&quot;0&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:interpolator</span>=<span class="hljs-string">&quot;@android:anim/accelerate_decelerate_interpolator&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:pivotX</span>=<span class="hljs-string">&quot;50%&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:pivotY</span>=<span class="hljs-string">&quot;50%&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:repeatCount</span>=<span class="hljs-string">&quot;infinite&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">android:toDegrees</span>=<span class="hljs-string">&quot;360&quot;</span> /&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>AnimationUtils.loadAnimation(Context context, @AnimRes int id)创建 Animation，然后给指定的 View 调用 view.startAnimation(Animation animation) view.clearAnimation()</p>
+<h2 id="属性动画（Property-Animation）"><a href="#属性动画（Property-Animation）" class="headerlink" title="属性动画（Property Animation）"></a>属性动画（Property Animation）</h2><p>属性动画实现原理就是修改控件的属性值实现的动画。</p>
+<p>核心类：android.animation.Animator</p>
+<ul>
+<li>Animator 创建属性动画的基类</li>
+<li>ValueAnimator Animator 子类。其内部采用一种时间循环的机制来计算值与值之间的动画过度，我们只需将初始值以及结束值提供给该类，并告诉其动画所需时间长度，该类就会自动帮我们从初始值平滑过度到结束。该类还能管理动画的播放次数、模式和监听器等。</li>
+<li>ObjectAnimator ValueAnimator 的子类，允许我们对指定对象的属性执行动画，用起来更简单，实际中用得较多。</li>
+<li>AnimatorSet Animator 子类，可以组合多个 Animator，并制定 Animator 的播放次序。</li>
+<li>Interpolator 插值器，同补间动画。</li>
+<li>Evaluator 计算器，告诉动画系统如何从初始值过度到结束值。提供了一下的几种 Evaluator：</li>
+</ul>
+<p>IntEvaluator：用于计算 int 属性<br>FloatEvaluator：用于计算 float 属性<br>ArgbEvaluator：用于计算 16 进制表示颜色值的计算器<br>TypeEvaluator：上述计算类的公共接口，可以自己实现接口完成自定义</p>
+<p>监听器：</p>
+<p>AnimatorUpdateListener： 当值状态发生改变时候会回调 onAnimationUpdate 方法。</p>
+<p>AnimatorListener、AnimatorListenerAdapter：</p>
+<ul>
+<li>onAnimationStart()：动画开始</li>
+<li>onAnimationRepeat()：动画重复执行</li>
+<li>onAnimationEnd()：动画结束</li>
+<li>onAnimationCancel()：动画取消</li>
+</ul>
+<p>平常开发，属性动画多使用 ValueAnimator 和 ObjectAnimator。<br>ValueAnimator 有个缺点，就是只能对数值对动画计算。<br>为了能让动画直接与对应控件相关联，以使我们从监听动画过程中解放出来，可以使用 ValueAnimator 的子类 ObjectAnimator。</p>
+<p>使用 ObjectAnimator 实现动画也有一些要求和限制：</p>
+<ol>
+<li>动画显示的属性必须带有一个 setter 方法（以骆驼拼写法命名）。 因为 ObjectAnimator 会在动画期间自动更新属性值，它必须能够用此 setter 方法访问到该属性。 例如：假设属性名称为 color，则需要有一个 setColor()方法。</li>
+<li>如果在调用 ObjectAnimator 的某个工厂方法时，我们只为 values… 参数指定了一个值，那此值将被认定为动画属性的结束值。 这样的话，动画显示的属性必须带有一个 getter 方法，用于获取动画的起始值。例如：假设属性名为 color，则需要有一个 getColor()方法。</li>
+<li>动画属性的 getter 方法（如果必要的话）和 setter 方法所操作数据的类型必须与 ObjectAnimator 中设定的起始和结束值相同。</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Android/">Android</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Android/">Android</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%8A%A8%E7%94%BB/">动画</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/post/Crash%E6%B2%BB%E7%90%86%E4%B9%8BTimeoutException/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Crash治理之TimeoutException</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/post/Android%E8%87%AA%E5%AE%9A%E4%B9%89View/">
+                        <span class="hidden-mobile">Android自定义View</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script>
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          Fluid.utils.createCssLink('https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqusjs.css');
+          Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqus.js', function() {
+            new DisqusJS({
+              shortname: 'codepoem',
+              apikey: 'null'
+            });
+          });
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

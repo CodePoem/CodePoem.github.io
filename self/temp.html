@@ -1,0 +1,586 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/v_half.webp">
+  <link rel="icon" href="/img/v_half.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Code a poem and poem a code~">
+  <meta name="author" content="CodePoem">
+  <meta name="keywords" content="undefined">
+  
+  <title>page.title - 梦半觉-CodePoem</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"codepoem.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 60vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>梦半觉-CodePoem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://codepoem.fun/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/CodePoem/CodePoem.github.io">
+                <i class="iconfont icon-github-fill"></i>
+                Github
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                厚薄
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAlgorithm">
+                    
+                    数据结构与算法-VAlgorithm
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VDesignPatterns">
+                    
+                    设计模式-VDesignPatterns
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAndroidReview">
+                    
+                    Android知识体系-VAndroidReview
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/v_bg.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="page.title">
+              
+            </span>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <ol start="2">
+<li>Flutter</li>
+</ol>
+<p>Widget 、 Element 、RenderObject</p>
+<p>Widget 与 Element 是一对多<br>Element 与 RenderObject 是一一对应的关系</p>
+<p>Widget 不可变，每次保持在一帧，如果发生改变是通过 State 实现跨帧状态保存，而真实完成布局和绘制数组的是 RenderObject ， Element 充当两者的桥梁， State 就是保存在 Element 中。</p>
+<p>setState 其实是调用了 markNeedsBuild ，该方法内部标记此 Element 为 Dirty ，然后在下一帧 WidgetsBinding.drawFrame 才会被绘制，这可以看出 setState 并不是立即生效的。</p>
+<p>状态共享 InheritedWidget</p>
+<p>Flutter UI 是直接通过 skia 渲染</p>
+<p>Platform Channel 原生通信</p>
+<p>Stream</p>
+<p>JIT（Just In Time）<br>每次启动应用都需要重新编译</p>
+<p>AOT（Ahead Of Time)<br>4.4 推出了全新的虚拟机运行环境 ART，5.0 后 Dalvik 被替换</p>
+<p>应用安装比较耗时<br>优化后的文件会占用额外的存储空间</p>
+<ol>
+<li>工程改动。热重载模块会逐一扫描工程中的文件，检查是否有新增、删除或者改动，直到找到在上次编译之后，发生变化的 Dart 代码。</li>
+<li>增量编译。热重载模块会将发生变化的 Dart 代码，通过编译转化为增量的 Dart Kernel 文件。</li>
+<li>推送更新。热重载模块将增量的 Dart Kernel 文件通过 HTTP 端口，发送给正在移动设备上运行的 Dart VM。</li>
+<li>代码合并。Dart VM 会将收到的增量 Dart Kernel 文件，与原有的 Dart Kernel 文件进行合并，然后重新加载 4 新的 Dart Kernel 文件。</li>
+<li>Widget 重建。在确认 Dart VM 资源加载成功后，Flutter 会将其 UI 线程重置，通知 Flutter Framework 重建 Widget。</li>
+</ol>
+<hr>
+<ol>
+<li>Apk 瘦身做了哪些优化？</li>
+</ol>
+<p>闪屏页默认 Logo 图障眼法。实际并没有缩短启动时间。</p>
+<ul>
+<li>打包资源文件，生成 R.java 文件（使用工具 AAPT）</li>
+<li>处理 AIDL 文件，生成 java 代码（没有 AIDL 则忽略）</li>
+<li>编译 java 文件，生成对应.class 文件（java compiler）</li>
+<li>.class 文件转换成 dex 文件（dex）</li>
+<li>打包成没有签名的 apk（使用工具 apkbuilder）</li>
+<li>使用签名工具给 apk 签名（使用工具 Jarsigner）</li>
+<li>对签名后的.apk 文件进行对齐处理，不进行对齐处理不能发布到 Google Market（使用工具 zipalign）</li>
+</ul>
+<p>第 4 步，将 class 文件转换成 dex 文件，默认只会生成一个 dex 文件，单个 dex 文件中的方法数不能超过 65536。</p>
+<p>闪屏页开个子线程去加载 dex，难维护，不推荐；<br>今日头条的方案，在单独一个进程加载 dex，加载完主进程再继续。</p>
+<p>在第一次启动的时候，直接加载没有经过 OPT 优化的原始 DEX，先使得 APP 能够正常启动。然后在后台启动一个单独进程，慢慢地做完 DEX 的 OPT 工作，尽可能避免影响到前台 APP 的正常使用。</p>
+<p>第三方库延迟加载。没必要在 Application 初始化的。Glide 自身就在框架中初始化。</p>
+<ol start="2">
+<li>还做了哪些其他性能优化？App 启动、ANR？</li>
+</ol>
+<ul>
+<li>启动优化</li>
+</ul>
+<p>闪屏页设置默认 Logo 图障眼法。这样打开桌面图标会马上显示 logo，不会出现黑/白屏，直到 Activity 启动完成，替换主题，logo 消失，但是总的启动时间并没有改变。</p>
+<ul>
+<li>内存优化</li>
+</ul>
+<p>减少 OOM LeakCanary</p>
+<p>减少卡顿</p>
+<p>刷新原理<br>底层每间隔 16 毫秒会发出 vsyn 信号，应用界面要更新，必须先向底层请求 vsync 信号，这样下一个 16 毫秒 vsync 信号来的时候，底层会通过 JNI 通知到应用，然后通过主线程 Handler 执行 View 的绘制任务。所以两个地方会造成卡顿，一个是主线程在执行耗时操作导致 View 的绘制任务没有及时执行，还有一个是 View 绘制太久，可能是层级太多，或者里面绘制算法太复杂，导致没能在下一个 vsync 信号来临之前准备完数据，导致掉帧卡顿。</p>
+<p>监控卡段<br>BlockCanary Handlder 取出一条消息前 Printer logging 不为空<br>AOP 插桩</p>
+<hr>
+<ol start="4">
+<li>熟悉 Glide 、 OkHttp 、 LeakCanary 等著名开源库，并阅读过部分源码。</li>
+</ol>
+<p>Glide</p>
+<hr>
+<ol>
+<li>Glide</li>
+</ol>
+<p>为什么用 Glide？</p>
+<ul>
+<li>支持多种格式。（Gif、WebP）</li>
+<li>生命周期集成。</li>
+<li>高效处理 Bitmap</li>
+<li>高效缓存策略。</li>
+</ul>
+<p>Fesco 5.0 以下有优势，在 Native 管理内存，更质量的图片展示，但是包大小更大，2-3M。</p>
+<p>假如让你写一个图片加载框架，说说思路?</p>
+<ul>
+<li>封装请求参数</li>
+<li>使用线程池异步加载 两个线程池（本地缓存、网络）</li>
+<li>缓存 内存缓存、硬盘缓存 LruCache DiskLruCache</li>
+<li>OOM 问题</li>
+</ul>
+<p>预防：减少内存使用</p>
+<p>图片压缩</p>
+<p>处理：<br>onLowMemory</p>
+<p>onTrimMemory</p>
+<ul>
+<li>内存泄露 注意 ImageView 的正确引用，生命周期管理</li>
+<li>列表滑动加载的问题</li>
+</ul>
+<p>复用机制加载错乱<br>给 ImageView 设置 tag，tag 一般是图片地址，更新 ImageView 之前判断 tag 是否跟 url 一致。</p>
+<ol start="2">
+<li>OkHttp</li>
+</ol>
+<p>是对 Socket 的封装。URLConnection 在 4.4 以后底层也使用了 OkHttp。</p>
+<p>Android 源码中 /external/okhttp/jarjar-rules.txt 中表示 com.squareup 开关的包会在编译时打包成 com.android 开头的包。</p>
+<ul>
+<li><p>创建请求对象。 (url, method, headers, body, tags)–&gt; Request–&gt; Call</p>
+</li>
+<li><p>线程池分发请求。同步使用 call.excute(),异步使用 call.enqueue()请求事件队列, 都交给 Dispatcher 分发， enqueue–&gt;Runnable–&gt;ThreadPoolExecutor</p>
+</li>
+<li><p>递归 Interceptor 拦截器，发送请求。 getResponseWithInterceptorChain()，InterceptorChain</p>
+</li>
+<li><p>请求回调，数据解析。 Respose –&gt; (code,message,requestBody)</p>
+</li>
+</ul>
+<ol start="3">
+<li>LeakCanary</li>
+</ol>
+<p>Watch<br>application.registerActivityLifecycleCallbacks<br>WeakReference + ReferenceQueue</p>
+<p>弱引用一旦变得弱可达，就会立即入队 ReferenceQueue。这将在 finalization 或者 GC 之前发生。</p>
+<p>Dump 计算了到 GC Roots 的最短强引用路径。</p>
+<p>fragmentManager.registerFragmentLifecycleCallbacks</p>
+<h4 id="项目经历"><a href="#项目经历" class="headerlink" title="项目经历"></a>项目经历</h4><hr>
+<p>为什么做这个项目？做这个项目的目标是什么？我的方案是什么？相对其他方案我的方案优势是什么？项目的收益是什么？项目的架构图是否能画出来？项目中使用的主要框架原理是否前前后后都清楚？</p>
+<hr>
+<p>Android 端图片选择内部库实现（支持多图选择）</p>
+<ul>
+<li><p>背景：限于项目中已有的图片选择库扩展性不强，不能满足产品多图选择的需求，于是封装设计实现新的图片选择库。</p>
+</li>
+<li><p>过程：查看项目中已存图片选择库源码，发现是通过调用系统方法来实现的图片选择功能，不能满足多图选择和 UI 定制的需求。于是查看第三方多图选择开源库 Matisse、TakePhoto 、Boxing 源码进行调研对比，最终考虑兼容性、UI 定制性和解决 issue 的积极度等问题，决定自己实现基于 Matisse 和 Boxing 的图片多选库。</p>
+</li>
+<li><p>成果：产出了一个较为健壮的通用内部库，满足了选择图片相关多变需求，同时优化了旧版图片选择框架的缺陷。</p>
+</li>
+</ul>
+<hr>
+<ol>
+<li>为什么自己实现</li>
+</ol>
+<p>需要定制化选择界面的 UI。<br>Matisse 未集成运行时权限，支持不同的图片加载库，不支持选择，UI 和加载逻辑耦合，难以修改 UI；<br>Boxing 集成运行时权限，选择视频，在 Android Q 有兼容性问题，会崩溃。</p>
+<p>两者都是在 onActivityResult()接受回调。</p>
+<ol start="2">
+<li>怎么设计的</li>
+</ol>
+<p>建造者模式，构建请求。</p>
+<p>适配器模式，封装一层图片选择器适配层，实现无缝切换，无需改动老代码，同时新代码可直接使用。</p>
+<p>策略模式，可以更换具体的图片选择实现（UI）。</p>
+<p>是否预留裁剪接口。</p>
+<p>具体的图片选择器实现：</p>
+<p>分层：</p>
+<p>逻辑层：将图片选择器的核心加载选择逻辑封装成独立模块<br>UI 层：提供一套展示图片选择的 UI 模块</p>
+<p>建造者模式提供选择选项配置。</p>
+<ol start="3">
+<li>加载列表图片卡顿怎么优化</li>
+</ol>
+<p>建议项目统一图片库。策略模式</p>
+<p>如果自己实现考虑以下问题。</p>
+<p>高效加载单张大图片步骤：</p>
+<p>肯定不能直接把一张大图完全加载到内存中，根据展示这张图片的控件的实际大小来按需加载。</p>
+<ol>
+<li><p>预先获取原图宽高。inJustDecodeBounds 可以避免禁止为 bitmap 分配内存，返回值也不再是一个 Bitmap 对象，而是 null，而 BitmapFactory.Options 的 outWidth、outHeight 和 outMimeType 属性都会被赋值。</p>
+</li>
+<li><p>计算采样率。inSampleSize，inSampleSize 默认会取靠近 2 的幂次。</p>
+</li>
+<li><p>按采样率重新解析大图。</p>
+</li>
+</ol>
+<p>大量大图加载：</p>
+<p>为了保证内存的使用始终维持在一个合理的范围，通常会把被移除屏幕的图片进行回收处理。此时垃圾回收器也会认为你不再持有这些图片的引用，从而对这些图片进行 GC 操作。用这种思路来解决问题是非常好的，可是为了能让程序快速运行，在界面上迅速地加载图片，你又必须要考虑到某些图片被回收之后，用户又将它重新滑入屏幕这种情况。这时重新去加载一遍刚刚加载过的图片无疑是性能的瓶颈。可以考虑使用内存缓存技术 LRUCache。</p>
+<hr>
+<p>最难的问题：</p>
+<p>7.0 适配 多个 ContentProvider authorities 重复 覆盖</p>
+
+
+  
+</article>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

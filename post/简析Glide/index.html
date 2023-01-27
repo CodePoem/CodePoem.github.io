@@ -1,0 +1,668 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/v_half.webp">
+  <link rel="icon" href="/img/v_half.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Code a poem and poem a code~">
+  <meta name="author" content="CodePoem">
+  <meta name="keywords" content="undefined">
+  
+  <title>简析Glide - 梦半觉-CodePoem</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"codepoem.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>梦半觉-CodePoem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://codepoem.fun/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/CodePoem/CodePoem.github.io">
+                <i class="iconfont icon-github-fill"></i>
+                Github
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                厚薄
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAlgorithm">
+                    
+                    数据结构与算法-VAlgorithm
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VDesignPatterns">
+                    
+                    设计模式-VDesignPatterns
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAndroidReview">
+                    
+                    Android知识体系-VAndroidReview
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/v_bg.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="简析Glide">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-10-17 11:25" pubdate>
+        2019年10月17日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">简析Glide</h1>
+            
+            <div class="markdown-body">
+              <p>最简洁的图片加载流程：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">Glide.with(context)<br>    .load(myUrl)<br>    .into(imageView);<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li>with 传递图片加载上下文，获取图片加载请求管理器（RequestManager）。</li>
+<li>load 传递图片加载数据源，构建图片加载请求建造器（RequestBuilder）。</li>
+<li>into 传递图片加载目标载体，创建图片加载请求（Request），执行图片加载。</li>
+</ol>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>with 支持传递 Context，Activity，Fragment，Glide 4.0.0 版本后 with 还支持传递 View。</p>
+<ol>
+<li>如果是子线程，会使用 ApplicationContext。</li>
+<li>传递 Context 如果是 ContextWrapper 直接会优先向上遍历得到 Activity。</li>
+<li>传递 View ，会优先向上遍历得到 Activity，然后根据得到的 Activity 优先遍历得到 Fragment。</li>
+</ol>
+<h3 id="传入-ApplicationContext"><a href="#传入-ApplicationContext" class="headerlink" title="传入 ApplicationContext"></a>传入 ApplicationContext</h3><p>Application 对象的生命周期即应用程序的生命周期，因此 Glide 并不需要做什么特殊的处理，它自动就是和应用程序的生命周期是同步的。</p>
+<h3 id="传入非-ApplicationContext"><a href="#传入非-ApplicationContext" class="headerlink" title="传入非 ApplicationContext"></a>传入非 ApplicationContext</h3><p>无视图的 Fragment 接管 LifeCycle。</p>
+<h2 id="缓存机制"><a href="#缓存机制" class="headerlink" title="缓存机制"></a>缓存机制</h2><h3 id="内存缓存"><a href="#内存缓存" class="headerlink" title="内存缓存"></a>内存缓存</h3><ol>
+<li>根据图片地址，宽高，变换，签名等生成 key。</li>
+<li>根据 key 从活动缓存取图片资源。取到则完成；取不到进行下一步。</li>
+<li>根据 key 从内存缓存（LRU 实现）。取到则将取到的图片资源添加到活动缓存，完成；取不到进行下一步。</li>
+<li>返回 null，表示未取到。</li>
+</ol>
+<ul>
+<li><p>LRU 缓存。LruCache 算法（Least Recently Used），也叫近期最少使用算法。算法原理就是把最近使用的对象用强引用存储在 LinkedHashMap 中，并且把最近最少使用的对象在缓存值达到预设定值之前从内存中移除。</p>
+</li>
+<li><p>活跃缓存。弱引用缓存正在使用的图片，可以保护这些图片不会被 LruCache 算法回收掉。</p>
+</li>
+</ul>
+<p>缓存写入时机：</p>
+<ul>
+<li>图片资源执行完加载解码后，写入活跃缓存。</li>
+<li>图片资源回收且引用数为 0，先从活跃缓存中删除，后写入 LRU 缓存。</li>
+</ul>
+<h3 id="硬盘缓存"><a href="#硬盘缓存" class="headerlink" title="硬盘缓存"></a>硬盘缓存</h3><p>DiskCacheStrategy.NONE： 表示不缓存任何内容。<br>DiskCacheStrategy.SOURCE： 表示只缓存原始图片。<br>DiskCacheStrategy.RESULT： 表示只缓存转换过后的图片（默认选项）。<br>DiskCacheStrategy.ALL ： 表示既缓存原始图片，也缓存转换过后的图片。</p>
+<p>DiskLruCache，journal 文件。</p>
+<p>journal 文件组成：</p>
+<ul>
+<li>libcore.io.DiskLruCache （魔法值，标志着使用 DiskLruCache 技术）</li>
+<li>DiskLruCache 版本号</li>
+<li>应用版本号</li>
+<li>DIRTY 数据行（正在写数据）</li>
+<li>CLEAN 数据行（写入数据成功）</li>
+<li>REMOVE 数据行（写入数据失败）</li>
+<li>READ 数据行（读取数据）</li>
+</ul>
+<h2 id="Bitmap-采样和复用机制"><a href="#Bitmap-采样和复用机制" class="headerlink" title="Bitmap 采样和复用机制"></a>Bitmap 采样和复用机制</h2><h3 id="采样"><a href="#采样" class="headerlink" title="采样"></a>采样</h3><ol>
+<li>计算缩放因子</li>
+<li>获取采样类型 内存优先（比要求的尺寸小）/ 质量优先（比要求的尺寸大）</li>
+<li>计算整型的缩放因子</li>
+<li>将整型的缩放因子转成 2 的幂</li>
+</ol>
+<h3 id="复用机制"><a href="#复用机制" class="headerlink" title="复用机制"></a>复用机制</h3><p>BitmapPool，默认具体实现 LruBitmapPool。</p>
+<p>不光对开销较大的 Bitmap 进行了复用，就连为了复用 Bitmap 时重复申请的 Key 对象都进行了复用，尽可能的减少了对象的创建开销，保证了应用的流畅性。</p>
+<h4 id="复用的前提"><a href="#复用的前提" class="headerlink" title="复用的前提"></a>复用的前提</h4><p>inMutable = true<br>inBitmap 指定复用的 Bitmap</p>
+<p>在 Android 4.4 之前，仅支持相同大小的 bitmap，inSampleSize 必须为 1，而且必须采用 jpeg 或 png 格式。</p>
+<p>在 Android 4.4 之后只有一个限制，就是被复用的 bitmap 尺寸要大于新的 bitmap，简单来说就是大图可以给小图复用。</p>
+<h4 id="复用实现"><a href="#复用实现" class="headerlink" title="复用实现"></a>复用实现</h4><p>根据特定的缓存策略，根据系统版本如判断采用完全匹配或者大小匹配，从缓存池获取到 Dirty 的 Bitmap，使用 reconfigure 和 eraseColor(Color.TRANSPARENT) 来 clean 这个 Bitmap。</p>
+<ol>
+<li>加入复用池时机：外部加载完或者回收调用放入</li>
+<li>获取缓存时机：加载图片前</li>
+<li>删除，每次操作都会判断是否需要删除多余的缓存</li>
+</ol>
+<h2 id="线程池管理"><a href="#线程池管理" class="headerlink" title="线程池管理"></a>线程池管理</h2><ul>
+<li>diskCacheExecutor 本地缓存任务 newDiskCacheBuilder corePoolSize=maximumPoolSize=1</li>
+<li>sourceExecutor 资源获取任务 corePoolSize=maximumPoolSize=处理器数量和固定值 4 之间区最小</li>
+<li>sourceUnlimitedExecutor 资源获取不限制任务 corePoolSize=0 maximumPoolSize=Integer.MAX_VALUE 10ms 超时 SynchronousQueue</li>
+<li>animationExecutor Gif 加载任务 corePoolSize=在处理器数量和固定值 4 之间区最小 maximumPoolSize=1 或 2</li>
+</ul>
+<p>除了 sourceUnlimitedExecutor 都使用了 PriorityBlockingQueue 来作为等待队列。</p>
+<h2 id="使用自定义模块解耦"><a href="#使用自定义模块解耦" class="headerlink" title="使用自定义模块解耦"></a>使用自定义模块解耦</h2><ul>
+<li><p>setMemoryCache()<br>用于配置 Glide 的内存缓存策略，默认配置是 LruResourceCache。</p>
+</li>
+<li><p>setBitmapPool()<br>用于配置 Glide 的 Bitmap 缓存池，默认配置是 LruBitmapPool。</p>
+</li>
+<li><p>setDiskCache()<br>用于配置 Glide 的硬盘缓存策略，默认配置是 InternalCacheDiskCacheFactory。</p>
+</li>
+<li><p>setDiskCacheService()<br>用于配置 Glide 读取缓存中图片的异步执行器，默认配置是 FifoPriorityThreadPoolExecutor，也就是先入先出原则。</p>
+</li>
+<li><p>setResizeService()<br>用于配置 Glide 读取非缓存中图片的异步执行器，默认配置也是 FifoPriorityThreadPoolExecutor。</p>
+</li>
+<li><p>setDecodeFormat()<br>用于配置 Glide 加载图片的解码模式，默认配置是 RGB_565。</p>
+</li>
+</ul>
+<p>Glide 3:</p>
+<ol>
+<li>自定义模块类，实现 GlideModule 。</li>
+<li>AndroidManifest.xml 中配置</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">manifest</span>&gt;</span><br><br>    ...<br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">application</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">meta-data</span></span><br><span class="hljs-tag">            <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;com.example.glidetest.MyGlideModule&quot;</span></span><br><span class="hljs-tag">            <span class="hljs-attr">android:value</span>=<span class="hljs-string">&quot;GlideModule&quot;</span> /&gt;</span><br><br>        ...<br><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">application</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">manifest</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>解析 AndroidManifest.xml 中 value 为 GlideModule 的 meta-data ,反射实例化自定义模块类。Glide 在实例化的时候会先遍历模块列表应用配置。</p>
+<p>Glide 4:</p>
+<ol>
+<li>自定义模块类，继承 AppGlideModule 。</li>
+<li>自定义模块类上添加 @GlideModule 注解。</li>
+</ol>
+<p>注解处理器 auto-service + JavaPoet</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Android/">Android</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Android/">Android</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%9B%BE%E7%89%87/">图片</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Glide/">Glide</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/post/%E7%AE%80%E6%9E%90OkHttp/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">简析OkHttp</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/post/%E7%AE%80%E6%9E%90Bitmap/">
+                        <span class="hidden-mobile">简析Bitmap</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script>
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          Fluid.utils.createCssLink('https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqusjs.css');
+          Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqus.js', function() {
+            new DisqusJS({
+              shortname: 'codepoem',
+              apikey: 'null'
+            });
+          });
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

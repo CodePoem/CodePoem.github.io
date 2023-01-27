@@ -1,0 +1,1075 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/v_half.webp">
+  <link rel="icon" href="/img/v_half.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Code a poem and poem a code~">
+  <meta name="author" content="CodePoem">
+  <meta name="keywords" content="undefined">
+  
+  <title>梦半觉-CodePoem</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"codepoem.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>梦半觉-CodePoem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://codepoem.fun/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/CodePoem/CodePoem.github.io">
+                <i class="iconfont icon-github-fill"></i>
+                Github
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                厚薄
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAlgorithm">
+                    
+                    数据结构与算法-VAlgorithm
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VDesignPatterns">
+                    
+                    设计模式-VDesignPatterns
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAndroidReview">
+                    
+                    Android知识体系-VAndroidReview
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/v_bg.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="大梦谁先觉，平生我自知~">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/post/%E7%AE%80%E6%9E%90OkHttp/" target="_self">
+          <img src="/gallery/1.png" srcset="/img/loading.gif" lazyload alt="简析OkHttp">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/post/%E7%AE%80%E6%9E%90OkHttp/" target="_self">
+          简析OkHttp
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/post/%E7%AE%80%E6%9E%90OkHttp/" target="_self">
+          
+          
+            
+          
+          是对 Socket 的封装。URLConnection 在 4.4 以后底层也使用了 OkHttp。
+Android 源码中 /external/okhttp/jarjar-rules.txt 中表示 com.squareup 开关的包会在编译时打包成 com.android 开头的包。
+12rule com.squareup.** com.android.@1rule okio.** com.a
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-10-18 11:25" pubdate>
+              2019-10-18
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Android/">Android</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Android/">Android</a>
+            
+              <a href="/tags/OkHttp/">OkHttp</a>
+            
+              <a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/post/%E7%AE%80%E6%9E%90Glide/" target="_self">
+          <img src="/gallery/1.png" srcset="/img/loading.gif" lazyload alt="简析Glide">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/post/%E7%AE%80%E6%9E%90Glide/" target="_self">
+          简析Glide
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/post/%E7%AE%80%E6%9E%90Glide/" target="_self">
+          
+          
+            
+          
+          最简洁的图片加载流程：
+123Glide.with(context)    .load(myUrl)    .into(imageView);
+
+
+with 传递图片加载上下文，获取图片加载请求管理器（RequestManager）。
+load 传递图片加载数据源，构建图片加载请求建造器（RequestBuilder）。
+into 传递图片加载目标载体，创建图片加载请求（Request），执行图片
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-10-17 11:25" pubdate>
+              2019-10-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Android/">Android</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Android/">Android</a>
+            
+              <a href="/tags/%E5%9B%BE%E7%89%87/">图片</a>
+            
+              <a href="/tags/Glide/">Glide</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/post/%E7%AE%80%E6%9E%90Bitmap/" target="_self">
+          <img src="/gallery/1.png" srcset="/img/loading.gif" lazyload alt="简析Bitmap">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/post/%E7%AE%80%E6%9E%90Bitmap/" target="_self">
+          简析Bitmap
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/post/%E7%AE%80%E6%9E%90Bitmap/" target="_self">
+          
+          
+            
+          
+          基于 9.0（29）简析 Bitmap 类。
+我们只关注 Bitmap 类暴露出来的（即访问权限为 public）东西。
+
+枚举类 Config
+枚举类 CompressFormat
+若干 createBitmap 静态方法
+其他方法
+
+枚举类 Config可能的 bitmap 配置。bitmap 配置描述像素的存储方式。这会影响质量（颜色深度）以及显示透明/半透明颜色的能力。
+
+
+
+Config
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-10-16 11:25" pubdate>
+              2019-10-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Android/">Android</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Android/">Android</a>
+            
+              <a href="/tags/%E5%9B%BE%E7%89%87/">图片</a>
+            
+              <a href="/tags/Bitmap/">Bitmap</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/post/Android%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/" target="_self">
+          <img src="/gallery/1.png" srcset="/img/loading.gif" lazyload alt="Android图片压缩">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/post/Android%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/" target="_self">
+          Android图片压缩
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/post/Android%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/" target="_self">
+          
+          
+            
+          
+          为什么要压缩减少内存占用内存占用大小 = Bitmap 大小 = 总像素点数 x 一个像素点占用的字节数
+BitmapAndroid 中图片在内存中的表达形式是 Bitmap，即位图。
+总像素点数总像素点数由什么决定呢？
+总像素点数 = 图片源长度 x 缩放比例 x 图片源宽度 x 缩放比例
+缩放比例可以大致表示为：（为什么说大致呢？因为不是绝对的，实际还有其他因素可以影响实际缩放比例，如 inS
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-10-14 16:59" pubdate>
+              2019-10-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Android/">Android</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Android/">Android</a>
+            
+              <a href="/tags/%E5%9B%BE%E7%89%87/">图片</a>
+            
+              <a href="/tags/%E5%8E%8B%E7%BC%A9/">压缩</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/post/%E7%AE%80%E6%9E%90BitmapFactory/" target="_self">
+          <img src="/gallery/1.png" srcset="/img/loading.gif" lazyload alt="简析BitmapFactory">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/post/%E7%AE%80%E6%9E%90BitmapFactory/" target="_self">
+          简析BitmapFactory
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/post/%E7%AE%80%E6%9E%90BitmapFactory/" target="_self">
+          
+          
+            
+          
+          基于 9.0（29）简析 BitmapFactory 类。
+我们只关注 BitmapFactor 类暴露出来的（即访问权限为 public）东西。
+
+静态内部类 Options
+若干 decode 方法
+
+静态内部类 OptionsOptions，顾名思义，是 BitmapFactory 用于 decode 方法的选项参数。让我们看看有哪些：
+Bitmap inBitmap如果使用此参数，deco
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-10-14 16:59" pubdate>
+              2019-10-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Android/">Android</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Android/">Android</a>
+            
+              <a href="/tags/%E5%9B%BE%E7%89%87/">图片</a>
+            
+              <a href="/tags/Bitmap/">Bitmap</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/post/%E6%A8%A1%E6%9D%BF%E6%95%B4%E7%90%86%E4%B9%8B%E4%B8%8A%E4%BC%A0%E4%BB%93%E5%BA%93/" target="_self">
+          <img src="/gallery/1.png" srcset="/img/loading.gif" lazyload alt="模板整理之上传仓库">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/post/%E6%A8%A1%E6%9D%BF%E6%95%B4%E7%90%86%E4%B9%8B%E4%B8%8A%E4%BC%A0%E4%BB%93%E5%BA%93/" target="_self">
+          模板整理之上传仓库
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/post/%E6%A8%A1%E6%9D%BF%E6%95%B4%E7%90%86%E4%B9%8B%E4%B8%8A%E4%BC%A0%E4%BB%93%E5%BA%93/" target="_self">
+          
+          
+            
+          
+          我们在日常打 aar 包和 jar 包，并上传到远端中央仓库时，需要引入大段 gradle 代码，较为繁琐。我这里整理了常用的上传到中央仓库的 gradle 代码，提供了较为方便的使用方式。上传代码模板 GitHub目前只有上传到 bintray 也就是 jcenter 的整理，后期有需要其他远端中央仓库的会继续跟进。
+
+
+模板整理GitHub
+
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-10-09 17:19" pubdate>
+              2019-10-09
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%A8%A1%E6%9D%BF/">模板</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Android/">Android</a>
+            
+              <a href="/tags/%E6%A8%A1%E6%9D%BF/">模板</a>
+            
+              <a href="/tags/%E4%B8%8A%E4%BC%A0%E4%BB%93%E5%BA%93/">上传仓库</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/post/%E6%A8%A1%E6%9D%BF%E6%95%B4%E7%90%86%E4%B9%8BTravis%20CI/" target="_self">
+          <img src="/gallery/1.png" srcset="/img/loading.gif" lazyload alt="模板整理之Travis CI">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/post/%E6%A8%A1%E6%9D%BF%E6%95%B4%E7%90%86%E4%B9%8BTravis%20CI/" target="_self">
+          模板整理之Travis CI
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/post/%E6%A8%A1%E6%9D%BF%E6%95%B4%E7%90%86%E4%B9%8BTravis%20CI/" target="_self">
+          
+          
+            
+          
+          官方文档
+免费 Travis-CI（针对开源项目）：https://travis-ci.org
+收费 Travis-CI（针对私有和商业项目）：https://travis-ci.com
+使用步骤
+登录 Travis CI 并对指定的项目启用。
+配置 .travis.yml ，参考官方文档。
+push（或其他方式）触发 Travis-CI。
+
+实现工作流
+构建。开发一些新功能，提交代码后自动构建出
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-10-09 16:54" pubdate>
+              2019-10-09
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%A8%A1%E6%9D%BF/">模板</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Android/">Android</a>
+            
+              <a href="/tags/%E6%A8%A1%E6%9D%BF/">模板</a>
+            
+              <a href="/tags/Travis-CI/">Travis CI</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/post/Crash%E6%B2%BB%E7%90%86%E4%B9%8BTimeoutException/" target="_self">
+          <img src="/gallery/1.png" srcset="/img/loading.gif" lazyload alt="Crash治理之TimeoutException">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/post/Crash%E6%B2%BB%E7%90%86%E4%B9%8BTimeoutException/" target="_self">
+          Crash治理之TimeoutException
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/post/Crash%E6%B2%BB%E7%90%86%E4%B9%8BTimeoutException/" target="_self">
+          
+          
+            
+          
+          产生原因与 GC 过程相关的守护线程中的 2 个守护线程 FinalizerDaemon 和 FinalizerWatchdogDaemon 有关。
+
+FinalizerDaemon ：析构守护线程。对于重写了成员函数 finalize 的对象，它们被 GC 决定回收时，并没有马上被回收，而是被放入到一个队列中，等待 FinalizerDaemon 守护线程去调用它们的成员函数 finalize 
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-09-25 15:36" pubdate>
+              2019-09-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Android/">Android</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Crash/">Crash</a>
+            
+              <a href="/tags/TimeoutException/">TimeoutException</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/post/Android%E5%8A%A8%E7%94%BB/" target="_self">
+          <img src="/gallery/1.png" srcset="/img/loading.gif" lazyload alt="Android动画">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/post/Android%E5%8A%A8%E7%94%BB/" target="_self">
+          Android动画
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/post/Android%E5%8A%A8%E7%94%BB/" target="_self">
+          
+          
+            
+          
+          Android 中动画划分为两大类 视图动画（View Animation）和 属性动画（Property Animation）。其中 属性动画（Property Animation）需要在 Android3.0 之后（API &gt;= 11）使用。视图动画（View Animation）又包括了 帧动画（Frame Animation） 和 补间动画（Tweened Animation）。
+视
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-09-16 23:48" pubdate>
+              2019-09-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Android/">Android</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Android/">Android</a>
+            
+              <a href="/tags/%E5%8A%A8%E7%94%BB/">动画</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/post/Android%E8%87%AA%E5%AE%9A%E4%B9%89View/" target="_self">
+          <img src="/gallery/1.png" srcset="/img/loading.gif" lazyload alt="Android自定义View">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/post/Android%E8%87%AA%E5%AE%9A%E4%B9%89View/" target="_self">
+          Android自定义View
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/post/Android%E8%87%AA%E5%AE%9A%E4%B9%89View/" target="_self">
+          
+          
+            
+          
+          什么是自定义 View自定义 View 就是通过继承 View 或者 View 的子类，并在继承的类里面实现自定义的处理逻辑（重写相应的方法），以达到自己想要的效果。
+为什么要自定义 View
+让界面有特定的显示效果、交互
+优化布局（减少布局层次）
+封装
+
+如何自定义 View自定义 View 主要流程
+测量阶段 measure
+布局阶段 layout
+绘制阶段 draw
+
+背景：DecorVie
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-09-16 12:34" pubdate>
+              2019-09-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Android/">Android</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Android/">Android</a>
+            
+              <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/">自定义View</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

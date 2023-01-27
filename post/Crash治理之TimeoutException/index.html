@@ -1,0 +1,599 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/v_half.webp">
+  <link rel="icon" href="/img/v_half.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Code a poem and poem a code~">
+  <meta name="author" content="CodePoem">
+  <meta name="keywords" content="undefined">
+  
+  <title>Crash治理之TimeoutException - 梦半觉-CodePoem</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"codepoem.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>梦半觉-CodePoem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://codepoem.fun/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/CodePoem/CodePoem.github.io">
+                <i class="iconfont icon-github-fill"></i>
+                Github
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                厚薄
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAlgorithm">
+                    
+                    数据结构与算法-VAlgorithm
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VDesignPatterns">
+                    
+                    设计模式-VDesignPatterns
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAndroidReview">
+                    
+                    Android知识体系-VAndroidReview
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/v_bg.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Crash治理之TimeoutException">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-09-25 15:36" pubdate>
+        2019年9月25日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      939 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      13
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Crash治理之TimeoutException</h1>
+            
+            <div class="markdown-body">
+              <h2 id="产生原因"><a href="#产生原因" class="headerlink" title="产生原因"></a>产生原因</h2><p>与 GC 过程相关的守护线程中的 2 个守护线程 FinalizerDaemon 和 FinalizerWatchdogDaemon 有关。</p>
+<ul>
+<li>FinalizerDaemon ：析构守护线程。对于重写了成员函数 finalize 的对象，它们被 GC 决定回收时，并没有马上被回收，而是被放入到一个队列中，等待 FinalizerDaemon 守护线程去调用它们的成员函数 finalize ，然后再被回收。</li>
+<li>FinalizerWatchdogDaemon ：析构监护守护线程。用来监控 FinalizerDaemon 线程的执行。一旦检测那些重定了成员函数 finalize 的对象在执行成员函数 finalize 时超出一定的时间，那么就会退出 VM 。</li>
+</ul>
+<p>原因小总结：</p>
+<p>GC 过程中 FinalizerDaemon 守护线程执行 doFinalize 方法超时。FinalizerWatchdogDaemon 检测到后产生 TimeoutException 并退出虚拟机。<br>（每个手机触发 Timeout 的时长不同，比如 vivo 的某些 rom 是 2 分钟，模拟器统一都是 10 秒钟）</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="理想方案"><a href="#理想方案" class="headerlink" title="理想方案"></a>理想方案</h3><ol>
+<li>减少对 finalize() 方法的依赖，尽量不依靠 finalize() 方法释放资源，手动处理资源释放逻辑；如果不得已使用 finalize() 方法，尽量减少耗时以及线程同步时间。</li>
+<li>减少 finalizable 对象个数，即减少有 finalize() 方法的对象创建，降低 finalizable 对象 GC 次数；Android 5.0 以后 View 默认会实现 finalize 方法，那么减少 View 的创建就是一种解决方法。</li>
+</ol>
+<p>理想方案现实情况下却不太容易完全做到。往往需要采用止损方案。</p>
+<h3 id="止损方案"><a href="#止损方案" class="headerlink" title="止损方案"></a>止损方案</h3><p>止损方案本质都是不检测该异常或忽略该异常、不上报该异常，治标不治本。</p>
+<h4 id="尝试反射去关闭-FinalizerWatchdogDaemon"><a href="#尝试反射去关闭-FinalizerWatchdogDaemon" class="headerlink" title="尝试反射去关闭 FinalizerWatchdogDaemon"></a>尝试反射去关闭 FinalizerWatchdogDaemon</h4><p><strong>限制：</strong></p>
+<p>Android 9.0 版本开始限制 Private API 调用，不能再使用反射调用 Daemons 以及 FinalizerWatchdogDaemon 类方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WatchDogKiller</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String TAG = <span class="hljs-string">&quot;WatchDogKiller&quot;</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">boolean</span> sWatchdogStopped = <span class="hljs-keyword">false</span>;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">checkWatchDogAlive</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">final</span> Class clazz;<br>        <span class="hljs-keyword">try</span> &#123;<br>            clazz = Class.forName(<span class="hljs-string">&quot;java.lang.Daemons$FinalizerWatchdogDaemon&quot;</span>);<br>            <span class="hljs-keyword">final</span> Field field = clazz.getDeclaredField(<span class="hljs-string">&quot;INSTANCE&quot;</span>);<br>            field.setAccessible(<span class="hljs-keyword">true</span>);<br>            <span class="hljs-keyword">final</span> Object watchdog = field.get(<span class="hljs-keyword">null</span>);<br>            Method isRunningMethod = clazz.getSuperclass().getDeclaredMethod(<span class="hljs-string">&quot;isRunning&quot;</span>);<br>            isRunningMethod.setAccessible(<span class="hljs-keyword">true</span>);<br>            <span class="hljs-keyword">boolean</span> isRunning = (<span class="hljs-keyword">boolean</span>) isRunningMethod.invoke(watchdog);<br>            <span class="hljs-keyword">return</span> isRunning;<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    &#125;<br><br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">stopWatchDog</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-comment">// 建议在在debug包或者灰度包中不要stop，保留发现问题的能力。</span><br>        <span class="hljs-keyword">if</span> (!BuildConfig.DEBUG) &#123;<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br><br>        <span class="hljs-comment">// Android P 以后不能反射FinalizerWatchdogDaemon</span><br>        <span class="hljs-keyword">if</span> (Build.VERSION.SDK_INT &gt;= <span class="hljs-number">28</span>) &#123;<br>            Log.w(TAG, <span class="hljs-string">&quot;stopWatchDog, do not support after Android P, just return&quot;</span>);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (sWatchdogStopped) &#123;<br>            Log.w(TAG, <span class="hljs-string">&quot;stopWatchDog, already stopped, just return&quot;</span>);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        sWatchdogStopped = <span class="hljs-keyword">true</span>;<br>        Log.w(TAG, <span class="hljs-string">&quot;stopWatchDog, try to stop watchdog&quot;</span>);<br><br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-keyword">final</span> Class clazz = Class.forName(<span class="hljs-string">&quot;java.lang.Daemons$FinalizerWatchdogDaemon&quot;</span>);<br>            <span class="hljs-keyword">final</span> Field field = clazz.getDeclaredField(<span class="hljs-string">&quot;INSTANCE&quot;</span>);<br>            field.setAccessible(<span class="hljs-keyword">true</span>);<br>            <span class="hljs-keyword">final</span> Object watchdog = field.get(<span class="hljs-keyword">null</span>);<br>            <span class="hljs-keyword">try</span> &#123;<br>                <span class="hljs-keyword">final</span> Field thread = clazz.getSuperclass().getDeclaredField(<span class="hljs-string">&quot;thread&quot;</span>);<br>                thread.setAccessible(<span class="hljs-keyword">true</span>);<br>                thread.set(watchdog, <span class="hljs-keyword">null</span>);<br>            &#125; <span class="hljs-keyword">catch</span> (<span class="hljs-keyword">final</span> Throwable t) &#123;<br>                Log.e(TAG, <span class="hljs-string">&quot;stopWatchDog, set null occur error:&quot;</span> + t);<br><br>                t.printStackTrace();<br>                <span class="hljs-keyword">try</span> &#123;<br>                    <span class="hljs-comment">// 直接调用stop方法，在Android 6.0之前会有线程安全问题</span><br>                    <span class="hljs-keyword">final</span> Method method = clazz.getSuperclass().getDeclaredMethod(<span class="hljs-string">&quot;stop&quot;</span>);<br>                    method.setAccessible(<span class="hljs-keyword">true</span>);<br>                    method.invoke(watchdog);<br>                &#125; <span class="hljs-keyword">catch</span> (<span class="hljs-keyword">final</span> Throwable e) &#123;<br>                    Log.e(TAG, <span class="hljs-string">&quot;stopWatchDog, stop occur error:&quot;</span> + t);<br>                    t.printStackTrace();<br>                &#125;<br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (<span class="hljs-keyword">final</span> Throwable t) &#123;<br>            Log.e(TAG, <span class="hljs-string">&quot;stopWatchDog, get object occur error:&quot;</span> + t);<br>            t.printStackTrace();<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SampleApplication</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Application</span> </span>&#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">attachBaseContext</span><span class="hljs-params">(Context base)</span> </span>&#123;<br>        <span class="hljs-keyword">super</span>.attachBaseContext(base);<br>        WatchDogKiller.stopWatchDog();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="利用-Thread-UncaughtExceptionHandler-阻断-TimeoutException-处理"><a href="#利用-Thread-UncaughtExceptionHandler-阻断-TimeoutException-处理" class="headerlink" title="利用 Thread.UncaughtExceptionHandler 阻断 TimeoutException 处理"></a>利用 Thread.UncaughtExceptionHandler 阻断 TimeoutException 处理</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SampleApplication</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Application</span> </span>&#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">super</span>.onCreate();<br>        <span class="hljs-keyword">final</span> Thread.UncaughtExceptionHandler defaultUncaughtExceptionHandler =<br>                Thread.getDefaultUncaughtExceptionHandler();<br>        Thread.setDefaultUncaughtExceptionHandler(<span class="hljs-keyword">new</span> Thread.UncaughtExceptionHandler() &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">uncaughtException</span><span class="hljs-params">(Thread t, Throwable e)</span> </span>&#123;<br>                <span class="hljs-keyword">if</span> (t.getName().equals(<span class="hljs-string">&quot;FinalizerWatchdogDaemon&quot;</span>) &amp;&amp; e <span class="hljs-keyword">instanceof</span> TimeoutException) &#123;<br>                    <span class="hljs-comment">// ignore it</span><br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    defaultUncaughtExceptionHandler.uncaughtException(t, e);<br>                &#125;<br>            &#125;<br>        &#125;);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>推荐阅读:</strong></p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://yq.aliyun.com/articles/225751">提升 Android 下内存的使用意识和排查能力</a></li>
+<li><a target="_blank" rel="noopener" href="https://yq.aliyun.com/articles/225755">再谈 Finalizer 对象–大型 App 中内存与性能的隐性杀手</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/18950c9b0ec9">从 Daemons 到 finalize timed out after 10 seconds</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/pbm863521/article/details/74451935">ART 运行时垃圾收集（GC）过程分析</a></li>
+<li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000019373275">滴滴出行安卓端 finalize time out 的解决方案</a></li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Android/">Android</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Crash/">Crash</a>
+                    
+                      <a class="hover-with-bg" href="/tags/TimeoutException/">TimeoutException</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/post/%E6%A8%A1%E6%9D%BF%E6%95%B4%E7%90%86%E4%B9%8BTravis%20CI/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">模板整理之Travis CI</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/post/Android%E5%8A%A8%E7%94%BB/">
+                        <span class="hidden-mobile">Android动画</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script>
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          Fluid.utils.createCssLink('https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqusjs.css');
+          Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqus.js', function() {
+            new DisqusJS({
+              shortname: 'codepoem',
+              apikey: 'null'
+            });
+          });
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

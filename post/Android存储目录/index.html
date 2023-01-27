@@ -1,0 +1,640 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/v_half.webp">
+  <link rel="icon" href="/img/v_half.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Code a poem and poem a code~">
+  <meta name="author" content="CodePoem">
+  <meta name="keywords" content="undefined">
+  
+  <title>Android存储目录 - 梦半觉-CodePoem</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"codepoem.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>梦半觉-CodePoem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://codepoem.fun/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/CodePoem/CodePoem.github.io">
+                <i class="iconfont icon-github-fill"></i>
+                Github
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                厚薄
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAlgorithm">
+                    
+                    数据结构与算法-VAlgorithm
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VDesignPatterns">
+                    
+                    设计模式-VDesignPatterns
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAndroidReview">
+                    
+                    Android知识体系-VAndroidReview
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/v_bg.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Android存储目录">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-05-06 07:36" pubdate>
+        2019年5月6日 早上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Android存储目录</h1>
+            
+            <div class="markdown-body">
+              <ul>
+<li>问：三个概念，你弄清楚了吗？<br>内存：Memory<br>内部存储：InternalStorage<br>外部存储：ExternalStorage</li>
+<li>答：说到这三个概念，就不得不说一下平时我们选购手机的参数 6G+128G、8G+256G 等，这里的 6G 和 8G 指的是手机内存（手机运行时存储），而 128G 和 256G 指的是手机存储空间（由内部存储的空间和外部存储的空间构成）。PS：所以如果追求手机的运行速度，内存买大一点。可以理解为手机内存是操场，而手机存储空间是教室，要想学生们跑得快自然操场得大一些，教室的大小只决定了可以容纳多少学生。</li>
+</ul>
+<ol>
+<li>你了解 Android 手机的存储目录吗？</li>
+<li>你知道 Android 手机 App 应用数据都存放在哪了吗？</li>
+<li>你知道 Android 手机存储存在的隐私安全问题吗？</li>
+</ol>
+<p>那么开始今天的故事。</p>
+<h2 id="虚拟世界"><a href="#虚拟世界" class="headerlink" title="虚拟世界"></a>虚拟世界</h2><p>Android 存储目录的<strong>化身</strong>——A 州 M 社区。</p>
+<p>众所周知，A 州是一座正在蓬勃发展的城市。M 社区是 A 州引以为傲的设施完备的高档社区（各家各户都是<strong>独门独幢</strong>），有几户大户人家住在 M 社区，<strong>陶钱豹</strong>陶家、<strong>魏欣</strong>魏家、<strong>窦银</strong>窦家等是其中翘楚。</p>
+<center>
+
+<p><img src="/assert/img/persistence/storage/storage_sample.png" srcset="/img/loading.gif" lazyload alt="M社区鸟瞰图"></p>
+</center>
+
+<ul>
+<li>M 社区总占地 30 万平方米,<strong>公共区域面积大</strong>，绿化率高。住宅区是各家各户<strong>私有区域</strong>（有围墙大门），未经主人允许不得擅自闯入。除此之外，社区设有专门的停车区来实现人车分离，当然停车区也属于<strong>私有区域</strong>，与住宅绑定。私有区域都有尊贵的户主标识。</li>
+<li>除了私有区域，社区还拥有相册公园、音乐游泳馆、图片图书馆等<strong>九大公共区域</strong>，由物业统一管理，各家各户共享资源。</li>
+<li>如果有一户人家搬出社区，物业会对这户人家的<strong>私有区域</strong>（包括住宅区和停车区）进行打扫，保证不会残留垃圾，给下一户人家良好的居住体验，同时也会保留上一户人家在公共区域所留下的记录和贡献（这是社区的共享资源）。</li>
+<li>社区公共区域虽然受物业管辖，但限制不大，各家各户几乎可以自由地使用和享受公共资源，所以公共区域的文明建设就要靠对社区居民的自觉性了。</li>
+</ul>
+<p>把目光拉回到现实来。</p>
+<h2 id="现实世界"><a href="#现实世界" class="headerlink" title="现实世界"></a>现实世界</h2><p>小米 5 真机文件存储目录：</p>
+<center> 
+
+<p><img src="/assert/img/persistence/storage/mi5_file.png" srcset="/img/loading.gif" lazyload alt="MI5文件存储"></p>
+</center>
+
+<p>附上包含针对开发者的 Android 存储目录 Api 整理：</p>
+<center>
+
+<p><img src="/assert/img/persistence/storage/storage_summary.png" srcset="/img/loading.gif" lazyload alt="Android存储目录总结"></p>
+</center>
+
+<ul>
+<li><p>内部存储根目录：/data</p>
+</li>
+<li><p>内部存储私有目录根目录：/data/user/0/包名(如 com.taobao.taobao)</p>
+</li>
+<li><p>内部存储普通文件私有目录：/data/user/0/包名(如 com.taobao.taobao)/files</p>
+</li>
+<li><p>内部存储缓存文件私有目录：/data/user/0/包名(如 com.taobao.taobao)/cache</p>
+</li>
+<li><p>外部存储根目录：/storage/emulated/0</p>
+</li>
+<li><p>外部存储私有目录根目录：/storage/emulated/0/Android/data/包名(如 com.taobao.taobao)</p>
+</li>
+<li><p>外部存储普通文件私有目录：/storage/emulated/0/Android/data/包名(如 com.taobao.taobao)/files</p>
+</li>
+<li><p>外部存储缓存文件私有目录：/storage/emulated/0/Android/data/包名(如 com.taobao.taobao)/cache</p>
+</li>
+</ul>
+<div align=center><img width="270" height="480" src="/assert/img/persistence/storage/data_clear.png" srcset="/img/loading.gif" lazyload/></div> 
+<!--![QQ清理数据](/assert/img/persistence/storage/data_clear.png)-->
+
+<p>清理数据的两个选项：</p>
+<ol>
+<li>清理数据：会清理所有私有目录（内部存储私有目录根目录和外部存储私有目录根目录）</li>
+<li>清理缓存：会清理所有缓存文件目录（内部存储缓存文件私有目录和外部存储缓存文件私有目录）</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文基于 Android4.4 及以上系统说明，因为 Android4.4 以下存储目录有细微区别，这里不做探讨。</p>
+<ol>
+<li>Android 存储目录主要分为<strong>内部存储私有目录</strong>、<strong>外部存储私有目录</strong>和<strong>外部存储公共目录</strong>。</li>
+<li>Android 手机 App 应用的数据中<strong>与应用相关</strong>的缓存数据等（这些数据会随着应用卸载一起删除）一般存储在<strong>外部存储私有目录</strong>，在外部存储私有目录不可用的情况下才考虑内部存储私有目录（内部存储空间较少，比较珍贵）；Android 手机 App 应用的数据中<strong>与应用无关</strong>的数据（例如保存的照片，这些数据不会随着应用卸载一起删除）存储在<strong>外部存储公共目录</strong>或外部存储自定义的其他目录下。</li>
+<li>Android 手机存储对外部公共存储部分的限制较少，存在隐私安全隐患。（据说你在“猫西”上搜索耳机商品，它会将这个隐私信息存储到你手机的外部存储，然后你在打开“明日底线”的时候会读取这个隐私信息，给你推送耳机的广告）</li>
+</ol>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>造成当前 Android 存储目录使用混乱的局面有多种因素。<strong>一是</strong>谷歌在 Android<strong>系统层面</strong>没有杜绝这种情况的发生；<strong>二是</strong>国内 Android<strong>开发者水平良莠不齐</strong>，有像我这样的菜鸟（哭）程序员对 Android 存储目录不甚了解，复制粘贴网上的模板代码就会导致对存储目录的胡乱使用，也有<strong>明知不可为而为之</strong>的“黑心”程序员，故意利用 Android 存储目录“漏洞”来达到不可告人的目的。<br>最后，提醒各位，作为开发者，还是要<strong>恪守底线</strong>；作为 Android 用户，要<strong>加强隐私安全意</strong>识，不要随意下载未知来源的 App，多加注意各类 App 所需的<strong>应用权限</strong>（它们可能在背后偷偷利用你所赋予的权限干你不知道的事）。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Android/">Android</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Android/">Android</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%8C%81%E4%B9%85%E5%8C%96/">持久化</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%AD%98%E5%82%A8%E7%9B%AE%E5%BD%95/">存储目录</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/post/Android%E5%BA%94%E7%94%A8%E5%94%AF%E4%B8%80%E6%80%A7/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Android应用唯一性</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/post/Android%E7%89%B9%E6%9C%89%E9%9B%86%E5%90%88%E7%B1%BB%E6%B5%85%E6%9E%90/">
+                        <span class="hidden-mobile">Android特有集合类浅析</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script>
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          Fluid.utils.createCssLink('https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqusjs.css');
+          Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqus.js', function() {
+            new DisqusJS({
+              shortname: 'codepoem',
+              apikey: 'null'
+            });
+          });
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

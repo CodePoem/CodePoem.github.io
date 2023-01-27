@@ -1,0 +1,673 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/v_half.webp">
+  <link rel="icon" href="/img/v_half.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Code a poem and poem a code~">
+  <meta name="author" content="CodePoem">
+  <meta name="keywords" content="undefined">
+  
+  <title>模板整理之Travis CI - 梦半觉-CodePoem</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"codepoem.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>梦半觉-CodePoem</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://codepoem.fun/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/CodePoem/CodePoem.github.io">
+                <i class="iconfont icon-github-fill"></i>
+                Github
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                厚薄
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAlgorithm">
+                    
+                    数据结构与算法-VAlgorithm
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VDesignPatterns">
+                    
+                    设计模式-VDesignPatterns
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://codepoem.fun/VAndroidReview">
+                    
+                    Android知识体系-VAndroidReview
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/v_bg.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="模板整理之Travis CI">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-10-09 16:54" pubdate>
+        2019年10月9日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      21
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">模板整理之Travis CI</h1>
+            
+            <div class="markdown-body">
+              <p><a target="_blank" rel="noopener" href="https://docs.travis-ci.com/">官方文档</a></p>
+<p>免费 Travis-CI（针对开源项目）：<a target="_blank" rel="noopener" href="https://travis-ci.org">https://travis-ci.org</a></p>
+<p>收费 Travis-CI（针对私有和商业项目）：<a target="_blank" rel="noopener" href="https://travis-ci.com">https://travis-ci.com</a></p>
+<h2 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h2><ol>
+<li>登录 Travis CI 并对指定的项目启用。</li>
+<li>配置 .travis.yml ，参考官方文档。</li>
+<li>push（或其他方式）触发 Travis-CI。</li>
+</ol>
+<h2 id="实现工作流"><a href="#实现工作流" class="headerlink" title="实现工作流"></a>实现工作流</h2><ol>
+<li>构建。开发一些新功能，提交代码后自动构建出一个 APK（可以是测试版，也可以是发布版）。</li>
+<li>部署。将 APK 上传到 Github Release / <a target="_blank" rel="noopener" href="https://fir.im/">Fir.im</a> / <a target="_blank" rel="noopener" href="https://www.pgyer.com/">蒲公英</a>等。</li>
+<li>通知。发出通知（邮件、消息等形式）。</li>
+</ol>
+<h3 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h3><h4 id="release-签名证书安全"><a href="#release-签名证书安全" class="headerlink" title="release 签名证书安全"></a>release 签名证书安全</h4><p>Android 项目发布需要证书文件、密码、别名、别名密码。无论是开源项目还是私有项目，任何时候都不应该将原始证书或密码放入代码库（原则上来讲证书和密码也不应该交于开发人员，而应该只能通过发布服务器进行编译）</p>
+<p>Travis CI 为此提供了 2 种解决方案：</p>
+<ol>
+<li>对敏感信息、密码、证书等进行对称加密，在 CI 构建环境时解密。</li>
+<li>将密码等通过 Travis CI 控制台设置为构建时的环境变量。</li>
+</ol>
+<p>个人倾向使用第二种方案，但 Travis CI 控制台无法上传文件，因此涉及到文件加密的部分，选择第一种方案。</p>
+<h5 id="加密证书文件："><a href="#加密证书文件：" class="headerlink" title="加密证书文件："></a>加密证书文件：</h5><ol>
+<li>本地安装 Travis CLI 命令行工具。</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">gem install travis<br></code></pre></td></tr></table></figure>
+
+<p>这一步如果遇到错误, 尝试加 sudo，请升级一下 ruby 版本。</p>
+<ol start="2">
+<li>命令行登录 Travis（第一次登录才要），并输入 GitHub 的用户名和密码。</li>
+</ol>
+<p>针对免费版 <a href="https://travis-ci.org：">https://travis-ci.org：</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">travis login --org<br></code></pre></td></tr></table></figure>
+
+<p>针对收费版 Travis-C <a href="https://travis-ci.com：">https://travis-ci.com：</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">travis login --pro<br></code></pre></td></tr></table></figure>
+
+<p>这一步如果遇到 travis 命令找不到, 尝试找到 travis 安装的 bin 目录，并配置上环境变量。</p>
+<ol start="3">
+<li>进入项目根目录，加密证书。</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">travis encrypt-file XXX.jks --add<br></code></pre></td></tr></table></figure>
+
+<p>命令执行结果：</p>
+<ol>
+<li>在 Travis CI 控制台自动生成一对秘钥。</li>
+<li>基于秘钥通过 openssl 对文件进行加密，并在根目录生成 XXX.jks.enc 文件。</li>
+<li>在 .travis.yml 中自动生成 Travis CI 环境下解密文件的配置。</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">before_install:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">openssl</span> <span class="hljs-string">aes-256-cbc</span> <span class="hljs-string">-K</span> <span class="hljs-string">$encrypted_cd91ae131fae_key</span> <span class="hljs-string">-iv</span> <span class="hljs-string">$encrypted_cd91ae131fae_iv</span><br>    <span class="hljs-string">-in</span> <span class="hljs-string">mrd@vdreamers.enc</span> <span class="hljs-string">-out</span> <span class="hljs-string">mrd@vdreamers</span> <span class="hljs-string">-d</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="加密证书密码"><a href="#加密证书密码" class="headerlink" title="加密证书密码"></a>加密证书密码</h5><p>在 Travis CI 控制台配置证书密码、证书别名、证书别名密码三个环境变量（KEYSTORE_PWD、KEYSTORE_ALIAS、KEYSTORE_ALIAS_PWD）。</p>
+<h5 id="实现本地和-Travis-CI-构建-release-包互不干扰"><a href="#实现本地和-Travis-CI-构建-release-包互不干扰" class="headerlink" title="实现本地和 Travis-CI 构建 release 包互不干扰"></a>实现本地和 Travis-CI 构建 release 包互不干扰</h5><p>基本思路，判断环境变量 CI 是否 为 true，通过 System.getenv(“CI”) 去获取环境变量 CI 的值，fals e 即为本地构建，true 即为 Travis-CI 构建。<br>本地构建去 local.properties 中读取证书配置；Travis-CI 构建通过 System.getenv 去读取环境变量的证书配置。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><code class="hljs gradle">apply plugin: <span class="hljs-string">&#x27;com.android.application&#x27;</span><br><br><span class="hljs-keyword">def</span> keystorePWD = <span class="hljs-string">&#x27;&#x27;</span><br><span class="hljs-keyword">def</span> keystoreAlias = <span class="hljs-string">&#x27;&#x27;</span><br><span class="hljs-keyword">def</span> keystoreAliasPWD = <span class="hljs-string">&#x27;&#x27;</span><br><span class="hljs-comment">// local.properties file in the root director</span><br><span class="hljs-keyword">def</span> keyFile = <span class="hljs-keyword">project</span>.rootProject.<span class="hljs-keyword">file</span>(<span class="hljs-string">&#x27;local.properties&#x27;</span>)<br><br>Properties properties = <span class="hljs-keyword">new</span> Properties()<br><span class="hljs-comment">// local.properties exists</span><br><span class="hljs-keyword">if</span> (keyFile.exists()) &#123;<br>    properties.load(keyFile.newDataInputStream())<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    keyFile = <span class="hljs-keyword">file</span>(<span class="hljs-string">&quot;../no_exists_keystore.tmp&quot;</span>)<br>&#125;<br><br><span class="hljs-comment">// local.properties contains keystore.path</span><br><span class="hljs-keyword">if</span> (properties.containsKey(<span class="hljs-string">&quot;keystore.path&quot;</span>)) &#123;<br>    keyFile = <span class="hljs-keyword">file</span>(properties.getProperty(<span class="hljs-string">&quot;keystore.path&quot;</span>))<br>    keystorePWD = properties.getProperty(<span class="hljs-string">&quot;keystore.password&quot;</span>)<br>    keystoreAlias = properties.getProperty(<span class="hljs-string">&quot;keystore.alias&quot;</span>)<br>    keystoreAliasPWD = properties.getProperty(<span class="hljs-string">&quot;keystore.alias_password&quot;</span>)<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    keyFile = <span class="hljs-keyword">file</span>(<span class="hljs-string">&quot;../no_exists_keystore.tmp&quot;</span>)<br>&#125;<br><br><span class="hljs-keyword">def</span> isRunningOnTravis = System.getenv(<span class="hljs-string">&quot;CI&quot;</span>) == <span class="hljs-string">&quot;true&quot;</span><br><span class="hljs-keyword">if</span> (isRunningOnTravis) &#123;<br>    keyFile = <span class="hljs-keyword">file</span>(<span class="hljs-string">&quot;../mrd@vdreamers&quot;</span>)<br>    keystorePWD = System.getenv(<span class="hljs-string">&quot;KEYSTORE_PWD&quot;</span>)<br>    keystoreAlias = System.getenv(<span class="hljs-string">&quot;KEYSTORE_ALIAS&quot;</span>)<br>    keystoreAliasPWD = System.getenv(<span class="hljs-string">&quot;KEYSTORE_ALIAS_PWD&quot;</span>)<br>&#125;<br><br>android &#123;<br>    signingConfigs &#123;<br>        release &#123;<br>            keyAlias keystoreAlias<br>            keyPassword keystoreAliasPWD<br>            storeFile keyFile<br>            storePassword keystorePWD<br>        &#125;<br>    &#125;<br>    buildTypes &#123;<br>        debug &#123;<br>            minifyEnabled <span class="hljs-keyword">false</span><br>            proguardFiles getDefaultProguardFile(<span class="hljs-string">&#x27;proguard-android-optimize.txt&#x27;</span>), <span class="hljs-string">&#x27;proguard-rules.pro&#x27;</span><br>            signingConfig signingConfigs.debug<br>        &#125;<br>        release &#123;<br>            minifyEnabled <span class="hljs-keyword">false</span><br>            proguardFiles getDefaultProguardFile(<span class="hljs-string">&#x27;proguard-android-optimize.txt&#x27;</span>), <span class="hljs-string">&#x27;proguard-rules.pro&#x27;</span><br>            <span class="hljs-keyword">if</span> (keyFile.exists() || isRunningOnTravis) &#123;<br>                <span class="hljs-keyword">println</span>(<span class="hljs-string">&quot;WITH -&gt; buildTypes -&gt; release: using jks key&quot;</span>)<br>                signingConfig signingConfigs.release<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-keyword">println</span>(<span class="hljs-string">&quot;WITH -&gt; buildTypes -&gt; release: using default key&quot;</span>)<br>                signingConfig signingConfigs.debug<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>本地构建需要在本地 local.properties 中配置好证书路径 keystore.path、证书密码 keystore.password、证书别名 keystore.alias、证书别名密码 keystore.alias_password；<br>分别对应着 Travis CI 控制台加密的证书秘钥对和环境变量证书密码 KEYSTORE_PWD、证书别名 KEYSTORE_ALIAS、证书别名密码 KEYSTORE_ALIAS_PWD。</p>
+<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><h4 id="GitHub-Release"><a href="#GitHub-Release" class="headerlink" title="GitHub Release"></a>GitHub Release</h4><ol>
+<li>命令行自动生成 deploy 配置。</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">travis setup releases<br></code></pre></td></tr></table></figure>
+
+<p>需要输入 GitHub 账户名和密码以及 apk 路径，如 app/build/outputs/apk/app-release.apk<br>执行完后会自动在 .travis.yml 添加如下配置：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">deploy:</span><br>  <span class="hljs-attr">provider:</span> <span class="hljs-string">releases</span><br>  <span class="hljs-attr">api_key:</span><br>    <span class="hljs-attr">secure:</span> <span class="hljs-string">qOr4mGdf8lESDCiMo7ZJbGqLEHI3cXuV4UlQ2ZzvjSpDQyXrQ2l8wHMdgTkFxmlJWReOUuumHK346StBlGA2mQ5ufc6LhtHaCJWNpnk2Nixd2qFma9ySgPakz+7NoMml4wvkgMnn4HBCTV13ucJPxEzVt8KkX1JAiN9s5rh8SkB36i9KC4i/SuAPNPx2vHbglnoPFtToBlQa+cMLRSlXVkLHYYVdWRZOBRneu/H79oPkw5ajfsSG5u7RCCcEaaAfY1oU7ho1mrB1Kogq64BemGZSkIHgF5TCmmWgNypDlAm92tCN0G3uP0xffUZZsUqYoHiflXTjyXoYG4gXXC+SCCmkkFah0DZPcTZ6AHerBJ/8YgJX6/8tV3sH89PuM6HEuPmHbE3xEsGzUZWNrkJWHdJBLi5bXZnuSRvq+JDM/0CYSYuTx+lHCcCUiODIKTXFwHOaB+J+bKUTvvz91Rd7ELodUiBTAI/hXDYmWBAgY9Snw8+qBXiA7Ocp+ykcRuiUXXxvYlLgIzqtTEnoODBOsZ5ukjJoUs2GObcOgyBt4eedv7EfUcUKxHdf7ECZbhCEvhtVvHGzzIN5BN3R8+YJKnb0CmsO6FyCgCSnTyvKlFVfSX5s0v9E7XVFrCOo1gVDoL28v7AmrDZsl1mEaRSvVcOHtAXEhZEyF0CdafJ6s5A=</span><br>  <span class="hljs-attr">file:</span> <span class="hljs-string">app/build/outputs/apk/app-release.apk</span><br>  <span class="hljs-comment"># 这句手动添加</span><br>  <span class="hljs-attr">skip_cleanup:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">on:</span><br>    <span class="hljs-attr">repo:</span> <span class="hljs-string">CodePoem/VTemplate</span><br>    <span class="hljs-comment"># 这句手动添加</span><br>    <span class="hljs-attr">tags:</span> <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>provider：发布目标为 GitHub Release ，除了 GitHub 外，Travis CI 还支持发布到 AWS 、Google App Engine 等数十种 provider 。</li>
+<li>secure：是加密后的 GitHub Access Token 。</li>
+<li>file：发布的文件。</li>
+<li>skip_cleanup：默认情况下 Travis CI 在完成编译后会清除所有生成的文件，因此要将 skip_cleanup 设置为 true 来忽略此操作。</li>
+<li>on：发布的时机，这里配置为 tags : true，即只在有 tag 的情况才发布。</li>
+</ul>
+<ol start="2">
+<li>打 Tag 后 Push 代码触发 CI 。</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">git tag -a v0.0.1-alpha-1 -m &quot;这里是Tag注释，说清楚这个版本的主要改动，也可以省略-m参数直接写长文本&quot;<br>git push origin --tags<br></code></pre></td></tr></table></figure>
+
+<h4 id="Fir-im"><a href="#Fir-im" class="headerlink" title="Fir.im"></a><a target="_blank" rel="noopener" href="https://fir.im/">Fir.im</a></h4><ol>
+<li>登录 Fir.im 获取 API Token 。</li>
+<li>将获取的 API Toke n 配置到 Travis CI 的环境变量 FIR_API_TOKEN。</li>
+<li>添加配置。</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">before_install:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">gem</span> <span class="hljs-string">install</span> <span class="hljs-string">fir-cli</span><br><span class="hljs-attr">after_deploy:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">fir</span> <span class="hljs-string">p</span> <span class="hljs-string">app/build/outputs/apk/release/app-release.apk</span> <span class="hljs-string">-T</span> <span class="hljs-string">$FIR_API_TOKEN</span> <span class="hljs-string">-c</span> <span class="hljs-string">&quot;`git cat-file tag $TRAVIS_TAG`&quot;</span><br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>打 Tag 后 Push 代码触发 CI 。</li>
+</ol>
+<h3 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h3><h4 id="SendCloud-邮件通知"><a href="#SendCloud-邮件通知" class="headerlink" title="SendCloud 邮件通知"></a>SendCloud 邮件通知</h4><ol>
+<li>注册 SendCloud 。</li>
+<li>创建触发式模板 update_template 。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs text">%TRAVIS_REPO_SLUG%新版本%TRAVIS_TAG%已经发布了，功能更新：<br><br><br>%TAG_DESCRIPTION%<br><br>去下载：<br>https://fir.im/ep8s<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>添加配置，调用发送邮件 API 。</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">after_deploy:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">curl</span> <span class="hljs-string">-d</span> <span class="hljs-string">&quot;apiUser=******&amp;apiKey=******&amp;from=test@test.com&amp;fromName=testTitle&amp;subject=测试&amp;replyTo=test@test.com&amp;templateInvokeName=update_template&quot;</span><br>    <span class="hljs-string">--data-urlencode</span> <span class="hljs-string">&quot;xsmtpapi=&#123;&#x27;to&#x27;:[&#x27;806957428@qq.com&#x27;],&#x27;sub&#x27;:&#123;&#x27;%TRAVIS_REPO_SLUG%&#x27;:[&#x27;$TRAVIS_REPO_SLUG&#x27;],&#x27;%TRAVIS_TAG%&#x27;:[&#x27;$TRAVIS_TAG&#x27;],&#x27;%TAG_DESCRIPTION%&#x27;:[&#x27;$(git cat-file tag $TRAVIS_TAG)&#x27;]&#125;&#125;&quot;</span> <span class="hljs-string">http://api.sendcloud.net/apiv2/mail/sendtemplate</span><br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>打 Tag 后 Push 代码触发 CI 。</li>
+</ol>
+<hr>
+<ul>
+<li>模板整理<a target="_blank" rel="noopener" href="https://github.com/CodePoem/VTemplate">GitHub</a></li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%A8%A1%E6%9D%BF/">模板</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Android/">Android</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%A8%A1%E6%9D%BF/">模板</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Travis-CI/">Travis CI</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/post/%E6%A8%A1%E6%9D%BF%E6%95%B4%E7%90%86%E4%B9%8B%E4%B8%8A%E4%BC%A0%E4%BB%93%E5%BA%93/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">模板整理之上传仓库</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/post/Crash%E6%B2%BB%E7%90%86%E4%B9%8BTimeoutException/">
+                        <span class="hidden-mobile">Crash治理之TimeoutException</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script>
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          Fluid.utils.createCssLink('https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqusjs.css');
+          Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqus.js', function() {
+            new DisqusJS({
+              shortname: 'codepoem',
+              apikey: 'null'
+            });
+          });
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
